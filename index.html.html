@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>วิชาศิลปะ ม.5 | โรงเรียนชลราษฎรอำรุง</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Mitr:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3F6E;--navy2:#254F87;--navy-light:#E8EEF6;--navy-pale:#F0F4FA;
+  --orange:#E07B39;--orange2:#D06B2A;--orange-light:#FAE8D8;--orange-pale:#FDF4EE;
+  --white:#FFFFFF;--bg:#F5F7FA;--card:#FFFFFF;--border:#E2E8F0;--border2:#CBD5E1;
+  --text:#1E293B;--text2:#334155;--muted:#64748B;--muted2:#94A3B8;
+  --ok:#16803C;--okl:#DCFCE7;--err:#DC2626;--errl:#FEE2E2;
+  --warn:#D97706;--warnl:#FEF3C7;--info:#0369A1;--infol:#E0F2FE;
+  --r:10px;--r2:18px;--sh:0 1px 8px rgba(27,63,110,.08);--sh2:0 4px 20px rgba(27,63,110,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.screen{display:none;min-height:100vh;flex-direction:column}.screen.on{display:flex}
+/* LOGIN */
+#ls{background:linear-gradient(150deg,#0F2744 0%,#1B3F6E 50%,#254F87 100%);align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden}
+#ls::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 85%,rgba(224,123,57,.18) 0%,transparent 55%),radial-gradient(ellipse at 85% 15%,rgba(224,123,57,.12) 0%,transparent 50%)}
+.lcard{background:var(--white);border-radius:var(--r2);padding:44px 40px;width:100%;max-width:400px;box-shadow:0 24px 64px rgba(0,0,0,.3);position:relative;z-index:1;border-top:4px solid var(--orange)}
+.logo-wrap{text-align:center;margin-bottom:28px}
+.logo-art{font-size:50px;display:block;margin-bottom:10px}
+.logo-school{font-family:'Mitr',sans-serif;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.logo-title{font-family:'Mitr',sans-serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.2}
+.logo-title em{color:var(--orange);font-style:normal}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.8px;text-transform:uppercase}
+.fg input,.fg textarea,.fg select{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);outline:none;transition:all .2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--navy2);background:var(--white);box-shadow:0 0 0 3px var(--navy-light)}
+.fg textarea{resize:vertical;min-height:72px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--white);border:none;border-radius:var(--r);font-size:15px;font-family:'Sarabun',sans-serif;font-weight:700;cursor:pointer;margin-top:6px;transition:all .2s;box-shadow:0 4px 14px rgba(27,63,110,.3);letter-spacing:.3px}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(27,63,110,.35)}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.err-msg{color:var(--err);font-size:13px;margin-top:10px;text-align:center;display:none;background:var(--errl);padding:8px 12px;border-radius:8px}
+/* TOPBAR */
+.topbar{background:var(--navy);color:var(--white);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(27,63,110,.25);flex-shrink:0;border-bottom:3px solid var(--orange)}
+.tlogo{font-family:'Mitr',sans-serif;font-size:15px;font-weight:700}
+.tlogo em{color:var(--orange);font-style:normal}
+.tsub{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.3px;margin-top:1px}
+.uchip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .2s}
+.uchip:hover{background:rgba(255,255,255,.18)}
+.uav{width:28px;height:28px;border-radius:50%;background:var(--orange);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;overflow:hidden;border:1.5px solid rgba(255,255,255,.25);flex-shrink:0}
+.uav img{width:100%;height:100%;object-fit:cover}
+.uname{font-size:12px;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-out{background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:5px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Sarabun',sans-serif;transition:all .2s}
+.btn-out:hover{border-color:var(--orange);color:var(--orange)}
+/* PAGE */
+.pg{padding:20px;max-width:860px;margin:0 auto;width:100%}
+/* STUDENT HEADER */
+.shead{background:linear-gradient(135deg,var(--navy) 0%,#254F87 100%);border-radius:var(--r2);padding:22px 26px;margin-bottom:18px;box-shadow:var(--sh2);display:flex;align-items:center;gap:16px;position:relative;overflow:hidden}
+.shead::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(224,123,57,.15);pointer-events:none}
+.sprof{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(224,123,57,.6);display:flex;align-items:center;justify-content:center;font-size:26px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:all .2s}
+.sprof:hover{border-color:var(--orange);transform:scale(1.05)}
+.sprof img{width:100%;height:100%;object-fit:cover}
+.sinfo h2{font-size:17px;font-weight:700;color:var(--white)}
+.sinfo p{font-size:12px;color:rgba(255,255,255,.55);margin-top:3px}
+.stu-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(224,123,57,.25);border:1px solid rgba(224,123,57,.4);color:#FDB97B;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-top:6px}
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.sc{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh);text-align:center;border:1px solid var(--border);transition:all .2s}
+.sc:hover{box-shadow:var(--sh2);transform:translateY(-2px)}
+.sn{font-size:28px;font-weight:700;font-family:'Mitr',sans-serif}
+.sl2{font-size:11px;color:var(--muted);margin-top:3px}
+.sc.t .sn{color:var(--navy)}.sc.w .sn{color:var(--orange)}.sc.d .sn{color:var(--ok)}
+.sec-title{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:12px;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+/* ASGN CARDS */
+.acard{background:var(--card);border-radius:var(--r);padding:16px 20px;margin-bottom:10px;box-shadow:var(--sh);border:1px solid var(--border);border-left:4px solid var(--border2);transition:all .2s}
+.acard:hover{box-shadow:var(--sh2)}
+.acard.ov{border-left-color:var(--err)}.acard.ps{border-left-color:var(--orange)}.acard.sb{border-left-color:var(--info)}.acard.ap{border-left-color:var(--ok)}.acard.rj{border-left-color:var(--err)}
+.ah{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.at{font-size:15px;font-weight:600;color:var(--text)}.ad{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.am{font-size:11px;color:var(--muted);margin-top:8px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.badge.ov{background:var(--errl);color:var(--err)}.badge.ps{background:var(--orange-pale);color:var(--orange2);border:1px solid var(--orange-light)}.badge.wt{background:var(--warnl);color:var(--warn)}.badge.ap{background:var(--okl);color:var(--ok)}.badge.rj{background:var(--errl);color:var(--err)}
+.score-chip{display:inline-flex;align-items:center;gap:4px;background:var(--navy-pale);color:var(--navy2);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid var(--navy-light)}
+.reject-note{background:var(--errl);border-left:3px solid var(--err);border-radius:8px;padding:8px 12px;margin-top:8px;font-size:12px;color:var(--err);line-height:1.5}
+.btn-sub{display:block;width:100%;margin-top:12px;padding:10px;background:var(--orange);color:var(--white);border:none;border-radius:var(--r);font-size:13px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(224,123,57,.3)}
+.btn-sub:hover{background:var(--orange2);transform:translateY(-1px)}
+.dl-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--navy2);background:var(--navy-pale);padding:5px 10px;border-radius:8px;margin-top:6px;text-decoration:none;border:1px solid var(--navy-light);transition:background .2s}
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(15,39,68,.7);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+.modal-bg.on{display:flex}
+.modal-box{background:var(--white);border-radius:var(--r2);padding:28px;width:100%;max-width:460px;box-shadow:0 24px 64px rgba(0,0,0,.25);max-height:90vh;overflow-y:auto;border-top:3px solid var(--orange)}
+.modal-box h3{font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;font-family:'Mitr',sans-serif}
+.upzone{border:2px dashed var(--border2);border-radius:var(--r);padding:22px 16px;text-align:center;cursor:pointer;margin-bottom:12px;transition:all .2s;background:var(--bg)}
+.upzone:hover{background:var(--orange-pale);border-color:var(--orange)}
+.upzone .ico{font-size:30px}.upzone p{font-size:13px;color:var(--muted);margin-top:6px}
+.fprev{background:var(--orange-pale);border:1px solid var(--orange-light);border-radius:8px;padding:8px 12px;font-size:12px;display:flex;align-items:center;gap:6px;margin-bottom:10px;color:var(--orange2)}
+.mbtns{display:flex;gap:10px;margin-top:16px}
+.btn-c{flex:1;padding:11px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);font-size:14px;font-family:'Sarabun',sans-serif;cursor:pointer;color:var(--text2);transition:background .2s}
+.btn-c:hover{background:var(--border)}
+.btn-ok{flex:1;padding:11px;background:var(--navy);color:var(--white);border:none;border-radius:var(--r);font-size:14px;font-family:'Sarabun',sans-serif;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(27,63,110,.25);transition:all .2s}
+.btn-ok:hover{background:var(--navy2);transform:translateY(-1px)}
+.btn-ok:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-err{flex:1;padding:11px;background:var(--err);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer}
+.img-preview{width:100%;border-radius:var(--r);margin-bottom:12px;max-height:200px;object-fit:cover;display:none}
+.progress-bar{background:var(--navy-light);border-radius:20px;height:6px;margin-bottom:10px;display:none;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--orange));border-radius:20px;transition:width .3s;width:0%}
+.status-note{background:var(--infol);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--info);margin-bottom:8px;display:none}
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:var(--white);padding:12px 22px;border-radius:30px;font-size:13px;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;border-left:3px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.toast.show{opacity:1}
+/* TEACHER NAV */
+.tnav{display:flex;background:var(--white);border-bottom:2px solid var(--bg);overflow-x:auto;flex-shrink:0;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.ntab{padding:14px 18px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;border-top:none;border-left:none;border-right:none;background:none;font-family:'Sarabun',sans-serif;transition:all .2s}
+.ntab:hover{color:var(--navy);background:var(--navy-pale)}
+.ntab.on{color:var(--navy);border-bottom-color:var(--orange)}
+.tab{display:none}.tab.on{display:block}
+/* OVERVIEW */
+.og{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:22px}
+.oc{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh);text-align:center;border:1px solid var(--border);transition:all .2s}
+.oc:hover{box-shadow:var(--sh2);transform:translateY(-2px)}
+.on2{font-size:26px;font-weight:700;color:var(--navy);font-family:'Mitr',sans-serif}
+.ol{font-size:11px;color:var(--muted);margin-top:3px}
+/* FORM */
+.fcard{background:var(--card);border-radius:var(--r);padding:22px;box-shadow:var(--sh);margin-bottom:16px;border:1px solid var(--border)}
+.rchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.rchip{padding:5px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;transition:all .2s;color:var(--muted);background:var(--bg)}
+.rchip.on{border-color:var(--navy2);background:var(--navy-pale);color:var(--navy)}
+.gdrive-hint{background:var(--orange-pale);border:1px solid var(--orange-light);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--orange2);margin-bottom:8px;line-height:1.7}
+/* CHECKLIST */
+.rsels{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.rbtn{padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;background:var(--white);transition:all .2s;font-family:'Sarabun',sans-serif;color:var(--muted)}
+.rbtn.on{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{background:var(--navy-pale);padding:10px 12px;font-size:11px;font-weight:700;text-align:left;color:var(--navy2);letter-spacing:.5px;text-transform:uppercase;border-bottom:2px solid var(--navy-light)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.tbl tr:hover td{background:var(--navy-pale)}
+.si{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600}
+.si.wt{background:var(--warnl);color:var(--warn)}.si.ap{background:var(--okl);color:var(--ok)}.si.no{background:var(--bg);color:var(--muted)}.si.rj{background:var(--errl);color:var(--err)}
+.bulk{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.bbtn{padding:8px 16px;background:var(--ok);color:#fff;border:none;border-radius:var(--r);font-size:12px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.bbtn2{padding:8px 16px;background:var(--warn);color:#fff;border:none;border-radius:var(--r);font-size:12px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.bbtn-xl{padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:var(--r);font-size:12px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.apbtn{padding:5px 12px;background:var(--ok);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.unapbtn{padding:5px 12px;background:var(--err);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif}
+.rejbtn{padding:5px 10px;background:var(--muted);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif}
+.mrbtn{padding:5px 12px;background:var(--orange);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.score-inp{width:65px;padding:5px 8px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:'Sarabun',sans-serif;text-align:center;outline:none}
+.score-inp:focus{border-color:var(--navy2)}
+.savebtn{padding:5px 12px;background:var(--orange);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:700}
+.sync-bar{background:var(--infol);border:1px solid #BAE6FD;border-radius:8px;padding:8px 14px;font-size:12px;color:var(--info);margin-bottom:14px;display:none;align-items:center;gap:8px}
+.prof-prev{width:100px;height:100px;border-radius:50%;background:var(--navy-pale);margin:0 auto 16px;overflow:hidden;border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;font-size:40px}
+.prof-prev img{width:100%;height:100%;object-fit:cover}
+@media(max-width:480px){.stats{grid-template-columns:repeat(3,1fr)}.sn{font-size:22px}.pg{padding:12px}.fg-row{grid-template-columns:1fr}.lcard{padding:32px 24px}.ntab{padding:12px 10px;font-size:12px}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="ls" class="screen on">
+  <div class="lcard">
+    <div class="logo-wrap">
+      <span class="logo-art">🎨</span>
+      <div class="logo-school">โรงเรียนชลราษฎรอำรุง</div>
+      <div class="logo-title">วิชา<em>ศิลปะ</em> ชั้น ม.5</div>
+    </div>
+    <div class="fg">
+      <label>รหัสประจำตัว</label>
+      <input type="text" id="loginInput" placeholder="กรอกรหัสนักเรียน / รหัสครู" autocomplete="off">
+    </div>
+    <button class="btn-primary" id="btnLogin">เข้าสู่ระบบ</button>
+    <div class="err-msg" id="loginErr">❌ ไม่พบรหัสนี้ในระบบ กรุณาตรวจสอบอีกครั้ง</div>
+  </div>
+</div>
+
+<!-- STUDENT -->
+<div id="stuScreen" class="screen">
+  <div class="topbar">
+    <div><div class="tlogo">🎨 วิชา<em>ศิลปะ</em> ม.5</div><div class="tsub">โรงเรียนชลราษฎรอำรุง</div></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="uchip" id="stuChip"><div class="uav" id="stuAvTop"></div><span class="uname" id="stuNameTop"></span></div>
+      <button class="btn-out" id="btnStuLogout">ออก</button>
+    </div>
+  </div>
+  <div class="pg">
+    <div class="shead">
+      <div class="sprof" id="stuProfPic">🧑‍🎨</div>
+      <div class="sinfo"><h2 id="stuFullName"></h2><p id="stuDetail"></p><div class="stu-badge">🎨 วิชาศิลปะ ม.5</div></div>
+    </div>
+    <div class="stats">
+      <div class="sc t"><div class="sn" id="stTotal">0</div><div class="sl2">งานทั้งหมด</div></div>
+      <div class="sc w"><div class="sn" id="stPending">0</div><div class="sl2">ยังไม่ส่ง</div></div>
+      <div class="sc d"><div class="sn" id="stDone">0</div><div class="sl2">ส่งแล้ว</div></div>
+    </div>
+    <div class="sec-title">รายการงาน</div>
+    <div id="stuAsgnList"></div>
+  </div>
+</div>
+
+<!-- TEACHER -->
+<div id="tchScreen" class="screen">
+  <div class="topbar">
+    <div><div class="tlogo">🎨 ระบบ<em>ครู</em>ศิลปะ ม.5</div><div class="tsub">โรงเรียนชลราษฎรอำรุง</div></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="uchip"><div class="uav">ค</div><span class="uname">ครูผู้สอน</span></div>
+      <button class="btn-out" id="btnTchLogout">ออก</button>
+    </div>
+  </div>
+  <nav class="tnav">
+    <button class="ntab on" data-tab="overview">📊 ภาพรวม</button>
+    <button class="ntab" data-tab="add">➕ เพิ่มงาน</button>
+    <button class="ntab" data-tab="check">✅ เช็คส่งงาน</button>
+    <button class="ntab" data-tab="subs">📁 งานที่ส่งมา</button>
+    <button class="ntab" data-tab="scores">🏆 คะแนน</button>
+  </nav>
+  <div class="pg">
+    <div class="sync-bar" id="syncBar">⏳ กำลังบันทึก...</div>
+    <div class="tab on" id="tab-overview">
+      <div class="og" id="ovStats"></div>
+      <div class="sec-title">งานทั้งหมด</div>
+      <div id="tchAsgnList"></div>
+    </div>
+    <div class="tab" id="tab-add">
+      <div class="fcard">
+        <div class="sec-title">เพิ่มงานใหม่</div>
+        <div class="fg"><label>ชื่องาน / หัวข้อ</label><input type="text" id="fTitle" placeholder="เช่น งานภาพวาดสีน้ำ ครั้งที่ 1"></div>
+        <div class="fg"><label>รายละเอียด</label><textarea id="fDesc" placeholder="อธิบายรายละเอียดงาน..."></textarea></div>
+        <div class="fg-row">
+          <div class="fg" style="margin:0"><label>วันส่ง</label><input type="datetime-local" id="fDue"></div>
+          <div class="fg" style="margin:0"><label>คะแนนเต็ม</label><input type="number" id="fMax" placeholder="เช่น 20" min="1"></div>
+        </div>
+        <div class="fg"><label>มอบหมายให้ห้อง</label><div class="rchips" id="roomChips"></div></div>
+        <div class="fg">
+          <label>ลิงค์แบบฝึกหัด</label>
+          <div class="gdrive-hint">💡 Google Drive → คลิกขวาไฟล์ → แชร์ → "ทุกคนที่มีลิงค์" → คัดลอกลิงค์มาวาง</div>
+          <input type="url" id="fWsLink" placeholder="https://drive.google.com/...">
+          <input type="text" id="fWsName" placeholder="ชื่อที่แสดง เช่น แบบฝึกหัดครั้งที่ 1" style="margin-top:8px">
+        </div>
+        <button class="btn-primary" id="btnAddAsgn" style="width:auto;padding:11px 28px;margin-top:0">➕ เพิ่มงาน</button>
+      </div>
+    </div>
+    <div class="tab" id="tab-check">
+      <div class="fg"><label>เลือกงาน</label><select id="clAsgn" style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:14px;font-family:Sarabun,sans-serif;outline:none;background:var(--bg)"><option value="">-- เลือกงาน --</option></select></div>
+      <div class="fg"><label>เลือกห้อง</label><div class="rsels" id="clRooms"></div></div>
+      <div class="bulk">
+        <button class="bbtn" id="btnBulkApprove">✅ อนุมัติที่เลือก</button>
+        <button class="bbtn2" id="btnBulkPending">⏳ รออนุมัติที่เลือก</button>
+        <span id="selCount" style="font-size:12px;color:var(--muted)"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr><th><input type="checkbox" id="chkAll"></th><th>เลขที่</th><th>ชื่อ-สกุล</th><th>สถานะ</th><th>เวลาส่ง</th><th>คะแนน</th><th>ดำเนินการ</th></tr></thead>
+          <tbody id="clBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab" id="tab-subs">
+      <div class="fg"><label>กรองตามห้อง</label><div class="rsels" id="subRoomBtns"></div></div>
+      <div class="fg"><label>กรองตามงาน</label><select id="subAsgn" style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:14px;font-family:Sarabun,sans-serif;outline:none;background:var(--bg)"><option value="">ทุกงาน</option></select></div>
+      <div id="subsList"></div>
+    </div>
+    <div class="tab" id="tab-scores">
+      <div class="fcard" style="margin-bottom:16px">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div class="sec-title" style="margin:0">ตารางคะแนน</div>
+          <div style="display:flex;gap:8px">
+            <select id="scoreRoom" style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r);font-size:13px;font-family:Sarabun,sans-serif;outline:none;background:var(--bg)"><option value="all">ทุกห้อง</option></select>
+            <button class="bbtn-xl" id="btnExcel">📥 ส่งออก Excel</button>
+          </div>
+        </div>
+      </div>
+      <div style="overflow-x:auto"><div id="scoreTableWrap"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: SUBMIT -->
+<div class="modal-bg" id="modalSubmit">
+  <div class="modal-box">
+    <h3>📤 ส่งงาน</h3>
+    <p id="modalSubTitle" style="font-size:13px;color:var(--muted);margin-bottom:16px"></p>
+    <div style="margin-bottom:16px">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+        <span style="background:var(--orange);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">1</span>
+        ถ่ายรูปหน้าตัวเอง <span style="color:var(--err);font-weight:400">*จำเป็น</span>
+      </div>
+      <div class="upzone" id="upzoneSelfie"><div class="ico">🤳</div><p>ถ่ายรูปหรือเลือกจากแกลเลอรี่</p></div>
+      <input type="file" id="selfieFile" accept="image/*" style="display:none">
+      <div class="fprev" id="selfiePrev" style="display:none"><span>🤳</span><span id="selfieName"></span></div>
+      <img id="selfieImg" class="img-preview">
+    </div>
+    <div style="margin-bottom:8px">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+        <span style="background:var(--orange);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">2</span>
+        ถ่ายรูปผลงาน <span style="color:var(--err);font-weight:400">*จำเป็น</span>
+      </div>
+      <div class="upzone" id="upzoneWork"><div class="ico">📷</div><p>ถ่ายรูปหรือเลือกจากแกลเลอรี่</p></div>
+      <input type="file" id="workFile" accept="image/*" style="display:none">
+      <div class="fprev" id="workPrev" style="display:none"><span>📷</span><span id="workName"></span><span id="workKB" style="margin-left:auto"></span></div>
+      <img id="workImg" class="img-preview">
+    </div>
+    <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="status-note" id="statusNote"></div>
+    <div class="mbtns">
+      <button class="btn-c" id="btnSubCancel">ยกเลิก</button>
+      <button class="btn-ok" id="btnSubConfirm">ส่งงาน ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: REJECT -->
+<div class="modal-bg" id="modalReject">
+  <div class="modal-box">
+    <h3 style="color:var(--err)">❌ ไม่อนุมัติงาน</h3>
+    <p id="rejectStuName" style="font-size:13px;color:var(--muted);margin-bottom:14px"></p>
+    <div class="fg"><label>เหตุผล (ไม่บังคับ)</label><textarea id="rejectReason" placeholder="เช่น รูปไม่ชัด, งานไม่ตรงกับที่กำหนด..."></textarea></div>
+    <div class="mbtns">
+      <button class="btn-c" id="btnRejectCancel">ยกเลิก</button>
+      <button class="btn-err" id="btnRejectConfirm">❌ ยืนยันไม่อนุมัติ</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: PROFILE -->
+<div class="modal-bg" id="modalProfile">
+  <div class="modal-box">
+    <h3>🖼️ รูปโปรไฟล์</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px">เลือกรูปสำหรับโปรไฟล์ของคุณ</p>
+    <div class="prof-prev" id="profPrev">🧑‍🎨</div>
+    <div style="text-align:center;margin-bottom:4px">
+      <label style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--orange-pale);color:var(--orange2);border:1px solid var(--orange-light);border-radius:var(--r);cursor:pointer;font-size:14px;font-weight:600">
+        📷 เลือกรูป<input type="file" id="profFile" accept="image/*" style="display:none">
+      </label>
+    </div>
+    <div class="mbtns">
+      <button class="btn-c" id="btnProfCancel">ยกเลิก</button>
+      <button class="btn-ok" id="btnProfSave">บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE VIEWER -->
+<div class="modal-bg" id="modalImg">
+  <div style="position:relative;max-width:95vw;max-height:95vh">
+    <button id="btnCloseImg" style="position:absolute;top:-14px;right:-14px;background:var(--white);border:none;border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)">✕</button>
+    <img id="imgBig" style="max-width:90vw;max-height:90vh;border-radius:var(--r);display:block">
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+const FB = initializeApp({
+  apiKey:"AIzaSyC9YFNKmFMlh3UupFauB74XGDgdw1IlluM",
+  authDomain:"art-class-m5.firebaseapp.com",
+  projectId:"art-class-m5",
+  storageBucket:"art-class-m5.firebasestorage.app",
+  messagingSenderId:"526248582319",
+  appId:"1:526248582319:web:34a2cdabb528bff0f4885a"
+});
+const db = getFirestore(FB);
+
+// ── CLOUDINARY ──
+const CLD_CLOUD  = 'dfqrxtreo';
+const CLD_PRESET = 'art_class';
+
+async function uploadCloudinary(file) {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLD_PRESET);
+  const res = await fetch('https://api.cloudinary.com/v1_1/' + CLD_CLOUD + '/image/upload', {
+    method: 'POST', body: fd
+  });
+  if (!res.ok) throw new Error('อัปโหลดรูปไม่สำเร็จ (HTTP ' + res.status + ')');
+  const data = await res.json();
+  return data.secure_url;
+}
+
+function resizeImage(file, maxW, quality) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onerror = function() { reject(new Error('อ่านไฟล์ไม่ได้')); };
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onerror = function() { reject(new Error('โหลดรูปไม่ได้')); };
+      img.onload = function() {
+        var w = img.width, h = img.height;
+        if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+        var canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        canvas.toBlob(function(blob) {
+          if (!blob) { reject(new Error('บีบอัดรูปไม่ได้')); return; }
+          resolve(new File([blob], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' }));
+        }, 'image/jpeg', quality);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── CONSTANTS ──
+const TEACHER = '480614';
+const ROOMS = ['5/2','5/4','5/6','5/8','5/10','5/12','5/14','5/16'];
+const STUDENTS = {"5/2":[{"number":1,"id":"51058","name":"นายตฤณวรรธน์ ภควัฒน์ปิติณัฐ"},{"number":2,"id":"51061","name":"นายธนกร ประสพงาม"},{"number":3,"id":"51072","name":"นายพชร อุตรพงศ์"},{"number":4,"id":"51078","name":"นายวงษ์รัชพล เดชาเสวตวงษ์"},{"number":5,"id":"51080","name":"นายศุภกฤต คำหอม"},{"number":6,"id":"51089","name":"นายณฐรัช ถิ่นทับ"},{"number":7,"id":"51102","name":"นายรชต อนุรักษ์"},{"number":8,"id":"51107","name":"นายสุวิจักขณ์ วงศ์มีชัย"},{"number":9,"id":"51156","name":"นายปรมะ บริบูรณ์"},{"number":10,"id":"51291","name":"นายพิชญุตม์ สุรพัฒน์"},{"number":11,"id":"51309","name":"นายคชาธารทอง คชาโภชน์"},{"number":12,"id":"53639","name":"นายกฤษณ์ เจริญจิตต์"},{"number":13,"id":"53640","name":"นายฐิติกร ยืนยงนาวิน"},{"number":14,"id":"53641","name":"นายทักษ์ดนัย แก้วมุกดา"},{"number":15,"id":"53642","name":"นายสุภเวช แก้วดวงเล็ก"},{"number":16,"id":"53643","name":"น.ส.กัญจน์ณัฏฐ์ จิตเย็น"},{"number":17,"id":"53645","name":"น.ส.ณิชาภัทร จันทร์ช่วย"},{"number":18,"id":"53646","name":"น.ส.ธนธรณ์ อุ่นใจเพื่อน"},{"number":19,"id":"53647","name":"น.ส.นันท์นภัส แสงดาว"},{"number":20,"id":"53648","name":"น.ส.นิชาภา อาจธนกุล"},{"number":21,"id":"53649","name":"น.ส.บุญวรานันท์ บุญโยปการ"},{"number":22,"id":"53650","name":"น.ส.เบญญาภา นิลเขียว"},{"number":23,"id":"53651","name":"น.ส.ปรียาภรณ์ รุ่งสว่าง"},{"number":24,"id":"53652","name":"น.ส.ปาณิสรา ศิริณายกุล"},{"number":25,"id":"53653","name":"น.ส.ปุณยาพร รัตนทิพย์"},{"number":26,"id":"53654","name":"น.ส.พนิตา เพ็ชร์เจริญ"},{"number":27,"id":"53655","name":"น.ส.พัฒนพรรณ์ ชัยวัฒนพงศ์"},{"number":28,"id":"53656","name":"น.ส.วิรตี โทนุสิทธิ์"},{"number":29,"id":"53658","name":"น.ส.สิรินทรา พูลสวัสดิ์"}],"5/4":[{"number":1,"id":"51067","name":"นายปรวีร์ ภู่ปราง"},{"number":2,"id":"51127","name":"นายปัณณธร ฆ้องโนนสูง"},{"number":3,"id":"51134","name":"นายรัชพล ชมภูแก้ว"},{"number":4,"id":"51151","name":"นายธรรม์ธนัช วัดศรี"},{"number":5,"id":"51157","name":"นายปรวีร์ รัตนศรีสอางค์"},{"number":6,"id":"51162","name":"นายพงศ์พิเชษฐ์ เพชรเจริญ"},{"number":7,"id":"51181","name":"นายอัยย์ เดชโยธิน"},{"number":8,"id":"51187","name":"นายคณพศ ยิ่งยืน"},{"number":9,"id":"51189","name":"นายเชย์ฮาน ปาทาน"},{"number":10,"id":"51192","name":"นายณัฏฐพล ฉัตรมงคล"},{"number":11,"id":"51209","name":"นายปัณณทัต จีบแก้ว"},{"number":12,"id":"51222","name":"นายอธิวัฒน์ นิวัฒน์ธิติพร"},{"number":13,"id":"51302","name":"นายศุภณัฐ วิชัย"},{"number":14,"id":"51477","name":"นายกรวาณิช วาณิชยากรกุล"},{"number":15,"id":"53673","name":"นายนิธิศ จันทร์สม"},{"number":16,"id":"53674","name":"นายพรหมพิริยะ เข็มเพชร"},{"number":17,"id":"53675","name":"นายพิรชัชย์ สินสวัสดิ์"},{"number":18,"id":"53676","name":"นายภูรี ธารา"},{"number":19,"id":"53678","name":"น.ส.กุลรวิภา จันทร์บาง"},{"number":20,"id":"53679","name":"น.ส.จิณพัตร มีแสง"},{"number":21,"id":"53680","name":"น.ส.ณพิชภร อุดมมั่นถาวร"},{"number":22,"id":"53681","name":"น.ส.ณัชชา สุวรรณศิลป์"},{"number":23,"id":"53682","name":"น.ส.ณัฐกมล จักรจันทร์"},{"number":24,"id":"53683","name":"น.ส.ณัฐกฤตา โปร่งจิต"},{"number":25,"id":"53684","name":"น.ส.ธัญรดา เนตรถาวร"},{"number":26,"id":"53685","name":"น.ส.นันท์นภัส ศิวะศาสนพงศ์"},{"number":27,"id":"53686","name":"น.ส.นิศมา ทองเจือ"},{"number":28,"id":"53687","name":"น.ส.ปณัฎฎา เมลกูล"},{"number":29,"id":"53688","name":"น.ส.ปพิชญา ยงค์พะเนาว์"},{"number":30,"id":"53689","name":"น.ส.ปภาดา ลาภเจริญสิน"},{"number":31,"id":"53690","name":"น.ส.ปวรวรรณ เลิศเบญจมงคล"},{"number":32,"id":"53691","name":"น.ส.ปวริศา ศรีภิรมย์"},{"number":33,"id":"53692","name":"น.ส.ปวริศา สดทรงศิลป์"},{"number":34,"id":"53693","name":"น.ส.ปวีณ์ธิดา สกุลจร"},{"number":35,"id":"53694","name":"น.ส.พรลภัส แฉล้มไธสง"},{"number":36,"id":"53695","name":"น.ส.ภัทรวดี วรโชติภักดีกุล"},{"number":37,"id":"53696","name":"น.ส.วรนิษฐา พุทธา"},{"number":38,"id":"53697","name":"น.ส.วริสรา ชูเสน"},{"number":39,"id":"53698","name":"น.ส.สุจิตรา สีหาพล"},{"number":40,"id":"53824","name":"น.ส.พัณณ์ชิตา สกุลอำพรสิทธิ์"}],"5/6":[{"number":1,"id":"50290","name":"นายชนัตกัญ คงใหม่"},{"number":2,"id":"51186","name":"นายกานต์พนธ์ ปวีณวงษ์วรรณ"},{"number":3,"id":"51236","name":"นายชาญธาดา สุขพะนัด"},{"number":4,"id":"51243","name":"นายปริญ คล้ายเพชร"},{"number":5,"id":"51255","name":"นายศุภกฤต อาจยิ่ง"},{"number":6,"id":"51277","name":"นายณฐภัทร วงศ์แสง"},{"number":7,"id":"51279","name":"นายณัฐสิทธิ์ บัวศรีใส"},{"number":8,"id":"51308","name":"นายอภิวิชญ์ ผาทอง"},{"number":9,"id":"51310","name":"นายจิตติกุล ทิพย์มณี"},{"number":10,"id":"51315","name":"นายชยางกูร พุฒสุข"},{"number":11,"id":"51316","name":"นายญาณทัสส์ วิชกูล"},{"number":12,"id":"51323","name":"นายธิติพงศ์ ผึ่งผาย"},{"number":13,"id":"51343","name":"นายศิรวัฒน์ เพียรดี"},{"number":14,"id":"51355","name":"นายจีรเมธ ใจภักดี"},{"number":15,"id":"51366","name":"นายธีรพงศ์ สมบูรณ์"},{"number":16,"id":"51376","name":"นายพีรพงศ์ ผ่องใส"},{"number":17,"id":"51384","name":"นายศุภกร พลีราช"},{"number":18,"id":"51389","name":"นายอภิภู นิธิชลวงศ์"},{"number":19,"id":"51392","name":"นายเอกสุวัชร์ ประชุมพันธ์"},{"number":20,"id":"51408","name":"นายธนวิชญ์ จงเสมอสิทธิ์"},{"number":21,"id":"51411","name":"นายนรภัทร พละแสน"},{"number":22,"id":"51420","name":"นายเปรมวิชช์ สังขจันทร์"},{"number":23,"id":"51432","name":"นายศุภกฤต รสนานนท์"},{"number":24,"id":"51452","name":"นายฐปกร จันทร์ทองคำ"},{"number":25,"id":"51482","name":"นายจิราเจต เขียววิจิตร"},{"number":26,"id":"51493","name":"นายธิติวุฒิ แสนโภชน์"},{"number":27,"id":"51512","name":"นายรหัท สินทวีเดชา"},{"number":28,"id":"53713","name":"นายคอนอู จู"},{"number":29,"id":"53714","name":"นายณธัชกร ชาญพิทยกิจ"},{"number":30,"id":"53715","name":"นายพีรพล ตันเงิน"},{"number":31,"id":"53717","name":"นายอภิวุฒิ เลาล้อ"},{"number":32,"id":"53838","name":"นายวณิชพงศ์ อำไพฤทธิ์"},{"number":33,"id":"53845","name":"นายพัชรคุณ เอี่ยมรัศมี"},{"number":34,"id":"53718","name":"น.ส.กัญญ์จรีย์ ธาดากิตติสาร"},{"number":35,"id":"53719","name":"น.ส.ธิภาพร กิตติพะวงษ์"},{"number":36,"id":"53720","name":"น.ส.พัชรฎา พลจักรี"},{"number":37,"id":"53721","name":"น.ส.ภูชลิษา คำสัตย์"},{"number":38,"id":"53722","name":"น.ส.สุรภา งามแจ่ม"},{"number":39,"id":"53846","name":"น.ส.กันยาเรศ วิชชุประภาส"},{"number":40,"id":"53847","name":"น.ส.ชลธิดา เนาวเพ็ญ"},{"number":41,"id":"53848","name":"น.ส.ปภาวรินท์ ไชยโน"}],"5/8":[{"number":1,"id":"49772","name":"นายรังสิมันตุ์ โพอุทัย"},{"number":2,"id":"51264","name":"นายอภิชัย เกียรติไกรวัลศิริ"},{"number":3,"id":"51332","name":"นายปุณญาพัตณ์ สุวิปาลวัฒน์"},{"number":4,"id":"51357","name":"นายชยพล พรหมศิริ"},{"number":5,"id":"51362","name":"นายณัฐกันต์ รัตนะวงษ์"},{"number":6,"id":"51379","name":"นายภูวิศ นักรบ"},{"number":7,"id":"51390","name":"นายอรรถวุฒิ เฟื่องฟู"},{"number":8,"id":"51391","name":"นายอัครนันท์ อ่วมงามทรัพย์"},{"number":9,"id":"51413","name":"นายนันทิพัฒน์ ปุ้ยใจดี"},{"number":10,"id":"51418","name":"นายปุณณธัญญ์ ใจเที่ยง"},{"number":11,"id":"51427","name":"นายภัทรชนน รู้รักดี"},{"number":12,"id":"51439","name":"นายกฤตกิตนานนท์ เล้าอรุณ"},{"number":13,"id":"51441","name":"นายกษิดิ์เดช ดาวล้อม"},{"number":14,"id":"51453","name":"นายณัฐพัชร์ เรืองประโคน"},{"number":15,"id":"51462","name":"นายปราบดา ยิ่งสุด"},{"number":16,"id":"51468","name":"นายวงศธร แย้มวงศ์"},{"number":17,"id":"51474","name":"นายวีรวิชญ์ จุมพลศรี"},{"number":18,"id":"51479","name":"นายกิตติกร มัสโอดี"},{"number":19,"id":"51480","name":"นายกิตติกวิน อลินภัชกุญช์"},{"number":20,"id":"51481","name":"นายคณพร ชื่นอารมย์"},{"number":21,"id":"51485","name":"นายณัฐพล แก้วคำปอด"},{"number":22,"id":"51491","name":"นายเตชิต พรลภัสวโรดม"},{"number":23,"id":"51495","name":"นายนนน พลอยเพ็ชร"},{"number":24,"id":"51496","name":"นายนปกรณ์ เกตุแก้ว"},{"number":25,"id":"51500","name":"นายนิติกร บุญแก้ว"},{"number":26,"id":"51509","name":"นายมงคล พันธเวช"},{"number":27,"id":"52378","name":"นายณชพล ธนสารสมบัติกุล"},{"number":28,"id":"52380","name":"นายคุณานนท์ วงศ์อยู่"},{"number":29,"id":"52381","name":"นายรัชพล มีสวัสดิ์"},{"number":30,"id":"53730","name":"นายชิษณุพงศ์ ไชยศรีรัมย์"},{"number":31,"id":"53731","name":"นายณฐกร พรหมรัตน์"},{"number":32,"id":"53732","name":"นายปิยะวัฒน์ กุลขจรพันธ์"},{"number":33,"id":"53733","name":"นายวรชิต ทองบัณฑิต"},{"number":34,"id":"53840","name":"นายศุภเศรษฐ์ ศุภษร"},{"number":35,"id":"53844","name":"นายธรรมศาสตร์ ศุภกฤตยา"},{"number":36,"id":"53734","name":"น.ส.ฉัตรชนก คำสุริ"},{"number":37,"id":"53735","name":"น.ส.ดลกนก อิทธิอาวัชกุล"},{"number":38,"id":"53736","name":"น.ส.พัทธนันท์ สอนตระกูล"},{"number":39,"id":"53737","name":"น.ส.สลิลทิพย์ บุญทวี"},{"number":40,"id":"53843","name":"น.ส.นภัสพรชนันท์ ปานแดง"}],"5/10":[{"number":1,"id":"51119","name":"นายศราวิน แย้มประยูร"},{"number":2,"id":"51237","name":"นายณัฐกฤษ ใจดี"},{"number":3,"id":"51249","name":"นายพุทธ นราฌาฎิกานญ์"},{"number":4,"id":"51260","name":"นายสิกขา อินทราชัย"},{"number":5,"id":"51278","name":"นายณัฐพงษ์ แก้วสีเหลือง"},{"number":6,"id":"51284","name":"นายธีรวัฒน์ สุนทรหิรัญ"},{"number":7,"id":"51301","name":"นายศุภณัฐ ลิ้มอารยะชน"},{"number":8,"id":"51312","name":"นายจิราพัชร สังข์ศิริ"},{"number":9,"id":"51339","name":"นายมหาสมุธ เตียสกุลรุ่งโรจน์"},{"number":10,"id":"51382","name":"นายวัยวัฒน์ โตวา"},{"number":11,"id":"51396","name":"นายกฤตภาส วงษ์จุ้ย"},{"number":12,"id":"51405","name":"นายธนกร ชื่นอารมย์"},{"number":13,"id":"51423","name":"นายพงศพัศ บุญเหลือ"},{"number":14,"id":"51445","name":"นายจิ้นเซิน ฉั่ว"},{"number":15,"id":"51446","name":"นายจิรวิทย์ ฮวดไชยอนันต์"},{"number":16,"id":"51456","name":"นายเตชินท์ ชินบวรพงษ์"},{"number":17,"id":"51457","name":"นายธนพัฒ ปาฐวิกานต์"},{"number":18,"id":"51463","name":"นายโปรด มีสุข"},{"number":19,"id":"51472","name":"นายวัศพล พิเชียรวงศ์"},{"number":20,"id":"51497","name":"นายนพปฎล เจริญศิลป์"},{"number":21,"id":"52384","name":"นายปัณณวัชร์ ธนันพิมพ์นารา"},{"number":22,"id":"53744","name":"นายเกียรติประวุฒิ แก้วกัญญา"},{"number":23,"id":"53745","name":"นายอคิรา บุณยสิทธิ์พิชัย"},{"number":24,"id":"53746","name":"น.ส.ญาณิศา สุวรรณกิจ"},{"number":25,"id":"53747","name":"น.ส.ณัฏฐธิดา วิวุฒิสุนทร"},{"number":26,"id":"53748","name":"น.ส.ธนิธารณ์ ธาราภิญญา"},{"number":27,"id":"53749","name":"น.ส.ธัญชนก เวียงแสง"},{"number":28,"id":"53750","name":"น.ส.เบญญาภา แก้วจาเครือ"},{"number":29,"id":"53751","name":"น.ส.ปวริศา สิงต๊ะนะ"},{"number":30,"id":"53752","name":"น.ส.ปวริสา เชื้อพลายเวช"},{"number":31,"id":"53753","name":"น.ส.ปาริตา ปาณปุณณัง"},{"number":32,"id":"53754","name":"น.ส.พิมพิชชา สิริวรรณเจริญ"},{"number":33,"id":"53755","name":"น.ส.เพ็ญพิชญา มุ่งสันติสุข"},{"number":34,"id":"53756","name":"น.ส.เพียงขวัญ บัวรักษา"},{"number":35,"id":"53757","name":"น.ส.ภัทราวดี ธงไชย"},{"number":36,"id":"53758","name":"น.ส.โยษิตา ลัคนาทิน"},{"number":37,"id":"53759","name":"น.ส.รัศมิ์ลภัส อิงคนินันท์"},{"number":38,"id":"53760","name":"น.ส.สุชัญญา ด้วงทอง"},{"number":39,"id":"53761","name":"น.ส.สุชาวลี วงศ์ศรีเเก้ว"},{"number":40,"id":"53762","name":"น.ส.อัยริน วศินประภา"}],"5/12":[{"number":1,"id":"50574","name":"นายอชิตะ ธัญญากุลวงศ์"},{"number":2,"id":"51098","name":"นายปัณณทัต ทองงาม"},{"number":3,"id":"51142","name":"นายฉัฏทวุฒิ ใจการ"},{"number":4,"id":"51191","name":"นายณัฏฐกิตติ์ เนินปรางค์"},{"number":5,"id":"51204","name":"นายนิติรัฐ วังเปียง"},{"number":6,"id":"51233","name":"นายจิราวัฒน์ ประทุมใจอ่อน"},{"number":7,"id":"51247","name":"นายพัทธพล แวดาราแม"},{"number":8,"id":"51261","name":"นายสิทธิศาสตร์ อังกิติตระกูล"},{"number":9,"id":"51272","name":"นายชยุตพล หาญนัทธี"},{"number":10,"id":"51275","name":"นายฐิติวัชร์ โอฬารนรานนท์"},{"number":11,"id":"51276","name":"นายฐิติวัฒน์ โคพรม"},{"number":12,"id":"51281","name":"นายธนกฤต สุวนิชย์"},{"number":13,"id":"51283","name":"นายธนวิชญ์ ก้านอินทร์"},{"number":14,"id":"51290","name":"นายพงษกานต์ สกุลศักดิ์ทอง"},{"number":15,"id":"51299","name":"นายวชิรวิทย์ อินทร์โสภา"},{"number":16,"id":"51300","name":"นายวุฒิภัทร จันทรวงษ์"},{"number":17,"id":"51311","name":"นายจิรกฤต วาปี"},{"number":18,"id":"51325","name":"นายนพรุจ แจ้งกระจ่าง"},{"number":19,"id":"51349","name":"นายอัครภูมิ รุจิพรมงคล"},{"number":20,"id":"51367","name":"นายธีรวีร์ สุจินตัย"},{"number":21,"id":"51368","name":"นายนพเมธ สุขมาก"},{"number":22,"id":"51380","name":"นายเมธาสิทธิ์ พีระก้องเกียรติ"},{"number":23,"id":"51385","name":"นายศุภวิชญ์ ทองจินดา"},{"number":24,"id":"51393","name":"นายกนต์ธร ศิริ"},{"number":25,"id":"51442","name":"นายกันตพิชญ์ ลือกิตินันท์"},{"number":26,"id":"51454","name":"นายณัฐพันธ์ พรหมวิริยกุล"},{"number":27,"id":"51471","name":"นายวสุ ปานหยวก"},{"number":28,"id":"51486","name":"นายณัฐพล ชินวงศ์วิโรจน์"},{"number":29,"id":"51488","name":"นายต่อตระกูล ฉานสูงเนิน"},{"number":30,"id":"51489","name":"นายติณภัทร หาพลอย"},{"number":31,"id":"51502","name":"นายปิยวิศว์ โคตะกาว"},{"number":32,"id":"51503","name":"นายปุณณ โสภาพรรณกุล"},{"number":33,"id":"54562","name":"นายศุภเศรษฐ สืบฤกษ์"},{"number":34,"id":"53773","name":"น.ส.กัญญ์ณัชชา แก้วเข้ม"},{"number":35,"id":"53774","name":"น.ส.ธัญญลักษณ์ เพชรแทน"},{"number":36,"id":"53775","name":"น.ส.ธันยธร เจียวใช่เฮ็ง"},{"number":37,"id":"53777","name":"น.ส.มาทานา บุญประเสริฐ"},{"number":38,"id":"53778","name":"น.ส.รวีภัสส์ พิศุทธิ์จินดากุล"},{"number":39,"id":"53779","name":"น.ส.อรปรียา จิตรำพรรณ์"}],"5/14":[{"number":1,"id":"51074","name":"นายภาวิชญ์ ภิยโยทัย"},{"number":2,"id":"51087","name":"นายชิษณุพงษ์ โคตรภักดี"},{"number":3,"id":"51145","name":"นายฌาน เชื้อชาวนา"},{"number":4,"id":"51150","name":"นายธนากร ศรีจุฬางกูล"},{"number":5,"id":"51158","name":"นายปริญญา วิบูลย์จักร์"},{"number":6,"id":"51166","name":"นายพีระพัฒน์ โพธิ์อภัย"},{"number":7,"id":"51167","name":"นายภัทรกฤช หลงอุย"},{"number":8,"id":"51168","name":"นายภาคิน น้อยทรง"},{"number":9,"id":"51183","name":"นายกมนทัต ศรีตรัย"},{"number":10,"id":"51202","name":"นายธีรนันท์ จันทรโชติวงษ์"},{"number":11,"id":"51220","name":"นายศุภากร แก้วโภคา"},{"number":12,"id":"51228","name":"นายกัมพล เหียงแก้ว"},{"number":13,"id":"51235","name":"นายชนินทร์ แสนเจริญ"},{"number":14,"id":"51244","name":"นายปริพัฒน์ เขียนดี"},{"number":15,"id":"51254","name":"นายศิฐาพงษ์ สุวรรณเมฆ"},{"number":16,"id":"51265","name":"นายอภิวิชญ์ เนื่องจำนงค์"},{"number":17,"id":"51307","name":"นายอธิศ แก้วหาวงค์"},{"number":18,"id":"51330","name":"นายปกรณ์ แสนเมือง"},{"number":19,"id":"51337","name":"นายพีรณัฐ ทนุวงษ์"},{"number":20,"id":"51344","name":"นายสรรเสริญ เกิดศิริ"},{"number":21,"id":"51351","name":"นายกตกร แซมหิรัญ"},{"number":22,"id":"51381","name":"นายวชิรวิชญ์ เนาว์วัน"},{"number":23,"id":"51412","name":"นายนราวิชญ์ เพชรยวง"},{"number":24,"id":"51444","name":"นายคเณศ ทองประดู่"},{"number":25,"id":"51476","name":"นายสาธิต บุญปลื้ม"},{"number":26,"id":"53789","name":"นายจิรพัฒน์ ชมจินดา"},{"number":27,"id":"53790","name":"นายถิรวัฒน์ มีแสง"},{"number":28,"id":"53791","name":"นายนิติเผ่า วิจิตนิติ"},{"number":29,"id":"53792","name":"นายปเมธินทร์ เกิดโมลี"},{"number":30,"id":"53793","name":"นายระวีกานต์ พูลสวัสดิ์"},{"number":31,"id":"53794","name":"นายเศรษฐธร พิทักษ์"},{"number":32,"id":"53795","name":"นายสุธิวัส พัฒนเลิศมงคล"},{"number":33,"id":"53796","name":"น.ส.กัลยกร หงษ์ศรีทอง"},{"number":34,"id":"53797","name":"น.ส.ญานิศา คำมูลอามาตย์"},{"number":35,"id":"53798","name":"น.ส.ณัฐพัชร์ จิรมงคลภัทร์"},{"number":36,"id":"53799","name":"น.ส.รวิณา ราชสาร"},{"number":37,"id":"53800","name":"น.ส.วชิรญาณ์ เบือดขุนทด"},{"number":38,"id":"53801","name":"น.ส.วราภรณ์ เหลืองอ่อน"},{"number":39,"id":"53802","name":"น.ส.สุกฤตา ภู่เจริญ"}],"5/16":[{"number":1,"id":"51065","name":"นายธาวิน เมืองปัน"},{"number":2,"id":"51086","name":"นายชินรัตน์ ตระกูลผุดผ่อง"},{"number":3,"id":"51133","name":"นายรติภัทร สิงห์เหลือ"},{"number":4,"id":"51163","name":"นายพรรษชล บุญพลอย"},{"number":5,"id":"51174","name":"นายวัชรพล พันพรม"},{"number":6,"id":"51176","name":"นายสหรัฐ ตันสกุล"},{"number":7,"id":"51178","name":"นายสิรภพ รักษาพล"},{"number":8,"id":"51188","name":"นายชนันธร พงษ์พานิช"},{"number":9,"id":"51201","name":"นายธวัชชัย พินึกรัมย์"},{"number":10,"id":"51203","name":"นายนราวิชญ์ หมีเขียว"},{"number":11,"id":"51205","name":"นายปฏิภาณ เบ้าลี"},{"number":12,"id":"51213","name":"นายพีรวิชญ์ หาญชนะ"},{"number":13,"id":"51217","name":"นายศุภกร ครุพงศ์"},{"number":14,"id":"51282","name":"นายธนณัฏฐ์ ดีเจริญวงษ์กุล"},{"number":15,"id":"51289","name":"นายปัณณวิชญ์ ศรีนุติเมธิน"},{"number":16,"id":"51318","name":"นายณัฐกรณ์ นวนประโคน"},{"number":17,"id":"51319","name":"นายณัฐชนนท์ วังชากร"},{"number":18,"id":"51345","name":"นายสิริ สินทรัพย์"},{"number":19,"id":"51346","name":"นายสุวพิชญ์ ตะราษี"},{"number":20,"id":"51350","name":"นายอิทธิกร ถนอมคุณ"},{"number":21,"id":"51431","name":"นายศิริวุฒิ สมศิริวรางกูล"},{"number":22,"id":"53813","name":"นายกิตติกวิน พัชราภรณ์"},{"number":23,"id":"53814","name":"นายชุติเดช น้อยศรี"},{"number":24,"id":"53815","name":"นายณัฐพล คงชื่น"},{"number":25,"id":"53816","name":"นายเตชินท์ ไชยบุบผา"},{"number":26,"id":"53817","name":"นายทินกฤต ศกุนตนาคลาภ"},{"number":27,"id":"53818","name":"นายธีราทัต ดลภาวันวนิช"},{"number":28,"id":"53819","name":"นายพรภวิษย์ บุญปถม"},{"number":29,"id":"53820","name":"นายพฤกษ เฉลิมลาภ"},{"number":30,"id":"53821","name":"นายศุภวิชญ์ แตงแก้ว"},{"number":31,"id":"53822","name":"นายศุภวิชญ์ กล้าหาญ"},{"number":32,"id":"53776","name":"น.ส.ปัณฑิกา รวมลำภา"},{"number":33,"id":"53784","name":"น.ส.ธนัญญา บัวเข้ม"},{"number":34,"id":"53786","name":"น.ส.สุชัญญา สุวรรณจิระ"},{"number":35,"id":"53823","name":"น.ส.ธัญชนก ไกรพล"},{"number":36,"id":"53825","name":"น.ส.พิชญาภา สอนคง"},{"number":37,"id":"53827","name":"น.ส.รมิดา วงค์ถนอม"},{"number":38,"id":"53828","name":"น.ส.รวิสรา เต็มวิรุฬห์พงศ์"},{"number":39,"id":"53829","name":"น.ส.อารีรัฐ วงษ์ทองเหลือ"}]};
+
+const stuLookup = {};
+for (var room in STUDENTS) {
+  STUDENTS[room].forEach(function(s) { stuLookup[s.id] = Object.assign({}, s, { room: room }); });
+}
+
+// ── STATE ──
+var me = null, role = null;
+var assignments = [], submissions = [];
+var clRoom = ROOMS[0], subRoom = 'all';
+var selIds = new Set(), selFRooms = new Set(ROOMS);
+var clAsgnId = '';
+var rejectSubId = null;
+var submitAsgnId = '';
+var selfieFile = null, workFile = null;
+var unsub1 = null, unsub2 = null;
+
+// ── UTILS ──
+function $(id) { return document.getElementById(id); }
+function fmtDate(d) {
+  if (!d) return '-';
+  var dt = d.toDate ? d.toDate() : new Date(d);
+  return dt.toLocaleString('th-TH', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+function toast(msg) {
+  var t = $('toast'); t.textContent = msg; t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
+function sync(v) { $('syncBar').style.display = v ? 'flex' : 'none'; }
+function getSub(sid, aid) { return submissions.find(function(s) { return s.studentId === sid && s.asgnId === aid; }); }
+function getAsgn(id) { return assignments.find(function(a) { return a.id === id; }); }
+function showProgress(pct, msg) {
+  $('progressBar').style.display = 'block';
+  $('progressFill').style.width = pct + '%';
+  $('statusNote').style.display = 'block';
+  $('statusNote').textContent = msg;
+}
+function hideProgress() {
+  $('progressBar').style.display = 'none';
+  $('statusNote').style.display = 'none';
+}
+
+// ── LISTENERS ──
+function startListeners() {
+  if (unsub1) unsub1();
+  unsub1 = onSnapshot(collection(db, 'assignments'), function(snap) {
+    assignments = snap.docs.map(function(d) { return Object.assign({ id: d.id }, d.data()); })
+      .sort(function(a, b) { return (b.createdAt ? b.createdAt.toMillis() : 0) - (a.createdAt ? a.createdAt.toMillis() : 0); });
+    if (role === 'student') renderStuAsgns();
+    if (role === 'teacher') { renderOverview(); refreshSelects(); renderChecklist(); }
+  });
+  if (unsub2) unsub2();
+  unsub2 = onSnapshot(collection(db, 'submissions'), function(snap) {
+    submissions = snap.docs.map(function(d) { return Object.assign({ id: d.id }, d.data()); });
+    if (role === 'student') renderStuAsgns();
+    if (role === 'teacher') { renderOverview(); renderChecklist(); renderSubs(); renderScoreTable(); }
+  });
+}
+function stopListeners() { if (unsub1) unsub1(); if (unsub2) unsub2(); unsub1 = unsub2 = null; }
+
+// ── AUTH ──
+function doLogin() {
+  var code = $('loginInput').value.trim();
+  $('loginErr').style.display = 'none';
+  if (code === TEACHER) {
+    role = 'teacher'; me = { name: 'ครูผู้สอน' };
+    showScreen('tchScreen'); initTeacher(); startListeners(); return;
+  }
+  if (stuLookup[code]) {
+    role = 'student'; me = stuLookup[code];
+    showScreen('stuScreen'); initStudent(); startListeners(); return;
+  }
+  $('loginErr').style.display = 'block';
+}
+function doLogout() {
+  stopListeners(); me = null; role = null;
+  $('loginInput').value = '';
+  showScreen('ls');
+}
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('on'); });
+  $(id).classList.add('on');
+}
+
+// ── PROFILE ──
+function loadProf() {
+  if (!me) return;
+  var saved = localStorage.getItem('prof_' + me.id);
+  applyProf(saved);
+}
+function applyProf(url) {
+  var top = $('stuAvTop'), pic = $('stuProfPic');
+  if (url) {
+    top.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover">';
+    pic.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover">';
+  } else {
+    top.textContent = me ? me.name.charAt(0) : 'น';
+    pic.textContent = '🧑‍🎨';
+  }
+}
+
+// ── STUDENT ──
+function initStudent() {
+  $('stuNameTop').textContent = me.name;
+  $('stuFullName').textContent = me.name;
+  $('stuDetail').textContent = 'ชั้น ม.' + me.room + ' | เลขที่ ' + me.number + ' | รหัส ' + me.id;
+  loadProf();
+}
+
+function renderStuAsgns() {
+  var myA = assignments.filter(function(a) { return a.rooms && a.rooms.indexOf(me.room) >= 0; });
+  var done = myA.filter(function(a) { return getSub(me.id, a.id); }).length;
+  $('stTotal').textContent = myA.length;
+  $('stPending').textContent = myA.length - done;
+  $('stDone').textContent = done;
+  var el = $('stuAsgnList');
+  if (!myA.length) {
+    el.innerHTML = '<div style="text-align:center;padding:36px;color:var(--muted)"><div style="font-size:40px">🎨</div><p style="margin-top:8px">ยังไม่มีงานที่ได้รับมอบหมาย</p></div>';
+    return;
+  }
+  el.innerHTML = '';
+  myA.forEach(function(a) {
+    var sub = getSub(me.id, a.id);
+    var due = a.due && a.due.toDate ? a.due.toDate() : new Date(a.due);
+    var overdue = !sub && new Date() > due;
+    var cls = 'acard ps', bdg = 'badge ps', lbl = '📝 ยังไม่ส่ง';
+    if (sub && sub.approved) { cls='acard ap'; bdg='badge ap'; lbl='✅ ส่งงานสำเร็จ'; }
+    else if (sub && sub.rejected) { cls='acard rj'; bdg='badge rj'; lbl='❌ ไม่อนุมัติ'; }
+    else if (sub) { cls='acard sb'; bdg='badge wt'; lbl='⏳ รออนุมัติ'; }
+    else if (overdue) { cls='acard ov'; bdg='badge ov'; lbl='❌ เกินกำหนด'; }
+    var d = document.createElement('div');
+    d.className = cls;
+    var inner = '<div class="ah"><div style="flex:1"><div class="at">' + a.title + '</div>';
+    if (a.desc) inner += '<div class="ad">' + a.desc + '</div>';
+    inner += '<div class="am"><span>📅 กำหนดส่ง ' + fmtDate(a.due) + '</span>';
+    if (a.maxScore) inner += '<span class="score-chip">⭐ คะแนนเต็ม ' + a.maxScore + '</span>';
+    if (sub) inner += '<span>📤 ส่งเมื่อ ' + fmtDate(sub.submittedAt) + '</span>';
+    inner += '</div>';
+    if (sub && sub.rejected && sub.rejectComment) inner += '<div class="reject-note">💬 ครูแจ้ง: ' + sub.rejectComment + '</div>';
+    if (a.worksheetLink) inner += '<a class="dl-btn" href="' + a.worksheetLink + '" target="_blank" rel="noopener">📎 ' + (a.worksheetName || 'ดาวน์โหลดแบบฝึกหัด') + '</a>';
+    inner += '</div><span class="' + bdg + '">' + lbl + '</span></div>';
+    d.innerHTML = inner;
+    if (!sub || sub.rejected) {
+      var btn = document.createElement('button');
+      btn.className = 'btn-sub'; btn.textContent = '📷 ถ่ายรูปและส่งงาน';
+      btn.style.marginTop = '10px';
+      (function(aid, atitle) {
+        btn.onclick = function() { openSubmitModal(aid, atitle); };
+      })(a.id, a.title);
+      d.appendChild(btn);
+    }
+    el.appendChild(d);
+  });
+}
+
+// ── SUBMIT MODAL ──
+function openSubmitModal(aid, title) {
+  submitAsgnId = aid; selfieFile = null; workFile = null;
+  $('modalSubTitle').textContent = title || '';
+  $('selfiePrev').style.display = 'none';
+  $('selfieImg').style.display = 'none';
+  $('selfieImg').src = '';
+  $('workPrev').style.display = 'none';
+  $('workImg').style.display = 'none';
+  $('workImg').src = '';
+  $('selfieFile').value = '';
+  $('workFile').value = '';
+  $('btnSubConfirm').disabled = false;
+  $('btnSubConfirm').textContent = 'ส่งงาน ✓';
+  hideProgress();
+  $('modalSubmit').classList.add('on');
+}
+
+$('upzoneSelfie').onclick = function() { $('selfieFile').click(); };
+$('selfieFile').onchange = function() {
+  if (!this.files || !this.files[0]) return;
+  selfieFile = this.files[0];
+  $('selfieName').textContent = selfieFile.name;
+  $('selfiePrev').style.display = 'flex';
+  var url = URL.createObjectURL(selfieFile);
+  $('selfieImg').src = url; $('selfieImg').style.display = 'block';
+};
+
+$('upzoneWork').onclick = function() { $('workFile').click(); };
+$('workFile').onchange = function() {
+  if (!this.files || !this.files[0]) return;
+  workFile = this.files[0];
+  var kb = Math.round(workFile.size / 1024);
+  $('workName').textContent = workFile.name;
+  $('workKB').textContent = '(' + kb + ' KB)';
+  $('workPrev').style.display = 'flex';
+  var url = URL.createObjectURL(workFile);
+  $('workImg').src = url; $('workImg').style.display = 'block';
+};
+
+$('btnSubCancel').onclick = function() {
+  $('modalSubmit').classList.remove('on');
+  selfieFile = null; workFile = null;
+};
+
+$('btnSubConfirm').onclick = async function() {
+  if (!selfieFile) { toast('⚠️ กรุณาเลือกรูปหน้าตัวเอง (ขั้นที่ 1)'); return; }
+  if (!workFile)   { toast('⚠️ กรุณาเลือกรูปผลงาน (ขั้นที่ 2)'); return; }
+  this.disabled = true; this.textContent = 'กำลังส่ง...';
+  try {
+    showProgress(10, '⚙️ กำลังบีบอัดรูปภาพ...');
+    var selfieResized = await resizeImage(selfieFile, 600, 0.78);
+    var workResized   = await resizeImage(workFile,   1000, 0.78);
+    showProgress(40, '⬆️ กำลังอัปโหลดรูปหน้า...');
+    var selfieUrl = await uploadCloudinary(selfieResized);
+    showProgress(70, '⬆️ กำลังอัปโหลดรูปผลงาน...');
+    var workUrl = await uploadCloudinary(workResized);
+    showProgress(90, '💾 กำลังบันทึกข้อมูล...');
+    await addDoc(collection(db, 'submissions'), {
+      asgnId: submitAsgnId,
+      studentId: me.id, studentName: me.name,
+      room: me.room, number: me.number,
+      submittedAt: serverTimestamp(),
+      selfieUrl: selfieUrl,
+      photoUrl: workUrl,
+      photoName: workFile.name,
+      approved: false, rejected: false, rejectComment: '', score: null
+    });
+    showProgress(100, '✅ ส่งงานสำเร็จ!');
+    setTimeout(function() {
+      hideProgress();
+      $('modalSubmit').classList.remove('on');
+      selfieFile = null; workFile = null;
+      toast('⏳ ส่งงานแล้ว รอครูอนุมัติ...');
+    }, 800);
+  } catch(e) {
+    hideProgress();
+    toast('❌ ' + e.message);
+    this.disabled = false; this.textContent = 'ส่งงาน ✓';
+  }
+};
+
+// ── PROFILE MODAL ──
+$('stuChip').onclick = function() { openProfModal(); };
+$('stuProfPic').onclick = function() { openProfModal(); };
+function openProfModal() {
+  var saved = localStorage.getItem('prof_' + me.id);
+  var prev = $('profPrev');
+  if (saved) prev.innerHTML = '<img src="' + saved + '" style="width:100%;height:100%;object-fit:cover">';
+  else prev.textContent = '🧑‍🎨';
+  $('profFile').value = '';
+  $('modalProfile').classList.add('on');
+}
+$('profFile').onchange = function() {
+  if (!this.files || !this.files[0]) return;
+  var rd = new FileReader();
+  rd.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var c = document.createElement('canvas'); c.width = 200; c.height = 200;
+      var side = Math.min(img.width, img.height);
+      var sx = (img.width-side)/2, sy = (img.height-side)/2;
+      c.getContext('2d').drawImage(img, sx, sy, side, side, 0, 0, 200, 200);
+      var dataUrl = c.toDataURL('image/jpeg', 0.85);
+      $('profPrev').innerHTML = '<img src="' + dataUrl + '" style="width:100%;height:100%;object-fit:cover">';
+      $('profPrev').dataset.url = dataUrl;
+    };
+    img.src = e.target.result;
+  };
+  rd.readAsDataURL(this.files[0]);
+};
+$('btnProfCancel').onclick = function() { $('modalProfile').classList.remove('on'); };
+$('btnProfSave').onclick = function() {
+  var url = $('profPrev').dataset.url;
+  if (!url) { toast('⚠️ กรุณาเลือกรูปก่อน'); return; }
+  localStorage.setItem('prof_' + me.id, url);
+  applyProf(url);
+  $('modalProfile').classList.remove('on');
+  toast('✅ บันทึกรูปโปรไฟล์แล้ว');
+};
+
+// ── TEACHER ──
+function initTeacher() {
+  // room chips
+  $('roomChips').innerHTML = ROOMS.map(function(r) {
+    return '<div class="rchip on" data-r="' + r + '">ม.' + r + '</div>';
+  }).join('');
+  $('roomChips').querySelectorAll('.rchip').forEach(function(el) {
+    el.onclick = function() {
+      var r = el.dataset.r;
+      if (selFRooms.has(r)) selFRooms.delete(r); else selFRooms.add(r);
+      el.classList.toggle('on', selFRooms.has(r));
+    };
+  });
+  // cl rooms
+  $('clRooms').innerHTML = ROOMS.map(function(r, i) {
+    return '<button class="rbtn' + (i===0?' on':'') + '" data-r="' + r + '">ม.' + r + '</button>';
+  }).join('');
+  $('clRooms').querySelectorAll('.rbtn').forEach(function(btn) {
+    btn.onclick = function() {
+      clRoom = btn.dataset.r; selIds = new Set();
+      $('clRooms').querySelectorAll('.rbtn').forEach(function(b) { b.classList.remove('on'); });
+      btn.classList.add('on'); renderChecklist();
+    };
+  });
+  // sub rooms
+  $('subRoomBtns').innerHTML = '<button class="rbtn on" data-r="all">ทุกห้อง</button>' +
+    ROOMS.map(function(r) { return '<button class="rbtn" data-r="' + r + '">ม.' + r + '</button>'; }).join('');
+  $('subRoomBtns').querySelectorAll('.rbtn').forEach(function(btn) {
+    btn.onclick = function() {
+      subRoom = btn.dataset.r;
+      $('subRoomBtns').querySelectorAll('.rbtn').forEach(function(b) { b.classList.remove('on'); });
+      btn.classList.add('on'); renderSubs();
+    };
+  });
+  // score room
+  $('scoreRoom').innerHTML = '<option value="all">ทุกห้อง</option>' +
+    ROOMS.map(function(r) { return '<option value="' + r + '">ม.' + r + '</option>'; }).join('');
+  $('scoreRoom').onchange = renderScoreTable;
+  // nav tabs
+  document.querySelectorAll('.ntab').forEach(function(btn) {
+    btn.onclick = function() {
+      document.querySelectorAll('.ntab').forEach(function(b) { b.classList.remove('on'); });
+      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('on'); });
+      btn.classList.add('on'); $('tab-' + btn.dataset.tab).classList.add('on');
+      if (btn.dataset.tab === 'check') renderChecklist();
+      if (btn.dataset.tab === 'subs') renderSubs();
+      if (btn.dataset.tab === 'scores') renderScoreTable();
+    };
+  });
+  // default due
+  var d = new Date(); d.setDate(d.getDate() + 7);
+  $('fDue').value = d.toISOString().slice(0, 16);
+  $('btnAddAsgn').onclick = addAssignment;
+  $('chkAll').onchange = function() {
+    var stus = STUDENTS[clRoom] || [];
+    selIds = this.checked ? new Set(stus.map(function(s) { return s.id; })) : new Set();
+    renderChecklist();
+  };
+  $('btnBulkApprove').onclick = bulkApprove;
+  $('btnBulkPending').onclick  = bulkPending;
+  $('btnExcel').onclick = exportExcel;
+  $('btnRejectCancel').onclick  = function() { $('modalReject').classList.remove('on'); };
+  $('btnRejectConfirm').onclick = confirmReject;
+  $('btnCloseImg').onclick = function() { $('modalImg').classList.remove('on'); };
+  $('modalImg').onclick = function(e) { if (e.target === $('modalImg')) $('modalImg').classList.remove('on'); };
+  $('clAsgn').onchange  = renderChecklist;
+  $('subAsgn').onchange = renderSubs;
+}
+
+function renderOverview() {
+  var total = Object.values(STUDENTS).reduce(function(s, r) { return s + r.length; }, 0);
+  $('ovStats').innerHTML =
+    '<div class="oc"><div class="on2">' + total + '</div><div class="ol">นักเรียนทั้งหมด</div></div>' +
+    '<div class="oc"><div class="on2">' + assignments.length + '</div><div class="ol">งานที่มอบหมาย</div></div>' +
+    '<div class="oc"><div class="on2">' + submissions.length + '</div><div class="ol">ส่งงานแล้ว</div></div>' +
+    '<div class="oc"><div class="on2" style="color:var(--ok)">' + submissions.filter(function(s){return s.approved;}).length + '</div><div class="ol">อนุมัติแล้ว</div></div>';
+  var el = $('tchAsgnList');
+  if (!assignments.length) { el.innerHTML='<div style="text-align:center;padding:36px;color:var(--muted)">ยังไม่มีงาน</div>'; return; }
+  el.innerHTML = '';
+  assignments.forEach(function(a) {
+    var sc = submissions.filter(function(s){return s.asgnId===a.id;}).length;
+    var ac = submissions.filter(function(s){return s.asgnId===a.id&&s.approved;}).length;
+    var d = document.createElement('div'); d.className = 'acard';
+    d.innerHTML = '<div class="ah"><div style="flex:1"><div class="at">' + a.title + '</div>' +
+      (a.desc?'<div class="ad">'+a.desc+'</div>':'') +
+      '<div class="am"><span>📅 '+fmtDate(a.due)+'</span>' +
+      '<span>🏫 '+(a.rooms||[]).map(function(r){return'ม.'+r;}).join(', ')+'</span>' +
+      (a.maxScore?'<span class="score-chip">⭐ เต็ม '+a.maxScore+'</span>':'') +
+      '<span>📤 ส่ง '+sc+' | ✅ '+ac+'</span>' +
+      (a.worksheetLink?'<a href="'+a.worksheetLink+'" target="_blank" style="color:var(--navy2)">📎 '+(a.worksheetName||'แบบฝึกหัด')+'</a>':'') +
+      '</div></div>' +
+      '<button style="background:var(--errl);color:var(--err);border:none;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:12px" data-id="'+a.id+'">ลบ</button></div>';
+    d.querySelector('button').onclick = function() { deleteAsgn(a.id); };
+    el.appendChild(d);
+  });
+}
+
+function refreshSelects() {
+  var opts = assignments.map(function(a) {
+    return '<option value="'+a.id+'">'+a.title+(a.maxScore?' (เต็ม '+a.maxScore+')':'')+'</option>';
+  }).join('');
+  $('clAsgn').innerHTML = '<option value="">-- เลือกงาน --</option>' + opts;
+  $('subAsgn').innerHTML = '<option value="">ทุกงาน</option>' + assignments.map(function(a) {
+    return '<option value="'+a.id+'">'+a.title+'</option>';
+  }).join('');
+}
+
+async function addAssignment() {
+  var title = $('fTitle').value.trim();
+  var desc  = $('fDesc').value.trim();
+  var due   = $('fDue').value;
+  var maxScore = parseInt($('fMax').value) || null;
+  var wsLink = $('fWsLink').value.trim();
+  var wsName = $('fWsName').value.trim();
+  if (!title) { toast('⚠️ กรุณาใส่ชื่องาน'); return; }
+  if (!due)   { toast('⚠️ กรุณาระบุวันส่ง'); return; }
+  if (!selFRooms.size) { toast('⚠️ กรุณาเลือกห้อง'); return; }
+  sync(true); $('btnAddAsgn').disabled = true;
+  try {
+    await addDoc(collection(db,'assignments'), {
+      title, desc, due: new Date(due), rooms: [...selFRooms],
+      maxScore, worksheetLink: wsLink||null, worksheetName: wsName||null,
+      createdAt: serverTimestamp()
+    });
+    $('fTitle').value=''; $('fDesc').value=''; $('fWsLink').value=''; $('fWsName').value=''; $('fMax').value='';
+    document.querySelector('.ntab[data-tab="overview"]').click();
+    toast('✅ เพิ่มงานสำเร็จ!');
+  } catch(e) { toast('❌ ' + e.message); }
+  sync(false); $('btnAddAsgn').disabled = false;
+}
+
+async function deleteAsgn(id) {
+  if (!confirm('ต้องการลบงานนี้?')) return;
+  sync(true);
+  await deleteDoc(doc(db,'assignments',id));
+  var subsToDelete = submissions.filter(function(s){return s.asgnId===id;});
+  for (var i=0;i<subsToDelete.length;i++) await deleteDoc(doc(db,'submissions',subsToDelete[i].id));
+  sync(false); toast('🗑️ ลบงานแล้ว');
+}
+
+// ── CHECKLIST ──
+function renderChecklist() {
+  clAsgnId = $('clAsgn').value;
+  var stus = STUDENTS[clRoom] || [];
+  var asgn = getAsgn(clAsgnId);
+  var body = $('clBody');
+  if (!clAsgnId) { body.innerHTML='<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted)">กรุณาเลือกงานก่อน</td></tr>'; return; }
+  body.innerHTML = '';
+  stus.forEach(function(s) {
+    var sub = getSub(s.id, clAsgnId);
+    var tr = document.createElement('tr');
+    // checkbox
+    var tdCb = document.createElement('td');
+    var cb = document.createElement('input'); cb.type='checkbox'; cb.checked=selIds.has(s.id);
+    cb.onchange = (function(sid) { return function() { if(this.checked)selIds.add(sid);else selIds.delete(sid); $('selCount').textContent=selIds.size?'เลือก '+selIds.size+' คน':''; }; })(s.id);
+    tdCb.appendChild(cb); tr.appendChild(tdCb);
+    // num
+    var tdN=document.createElement('td'); tdN.textContent=s.number; tr.appendChild(tdN);
+    // name
+    var tdNm=document.createElement('td'); tdNm.style.whiteSpace='nowrap'; tdNm.textContent=s.name; tr.appendChild(tdNm);
+    // status
+    var tdSt=document.createElement('td');
+    if(sub&&sub.approved) tdSt.innerHTML='<span class="si ap">✅ อนุมัติ</span>';
+    else if(sub&&sub.rejected) tdSt.innerHTML='<span class="si rj">❌ ไม่อนุมัติ</span>'+(sub.rejectComment?'<br><span style="font-size:10px;color:var(--err)">'+sub.rejectComment+'</span>':'');
+    else if(sub) tdSt.innerHTML='<span class="si wt">⏳ รออนุมัติ</span>';
+    else tdSt.innerHTML='<span class="si no">— ยังไม่ส่ง</span>';
+    tr.appendChild(tdSt);
+    // time
+    var tdT=document.createElement('td'); tdT.style.fontSize='11px'; tdT.style.color='var(--muted)'; tdT.style.whiteSpace='nowrap';
+    tdT.textContent=sub?fmtDate(sub.submittedAt):'-'; tr.appendChild(tdT);
+    // score
+    var tdSc=document.createElement('td');
+    if(asgn&&asgn.maxScore&&sub){
+      var inp=document.createElement('input'); inp.type='number'; inp.className='score-inp';
+      inp.min=0; inp.max=asgn.maxScore; inp.value=sub.score!=null?sub.score:''; inp.placeholder='0-'+asgn.maxScore;
+      var sbtn=document.createElement('button'); sbtn.className='savebtn'; sbtn.textContent='บันทึก';
+      sbtn.onclick=(function(subId,sinp,mx){return async function(){
+        var v=parseFloat(sinp.value);
+        if(isNaN(v)||v<0||v>mx){toast('⚠️ คะแนนไม่ถูกต้อง (0-'+mx+')');return;}
+        sync(true);
+        await updateDoc(doc(db,'submissions',subId),{score:v});
+        var idx=submissions.findIndex(function(x){return x.id===subId;}); if(idx>-1)submissions[idx].score=v;
+        sync(false); renderScoreTable(); toast('✅ บันทึกคะแนน '+v+'/'+mx);
+      };})(sub.id,inp,asgn.maxScore);
+      tdSc.appendChild(inp); tdSc.appendChild(document.createTextNode(' ')); tdSc.appendChild(sbtn);
+    } else { tdSc.textContent='-'; }
+    tr.appendChild(tdSc);
+    // actions
+    var tdAc=document.createElement('td'); tdAc.style.whiteSpace='nowrap';
+    if(sub&&sub.approved){
+      var b=document.createElement('button'); b.className='unapbtn'; b.textContent='ยกเลิก';
+      b.onclick=(function(sid){return async function(){sync(true);await updateDoc(doc(db,'submissions',sid),{approved:false});sync(false);toast('↩️ ยกเลิกแล้ว');};})(sub.id);
+      tdAc.appendChild(b);
+    } else if(sub) {
+      var b1=document.createElement('button'); b1.className='apbtn'; b1.textContent='✅ อนุมัติ';
+      b1.onclick=(function(sid){return async function(){sync(true);await updateDoc(doc(db,'submissions',sid),{approved:true,rejected:false});sync(false);toast('✅ อนุมัติแล้ว');};})(sub.id);
+      var b2=document.createElement('button'); b2.className='rejbtn'; b2.textContent='❌'; b2.style.marginLeft='4px';
+      b2.onclick=(function(sid,sname){return function(){openReject(sid,sname);};})(sub.id,s.name);
+      tdAc.appendChild(b1); tdAc.appendChild(b2);
+    } else {
+      var b=document.createElement('button'); b.className='mrbtn'; b.textContent='📝 บันทึกว่าส่ง';
+      b.onclick=(function(sid,aid){return async function(){
+        sync(true); var stu=stuLookup[sid];
+        await addDoc(collection(db,'submissions'),{asgnId:aid,studentId:sid,studentName:stu?stu.name:'',room:stu?stu.room:'',number:stu?stu.number:0,submittedAt:serverTimestamp(),selfieUrl:null,photoUrl:null,photoName:'',approved:true,rejected:false,rejectComment:'',score:null});
+        sync(false); toast('📝 บันทึกแล้ว');
+      };})(s.id,clAsgnId);
+      tdAc.appendChild(b);
+    }
+    tr.appendChild(tdAc);
+    body.appendChild(tr);
+  });
+}
+
+async function bulkApprove() {
+  if(!selIds.size){toast('⚠️ กรุณาเลือกนักเรียนก่อน');return;}
+  var aid=$('clAsgn').value; if(!aid)return;
+  sync(true);
+  for(var sid of selIds){
+    var sub=getSub(sid,aid);
+    if(sub){await updateDoc(doc(db,'submissions',sub.id),{approved:true,rejected:false});}
+    else{var stu=stuLookup[sid];await addDoc(collection(db,'submissions'),{asgnId:aid,studentId:sid,studentName:stu?stu.name:'',room:stu?stu.room:'',number:stu?stu.number:0,submittedAt:serverTimestamp(),selfieUrl:null,photoUrl:null,photoName:'',approved:true,rejected:false,rejectComment:'',score:null});}
+  }
+  var n=selIds.size; selIds=new Set(); sync(false); toast('✅ อนุมัติ '+n+' คนแล้ว');
+}
+
+async function bulkPending() {
+  if(!selIds.size){toast('⚠️ กรุณาเลือกนักเรียนก่อน');return;}
+  var aid=$('clAsgn').value; if(!aid)return;
+  sync(true);
+  for(var sid of selIds){
+    var sub=getSub(sid,aid);
+    if(sub){await updateDoc(doc(db,'submissions',sub.id),{approved:false,rejected:false});}
+    else{var stu=stuLookup[sid];await addDoc(collection(db,'submissions'),{asgnId:aid,studentId:sid,studentName:stu?stu.name:'',room:stu?stu.room:'',number:stu?stu.number:0,submittedAt:serverTimestamp(),selfieUrl:null,photoUrl:null,photoName:'',approved:false,rejected:false,rejectComment:'',score:null});}
+  }
+  var n=selIds.size; selIds=new Set(); sync(false); toast('⏳ บันทึกรออนุมัติ '+n+' คน');
+}
+
+// ── REJECT ──
+function openReject(subId, stuName) {
+  rejectSubId=subId; $('rejectStuName').textContent='นักเรียน: '+stuName; $('rejectReason').value=''; $('modalReject').classList.add('on');
+}
+async function confirmReject() {
+  if(!rejectSubId)return;
+  var comment=$('rejectReason').value.trim();
+  sync(true);
+  try{
+    await updateDoc(doc(db,'submissions',rejectSubId),{approved:false,rejected:true,rejectComment:comment});
+    var idx=submissions.findIndex(function(s){return s.id===rejectSubId;});
+    if(idx>-1){submissions[idx].approved=false;submissions[idx].rejected=true;submissions[idx].rejectComment=comment;}
+    $('modalReject').classList.remove('on'); toast('❌ ไม่อนุมัติงานแล้ว');
+  }catch(e){toast('❌ '+e.message);}
+  sync(false);
+}
+
+// ── SUBMISSIONS VIEW ──
+function renderSubs() {
+  var aid=$('subAsgn').value;
+  var list=submissions
+    .filter(function(s){return subRoom==='all'||s.room===subRoom;})
+    .filter(function(s){return !aid||s.asgnId===aid;})
+    .sort(function(a,b){return(b.submittedAt&&b.submittedAt.toMillis?b.submittedAt.toMillis():0)-(a.submittedAt&&a.submittedAt.toMillis?a.submittedAt.toMillis():0);});
+  var el=$('subsList');
+  if(!list.length){el.innerHTML='<div style="text-align:center;padding:36px;color:var(--muted)"><div style="font-size:36px">📭</div><p style="margin-top:8px">ยังไม่มีงานที่ส่ง</p></div>';return;}
+  el.innerHTML='';
+  list.forEach(function(s){
+    var a=getAsgn(s.asgnId);
+    var maxScore=a&&a.maxScore?a.maxScore:null;
+    var selfieUrl=s.selfieUrl||s.selfieData||null;
+    var workUrl=s.photoUrl||s.photoData||null;
+    var wrap=document.createElement('div');
+    wrap.style.cssText='background:var(--card);border-radius:var(--r);margin-bottom:14px;box-shadow:var(--sh);overflow:hidden;border:1px solid var(--border)';
+    // header
+    var statusBadge=s.approved?'<span class="badge ap">✅ อนุมัติแล้ว</span>':s.rejected?'<span class="badge rj">❌ ไม่อนุมัติ</span>':'<span class="badge wt">⏳ รออนุมัติ</span>';
+    var scoreLabel=maxScore?(s.score!=null?'<span class="score-chip">🏆 '+s.score+'/'+maxScore+'</span>':'<span style="font-size:11px;color:var(--muted)">ยังไม่ให้คะแนน</span>'):'';
+    var hdr=document.createElement('div');
+    hdr.style.cssText='padding:14px 18px;border-bottom:1px solid var(--border);background:var(--navy-pale)';
+    hdr.innerHTML='<div style="font-size:14px;font-weight:700;color:var(--navy)">'+( s.studentName||s.studentId)+'<span style="font-size:11px;color:var(--muted);margin-left:6px;font-weight:400">ม.'+s.room+' เลขที่ '+s.number+'</span></div>'
+      +'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+(a?a.title:'?')+' | ส่ง '+fmtDate(s.submittedAt)+'</div>'
+      +'<div style="margin-top:6px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'+statusBadge+' '+scoreLabel+'</div>'
+      +(s.rejected&&s.rejectComment?'<div class="reject-note" style="margin-top:6px">💬 '+s.rejectComment+'</div>':'');
+    wrap.appendChild(hdr);
+    // photos
+    var photoDiv=document.createElement('div');
+    photoDiv.style.cssText='background:var(--bg);padding:14px';
+    if(selfieUrl||workUrl){
+      var row=document.createElement('div'); row.style.cssText='display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap';
+      if(selfieUrl){
+        var sw=document.createElement('div'); sw.style.cssText='flex:0 0 auto;text-align:center;cursor:pointer';
+        sw.innerHTML='<img src="'+selfieUrl+'" style="width:110px;height:110px;border-radius:12px;object-fit:cover;border:2px solid var(--orange-light);box-shadow:0 2px 8px rgba(0,0,0,.1)"><div style="font-size:10px;color:var(--muted);margin-top:4px">🤳 หน้านักเรียน</div>';
+        sw.onclick=(function(u){return function(){$('imgBig').src=u;$('modalImg').classList.add('on');};})(selfieUrl);
+        row.appendChild(sw);
+      }
+      if(workUrl){
+        var ww=document.createElement('div'); ww.style.cssText='flex:1;min-width:180px;text-align:center;cursor:pointer';
+        ww.innerHTML='<img src="'+workUrl+'" style="max-width:100%;max-height:300px;border-radius:10px;object-fit:contain;box-shadow:0 2px 8px rgba(0,0,0,.1)"><div style="font-size:10px;color:var(--muted);margin-top:4px">📷 ผลงาน</div>';
+        ww.onclick=(function(u){return function(){$('imgBig').src=u;$('modalImg').classList.add('on');};})(workUrl);
+        row.appendChild(ww);
+      }
+      photoDiv.appendChild(row);
+    } else {
+      photoDiv.style.padding='20px'; photoDiv.style.textAlign='center'; photoDiv.style.color='var(--muted)'; photoDiv.style.fontSize='13px';
+      photoDiv.textContent='ไม่มีรูปผลงาน';
+    }
+    wrap.appendChild(photoDiv);
+    // actions
+    var acts=document.createElement('div');
+    acts.style.cssText='padding:12px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--white);border-top:1px solid var(--border)';
+    // approve/reject
+    var btnWrap=document.createElement('div'); btnWrap.style.cssText='display:flex;gap:6px;align-items:center';
+    if(s.approved){
+      var ub=document.createElement('button'); ub.className='unapbtn'; ub.textContent='↩️ ยกเลิกอนุมัติ';
+      ub.onclick=(function(sid){return async function(){sync(true);await updateDoc(doc(db,'submissions',sid),{approved:false});var i=submissions.findIndex(function(x){return x.id===sid;});if(i>-1)submissions[i].approved=false;renderSubs();renderChecklist();sync(false);toast('↩️ ยกเลิกแล้ว');};})(s.id);
+      btnWrap.appendChild(ub);
+    } else {
+      var ab=document.createElement('button'); ab.className='apbtn'; ab.style.cssText='padding:7px 16px;font-size:13px'; ab.textContent='✅ อนุมัติ';
+      ab.onclick=(function(sid){return async function(){sync(true);await updateDoc(doc(db,'submissions',sid),{approved:true,rejected:false});var i=submissions.findIndex(function(x){return x.id===sid;});if(i>-1){submissions[i].approved=true;submissions[i].rejected=false;}renderSubs();renderChecklist();sync(false);toast('✅ อนุมัติแล้ว');};})(s.id);
+      var rb=document.createElement('button'); rb.style.cssText='padding:7px 14px;font-size:13px;background:var(--err);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:Sarabun,sans-serif'; rb.textContent='❌ ไม่อนุมัติ';
+      rb.onclick=(function(sid,sname){return function(){openReject(sid,sname);};})(s.id,s.studentName||s.studentId);
+      btnWrap.appendChild(ab); btnWrap.appendChild(rb);
+    }
+    acts.appendChild(btnWrap);
+    // score
+    var sw2=document.createElement('div'); sw2.style.cssText='display:flex;align-items:center;gap:6px;margin-left:auto;flex-wrap:wrap';
+    var lbl2=document.createElement('span'); lbl2.style.cssText='font-size:12px;color:var(--muted);font-weight:500'; lbl2.textContent='🏆 คะแนน:';
+    var sinp=document.createElement('input'); sinp.type='number'; sinp.min=0; if(maxScore)sinp.max=maxScore;
+    sinp.value=s.score!=null?s.score:''; sinp.placeholder=maxScore?('0-'+maxScore):'-';
+    sinp.style.cssText='width:70px;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;text-align:center;font-family:Sarabun,sans-serif;outline:none';
+    sinp.onfocus=function(){this.style.borderColor='var(--navy2)';};
+    sinp.onblur=function(){this.style.borderColor='var(--border)';};
+    var ssb=document.createElement('button'); ssb.style.cssText='padding:6px 14px;background:var(--orange);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:Sarabun,sans-serif;font-weight:500'; ssb.textContent='บันทึก';
+    ssb.onclick=(function(sid,inp2,mx2){return async function(){
+      var v=parseFloat(inp2.value);
+      if(isNaN(v)||v<0){toast('⚠️ กรุณาใส่ตัวเลขคะแนน');return;}
+      if(mx2&&v>mx2){toast('⚠️ คะแนนเกินคะแนนเต็ม ('+mx2+')');return;}
+      sync(true);
+      try{await updateDoc(doc(db,'submissions',sid),{score:v});var i=submissions.findIndex(function(x){return x.id===sid;});if(i>-1)submissions[i].score=v;inp2.style.borderColor='var(--ok)';setTimeout(function(){inp2.style.borderColor='var(--border)';},2000);renderChecklist();renderScoreTable();toast('✅ บันทึกคะแนน '+v+(mx2?'/'+mx2:'')+' แล้ว');}
+      catch(e){toast('❌ '+e.message);}
+      sync(false);
+    };})(s.id,sinp,maxScore);
+    if(maxScore){var mx2lbl=document.createElement('span');mx2lbl.style.cssText='font-size:12px;color:var(--muted)';mx2lbl.textContent='/ '+maxScore;sw2.appendChild(lbl2);sw2.appendChild(sinp);sw2.appendChild(mx2lbl);sw2.appendChild(ssb);}
+    else{sw2.appendChild(lbl2);sw2.appendChild(sinp);sw2.appendChild(ssb);}
+    acts.appendChild(sw2);
+    wrap.appendChild(acts);
+    el.appendChild(wrap);
+  });
+}
+
+// ── SCORE TABLE ──
+function renderScoreTable(){
+  var rf=$('scoreRoom').value; var rooms=rf==='all'?ROOMS:[rf];
+  var sa=assignments.filter(function(a){return a.maxScore;});
+  var wrap=$('scoreTableWrap');
+  if(!sa.length){wrap.innerHTML='<div style="text-align:center;padding:36px;color:var(--muted)">ยังไม่มีงานที่กำหนดคะแนนเต็ม</div>';return;}
+  wrap.innerHTML='';
+  rooms.forEach(function(room){
+    var stus=STUDENTS[room]||[];
+    var div=document.createElement('div'); div.style.marginBottom='24px';
+    div.innerHTML='<div style="font-size:13px;font-weight:700;padding:8px 14px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--orange-light);border-radius:var(--r);margin-bottom:10px">🏫 ห้อง ม.'+room+'</div>';
+    var tbl=document.createElement('table'); tbl.className='tbl';
+    tbl.innerHTML='<thead><tr><th>เลขที่</th><th>ชื่อ-สกุล</th>'+sa.map(function(a){return'<th style="white-space:nowrap">'+a.title+'<br><span style="font-weight:400;color:var(--muted)">(เต็ม '+a.maxScore+')</span></th>';}).join('')+'<th>รวม</th><th>เต็ม</th></tr></thead>';
+    var tbody=document.createElement('tbody');
+    stus.forEach(function(s){
+      var tot=0,maxTot=0;
+      var cells=sa.map(function(a){var sub=getSub(s.id,a.id);maxTot+=a.maxScore||0;if(sub&&sub.score!=null){tot+=sub.score;return'<td style="text-align:center;font-weight:600;color:var(--navy)">'+sub.score+'</td>';}return'<td style="text-align:center;color:var(--muted)">-</td>';}).join('');
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td>'+s.number+'</td><td style="white-space:nowrap">'+s.name+'</td>'+cells+'<td style="text-align:center;font-weight:700;color:var(--navy)">'+tot+'</td><td style="text-align:center;color:var(--muted)">'+maxTot+'</td>';
+      tbody.appendChild(tr);
+    });
+    tbl.appendChild(tbody); div.appendChild(tbl); wrap.appendChild(div);
+  });
+}
+
+// ── EXCEL ──
+function exportExcel(){
+  var rf=$('scoreRoom').value; var rooms=rf==='all'?ROOMS:[rf];
+  var sa=assignments.filter(function(a){return a.maxScore;});
+  if(!sa.length){toast('⚠️ ยังไม่มีงานที่กำหนดคะแนนเต็ม');return;}
+  var wb=XLSX.utils.book_new();
+  rooms.forEach(function(room){
+    var stus=STUDENTS[room]||[];
+    var hdr=['เลขที่','รหัส','ชื่อ-สกุล'].concat(sa.map(function(a){return a.title+' (/'+a.maxScore+')';})).concat(['รวม','คะแนนเต็ม']);
+    var rows=stus.map(function(s){
+      var tot=0;
+      var sc=sa.map(function(a){var sub=getSub(s.id,a.id);if(sub&&sub.score!=null){tot+=sub.score;return sub.score;}return '';});
+      return [s.number,s.id,s.name].concat(sc).concat([tot,sa.reduce(function(x,a){return x+(a.maxScore||0);},0)]);
+    });
+    var ws=XLSX.utils.aoa_to_sheet([hdr].concat(rows));
+    ws['!cols']=[{wch:6},{wch:8},{wch:30}].concat(sa.map(function(){return{wch:16};})).concat([{wch:8},{wch:8}]);
+    XLSX.utils.book_append_sheet(wb,ws,'ม.'+room);
+  });
+  XLSX.writeFile(wb,'คะแนน_ศิลปะ_ม5_'+new Date().toLocaleDateString('th-TH').replace(/\//g,'-')+'.xlsx');
+  toast('📥 ดาวน์โหลด Excel สำเร็จ!');
+}
+
+// ── INIT ──
+$('btnLogin').onclick = doLogin;
+$('loginInput').onkeydown = function(e){ if(e.key==='Enter') doLogin(); };
+$('btnStuLogout').onclick = doLogout;
+$('btnTchLogout').onclick = doLogout;
+
+</script>
+</body>
+</html>
