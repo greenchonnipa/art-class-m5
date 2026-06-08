@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>วิชาศิลปะ ม.5 | โรงเรียนชลราษฎรอำรุง</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Mitr:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3F6E;--navy2:#254F87;--navy-light:#E8EEF6;--navy-pale:#F0F4FA;
+  --orange:#E07B39;--orange2:#D06B2A;--orange-light:#FAE8D8;--orange-pale:#FDF4EE;
+  --white:#FFFFFF;--bg:#F5F7FA;--card:#FFFFFF;--border:#E2E8F0;--border2:#CBD5E1;
+  --text:#1E293B;--text2:#334155;--muted:#64748B;--muted2:#94A3B8;
+  --ok:#16803C;--okl:#DCFCE7;--err:#DC2626;--errl:#FEE2E2;
+  --warn:#D97706;--warnl:#FEF3C7;--info:#0369A1;--infol:#E0F2FE;
+  --r:10px;--r2:18px;--sh:0 1px 8px rgba(27,63,110,.08);--sh2:0 4px 20px rgba(27,63,110,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.screen{display:none;min-height:100vh;flex-direction:column}.screen.on{display:flex}
+/* LOGIN */
+#ls{background:linear-gradient(150deg,#0F2744 0%,#1B3F6E 50%,#254F87 100%);align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden}
+#ls::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 85%,rgba(224,123,57,.18) 0%,transparent 55%),radial-gradient(ellipse at 85% 15%,rgba(224,123,57,.12) 0%,transparent 50%)}
+.lcard{background:var(--white);border-radius:var(--r2);padding:44px 40px;width:100%;max-width:400px;box-shadow:0 24px 64px rgba(0,0,0,.3);position:relative;z-index:1;border-top:4px solid var(--orange)}
+.logo-wrap{text-align:center;margin-bottom:28px}
+.logo-art{font-size:50px;display:block;margin-bottom:10px}
+.logo-school{font-family:'Mitr',sans-serif;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.logo-title{font-family:'Mitr',sans-serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.2}
+.logo-title em{color:var(--orange);font-style:normal}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.8px;text-transform:uppercase}
+.fg input,.fg textarea,.fg select{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--r);font-size:15px;font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);outline:none;transition:all .2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--navy2);background:var(--white);box-shadow:0 0 0 3px var(--navy-light)}
+.fg textarea{resize:vertical;min-height:72px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--white);border:none;border-radius:var(--r);font-size:15px;font-family:'Sarabun',sans-serif;font-weight:700;cursor:pointer;margin-top:6px;transition:all .2s;box-shadow:0 4px 14px rgba(27,63,110,.3);letter-spacing:.3px}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(27,63,110,.35)}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.err-msg{color:var(--err);font-size:13px;margin-top:10px;text-align:center;display:none;background:var(--errl);padding:8px 12px;border-radius:8px}
+/* TOPBAR */
+.topbar{background:var(--navy);color:var(--white);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(27,63,110,.25);flex-shrink:0;border-bottom:3px solid var(--orange)}
+.tlogo{font-family:'Mitr',sans-serif;font-size:15px;font-weight:700}
+.tlogo em{color:var(--orange);font-style:normal}
+.tsub{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.3px;margin-top:1px}
+.uchip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:5px 12px;cursor:pointer;transition:background .2s}
+.uchip:hover{background:rgba(255,255,255,.18)}
+.uav{width:28px;height:28px;border-radius:50%;background:var(--orange);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;overflow:hidden;border:1.5px solid rgba(255,255,255,.25);flex-shrink:0}
+.uav img{width:100%;height:100%;object-fit:cover}
+.uname{font-size:12px;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-out{background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:5px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-family:'Sarabun',sans-serif;transition:all .2s}
+.btn-out:hover{border-color:var(--orange);color:var(--orange)}
+/* PAGE */
+.pg{padding:20px;max-width:860px;margin:0 auto;width:100%}
+/* STUDENT HEADER */
+.shead{background:linear-gradient(135deg,var(--navy) 0%,#254F87 100%);border-radius:var(--r2);padding:22px 26px;margin-bottom:18px;box-shadow:var(--sh2);display:flex;align-items:center;gap:16px;position:relative;overflow:hidden}
+.shead::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(224,123,57,.15);pointer-events:none}
+.sprof{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(224,123,57,.6);display:flex;align-items:center;justify-content:center;font-size:26px;overflow:hidden;cursor:pointer;flex-shrink:0;transition:all .2s}
+.sprof:hover{border-color:var(--orange);transform:scale(1.05)}
+.sprof img{width:100%;height:100%;object-fit:cover}
+.sinfo h2{font-size:17px;font-weight:700;color:var(--white)}
+.sinfo p{font-size:12px;color:rgba(255,255,255,.55);margin-top:3px}
+.stu-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(224,123,57,.25);border:1px solid rgba(224,123,57,.4);color:#FDB97B;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-top:6px}
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.sc{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh);text-align:center;border:1px solid var(--border);transition:all .2s}
+.sc:hover{box-shadow:var(--sh2);transform:translateY(-2px)}
+.sn{font-size:28px;font-weight:700;font-family:'Mitr',sans-serif}
+.sl2{font-size:11px;color:var(--muted);margin-top:3px}
+.sc.t .sn{color:var(--navy)}.sc.w .sn{color:var(--orange)}.sc.d .sn{color:var(--ok)}
+.sec-title{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:12px;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+/* ASGN CARDS */
+.acard{background:var(--card);border-radius:var(--r);padding:16px 20px;margin-bottom:10px;box-shadow:var(--sh);border:1px solid var(--border);border-left:4px solid var(--border2);transition:all .2s}
+.acard:hover{box-shadow:var(--sh2)}
+.acard.ov{border-left-color:var(--err)}.acard.ps{border-left-color:var(--orange)}.acard.sb{border-left-color:var(--info)}.acard.ap{border-left-color:var(--ok)}.acard.rj{border-left-color:var(--err)}
+.ah{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.at{font-size:15px;font-weight:600;color:var(--text)}.ad{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+.am{font-size:11px;color:var(--muted);margin-top:8px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.badge.ov{background:var(--errl);color:var(--err)}.badge.ps{background:var(--orange-pale);color:var(--orange2);border:1px solid var(--orange-light)}.badge.wt{background:var(--warnl);color:var(--warn)}.badge.ap{background:var(--okl);color:var(--ok)}.badge.rj{background:var(--errl);color:var(--err)}
+.score-chip{display:inline-flex;align-items:center;gap:4px;background:var(--navy-pale);color:var(--navy2);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid var(--navy-light)}
+.reject-note{background:var(--errl);border-left:3px solid var(--err);border-radius:8px;padding:8px 12px;margin-top:8px;font-size:12px;color:var(--err);line-height:1.5}
+.btn-sub{display:block;width:100%;margin-top:12px;padding:10px;background:var(--orange);color:var(--white);border:none;border-radius:var(--r);font-size:13px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(224,123,57,.3)}
+.btn-sub:hover{background:var(--orange2);transform:translateY(-1px)}
+.dl-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--navy2);background:var(--navy-pale);padding:5px 10px;border-radius:8px;margin-top:6px;text-decoration:none;border:1px solid var(--navy-light);transition:background .2s}
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(15,39,68,.7);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+.modal-bg.on{display:flex}
+.modal-box{background:var(--white);border-radius:var(--r2);padding:28px;width:100%;max-width:460px;box-shadow:0 24px 64px rgba(0,0,0,.25);max-height:90vh;overflow-y:auto;border-top:3px solid var(--orange)}
+.modal-box h3{font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;font-family:'Mitr',sans-serif}
+.upzone{border:2px dashed var(--border2);border-radius:var(--r);padding:22px 16px;text-align:center;cursor:pointer;margin-bottom:12px;transition:all .2s;background:var(--bg)}
+.upzone:hover{background:var(--orange-pale);border-color:var(--orange)}
+.upzone .ico{font-size:30px}.upzone p{font-size:13px;color:var(--muted);margin-top:6px}
+.fprev{background:var(--orange-pale);border:1px solid var(--orange-light);border-radius:8px;padding:8px 12px;font-size:12px;display:flex;align-items:center;gap:6px;margin-bottom:10px;color:var(--orange2)}
+.mbtns{display:flex;gap:10px;margin-top:16px}
+.btn-c{flex:1;padding:11px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);font-size:14px;font-family:'Sarabun',sans-serif;cursor:pointer;color:var(--text2);transition:background .2s}
+.btn-c:hover{background:var(--border)}
+.btn-ok{flex:1;padding:11px;background:var(--navy);color:var(--white);border:none;border-radius:var(--r);font-size:14px;font-family:'Sarabun',sans-serif;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(27,63,110,.25);transition:all .2s}
+.btn-ok:hover{background:var(--navy2);transform:translateY(-1px)}
+.btn-ok:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-err{flex:1;padding:11px;background:var(--err);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer}
+.img-preview{width:100%;border-radius:var(--r);margin-bottom:12px;max-height:200px;object-fit:cover;display:none}
+.progress-bar{background:var(--navy-light);border-radius:20px;height:6px;margin-bottom:10px;display:none;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--orange));border-radius:20px;transition:width .3s;width:0%}
+.status-note{background:var(--infol);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--info);margin-bottom:8px;display:none}
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:var(--white);padding:12px 22px;border-radius:30px;font-size:13px;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;border-left:3px solid var(--orange);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.toast.show{opacity:1}
+/* TEACHER NAV */
+.tnav{display:flex;background:var(--white);border-bottom:2px solid var(--bg);overflow-x:auto;flex-shrink:0;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.ntab{padding:14px 18px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;border-top:none;border-left:none;border-right:none;background:none;font-family:'Sarabun',sans-serif;transition:all .2s}
+.ntab:hover{color:var(--navy);background:var(--navy-pale)}
+.ntab.on{color:var(--navy);border-bottom-color:var(--orange)}
+.tab{display:none}.tab.on{display:block}
+/* OVERVIEW */
+.og{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:22px}
+.oc{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh);text-align:center;border:1px solid var(--border);transition:all .2s}
+.oc:hover{box-shadow:var(--sh2);transform:translateY(-2px)}
+.on2{font-size:26px;font-weight:700;color:var(--navy);font-family:'Mitr',sans-serif}
+.ol{font-size:11px;color:var(--muted);margin-top:3px}
+/* FORM */
+.fcard{background:var(--card);border-radius:var(--r);padding:22px;box-shadow:var(--sh);margin-bottom:16px;border:1px solid var(--border)}
+.rchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.rchip{padding:5px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;transition:all .2s;color:var(--muted);background:var(--bg)}
+.rchip.on{border-color:var(--navy2);background:var(--navy-pale);color:var(--navy)}
+.gdrive-hint{background:var(--orange-pale);border:1px solid var(--orange-light);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--orange2);margin-bottom:8px;line-height:1.7}
+/* CHECKLIST */
+.rsels{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.rbtn{padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;background:var(--white);transition:all .2s;font-family:'Sarabun',sans-serif;color:var(--muted)}
+.rbtn.on{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{background:var(--navy-pale);padding:10px 12px;font-size:11px;font-weight:700;text-align:left;color:var(--navy2);letter-spacing:.5px;text-transform:uppercase;border-bottom:2px solid var(--navy-light)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.tbl tr:hover td{background:var(--navy-pale)}
+.si{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600}
+.si.wt{background:var(--warnl);color:var(--warn)}.si.ap{background:var(--okl);color:var(--ok)}.si.no{background:var(--bg);color:var(--muted)}.si.rj{background:var(--errl);color:var(--err)}
+.bulk{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.bbtn{padding:8px 16px;background:var(--ok);color:#fff;border:none;border-radius:var(--r);font-size:12px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.bbtn2{padding:8px 16px;background:var(--warn);color:#fff;border:none;border-radius:var(--r);font-size:12px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.bbtn-xl{padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:var(--r);font-size:12px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.apbtn{padding:5px 12px;background:var(--ok);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.unapbtn{padding:5px 12px;background:var(--err);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif}
+.rejbtn{padding:5px 10px;background:var(--muted);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif}
+.mrbtn{padding:5px 12px;background:var(--orange);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.score-inp{width:65px;padding:5px 8px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:'Sarabun',sans-serif;text-align:center;outline:none}
+.score-inp:focus{border-color:var(--navy2)}
+.savebtn{padding:5px 12px;background:var(--orange);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:700}
+.sync-bar{background:var(--infol);border:1px solid #BAE6FD;border-radius:8px;padding:8px 14px;font-size:12px;color:var(--info);margin-bottom:14px;display:none;align-items:center;gap:8px}
+.prof-prev{width:100px;height:100px;border-radius:50%;background:var(--navy-pale);margin:0 auto 16px;overflow:hidden;border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;font-size:40px}
+.prof-prev img{width:100%;height:100%;object-fit:cover}
+@media(max-width:480px){.stats{grid-template-columns:repeat(3,1fr)}.sn{font-size:22px}.pg{padding:12px}.fg-row{grid-template-columns:1fr}.lcard{padding:32px 24px}.ntab{padding:12px 10px;font-size:12px}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="ls" class="screen on">
+  <div class="lcard">
+    <div class="logo-wrap">
+      <span class="logo-art">🎨</span>
+      <div class="logo-school">โรงเรียนชลราษฎรอำรุง</div>
+      <div class="logo-title">วิชา<em>ศิลปะ</em> ชั้น ม.5</div>
+    </div>
+    <div class="fg">
+      <label>รหัสประจำตัว (5 หลัก)</label>
+      <input type="text" id="loginInput" placeholder="เช่น 51053" maxlength="6" inputmode="numeric" autocomplete="off">
+    </div>
+    <div class="fg">
+      <label>รหัสผ่าน (13 หลัก)</label>
+      <input type="password" id="loginPw" placeholder="กรอกรหัสผ่าน 13 หลัก" maxlength="13" inputmode="numeric" autocomplete="off">
+    </div>
+    <button class="btn-primary" id="btnLogin">เข้าสู่ระบบ</button>
+    <div class="err-msg" id="loginErr">❌ รหัสประจำตัวหรือรหัสผ่านไม่ถูกต้อง</div>
+  </div>
+</div>
+
+<!-- STUDENT -->
+<div id="stuScreen" class="screen">
+  <div class="topbar">
+    <div><div class="tlogo">🎨 วิชา<em>ศิลปะ</em> ม.5</div><div class="tsub">โรงเรียนชลราษฎรอำรุง</div></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="uchip" id="stuChip"><div class="uav" id="stuAvTop"></div><span class="uname" id="stuNameTop"></span></div>
+      <button class="btn-out" id="btnStuLogout">ออก</button>
+    </div>
+  </div>
+  <div class="pg">
+    <div class="shead">
+      <div class="sprof" id="stuProfPic">🧑‍🎨</div>
+      <div class="sinfo"><h2 id="stuFullName"></h2><p id="stuDetail"></p><div class="stu-badge">🎨 วิชาศิลปะ ม.5</div></div>
+    </div>
+    <div class="stats">
+      <div class="sc t"><div class="sn" id="stTotal">0</div><div class="sl2">งานทั้งหมด</div></div>
+      <div class="sc w"><div class="sn" id="stPending">0</div><div class="sl2">ยังไม่ส่ง</div></div>
+      <div class="sc d"><div class="sn" id="stDone">0</div><div class="sl2">ส่งแล้ว</div></div>
+    </div>
+    <div class="sec-title">รายการงาน</div>
+    <div id="stuAsgnList"></div>
+  </div>
+</div>
+
+<!-- TEACHER -->
+<div id="tchScreen" class="screen">
+  <div class="topbar">
+    <div><div class="tlogo">🎨 ระบบ<em>ครู</em>ศิลปะ ม.5</div><div class="tsub">โรงเรียนชลราษฎรอำรุง</div></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="uchip"><div class="uav">ค</div><span class="uname">ครูผู้สอน</span></div>
+      <button class="btn-out" id="btnTchLogout">ออก</button>
+    </div>
+  </div>
+  <nav class="tnav">
+    <button class="ntab on" data-tab="overview">📊 ภาพรวม</button>
+    <button class="ntab" data-tab="add">➕ เพิ่มงาน</button>
+    <button class="ntab" data-tab="check">✅ เช็คส่งงาน</button>
+    <button class="ntab" data-tab="subs">📁 งานที่ส่งมา</button>
+    <button class="ntab" data-tab="scores">🏆 คะแนน</button>
+  </nav>
+  <div class="pg">
+    <div class="sync-bar" id="syncBar">⏳ กำลังบันทึก...</div>
+    <div class="tab on" id="tab-overview">
+      <div class="og" id="ovStats"></div>
+      <div class="sec-title">งานทั้งหมด</div>
+      <div id="tchAsgnList"></div>
+    </div>
+    <div class="tab" id="tab-add">
+      <div class="fcard">
+        <div class="sec-title">เพิ่มงานใหม่</div>
+        <div class="fg"><label>ชื่องาน / หัวข้อ</label><input type="text" id="fTitle" placeholder="เช่น งานภาพวาดสีน้ำ ครั้งที่ 1"></div>
+        <div class="fg"><label>รายละเอียด</label><textarea id="fDesc" placeholder="อธิบายรายละเอียดงาน..."></textarea></div>
+        <div class="fg-row">
+          <div class="fg" style="margin:0"><label>วันส่ง</label><input type="datetime-local" id="fDue"></div>
+          <div class="fg" style="margin:0"><label>คะแนนเต็ม</label><input type="number" id="fMax" placeholder="เช่น 20" min="1"></div>
+        </div>
+        <div class="fg"><label>มอบหมายให้ห้อง</label><div class="rchips" id="roomChips"></div></div>
+        <div class="fg">
+          <label>ลิงค์แบบฝึกหัด</label>
+          <div class="gdrive-hint">💡 Google Drive → คลิกขวาไฟล์ → แชร์ → "ทุกคนที่มีลิงค์" → คัดลอกลิงค์มาวาง</div>
+          <input type="url" id="fWsLink" placeholder="https://drive.google.com/...">
+          <input type="text" id="fWsName" placeholder="ชื่อที่แสดง เช่น แบบฝึกหัดครั้งที่ 1" style="margin-top:8px">
+        </div>
+        <button class="btn-primary" id="btnAddAsgn" style="width:auto;padding:11px 28px;margin-top:0">➕ เพิ่มงาน</button>
+      </div>
+    </div>
+    <div class="tab" id="tab-check">
+      <div class="fg"><label>เลือกงาน</label><select id="clAsgn" style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:14px;font-family:Sarabun,sans-serif;outline:none;background:var(--bg)"><option value="">-- เลือกงาน --</option></select></div>
+      <div class="fg"><label>เลือกห้อง</label><div class="rsels" id="clRooms"></div></div>
+      <div class="bulk">
+        <button class="bbtn" id="btnBulkApprove">✅ อนุมัติที่เลือก</button>
+        <button class="bbtn2" id="btnBulkPending">⏳ รออนุมัติที่เลือก</button>
+        <span id="selCount" style="font-size:12px;color:var(--muted)"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr><th><input type="checkbox" id="chkAll"></th><th>เลขที่</th><th>ชื่อ-สกุล</th><th>สถานะ</th><th>เวลาส่ง</th><th>คะแนน</th><th>ดำเนินการ</th></tr></thead>
+          <tbody id="clBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab" id="tab-subs">
+      <div class="fg"><label>กรองตามห้อง</label><div class="rsels" id="subRoomBtns"></div></div>
+      <div class="fg"><label>กรองตามงาน</label><select id="subAsgn" style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:14px;font-family:Sarabun,sans-serif;outline:none;background:var(--bg)"><option value="">ทุกงาน</option></select></div>
+      <div id="subsList"></div>
+    </div>
+    <div class="tab" id="tab-scores">
+      <div class="fcard" style="margin-bottom:16px">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div class="sec-title" style="margin:0">ตารางคะแนน</div>
+          <div style="display:flex;gap:8px">
+            <select id="scoreRoom" style="padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r);font-size:13px;font-family:Sarabun,sans-serif;outline:none;background:var(--bg)"><option value="all">ทุกห้อง</option></select>
+            <button class="bbtn-xl" id="btnExcel">📥 ส่งออก Excel</button>
+          </div>
+        </div>
+      </div>
+      <div style="overflow-x:auto"><div id="scoreTableWrap"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: SUBMIT -->
+<div class="modal-bg" id="modalSubmit">
+  <div class="modal-box">
+    <h3>📤 ส่งงาน</h3>
+    <p id="modalSubTitle" style="font-size:13px;color:var(--muted);margin-bottom:16px"></p>
+    <div style="margin-bottom:16px">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+        <span style="background:var(--orange);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">1</span>
+        ถ่ายรูปหน้าตัวเอง <span style="color:var(--err);font-weight:400">*จำเป็น</span>
+      </div>
+      <div class="upzone" id="upzoneSelfie"><div class="ico">🤳</div><p>ถ่ายรูปหรือเลือกจากแกลเลอรี่</p></div>
+      <input type="file" id="selfieFile" accept="image/*" style="display:none">
+      <div class="fprev" id="selfiePrev" style="display:none"><span>🤳</span><span id="selfieName"></span></div>
+      <img id="selfieImg" class="img-preview">
+    </div>
+    <div style="margin-bottom:8px">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+        <span style="background:var(--orange);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">2</span>
+        ถ่ายรูปผลงาน <span style="color:var(--err);font-weight:400">*จำเป็น</span>
+      </div>
+      <div class="upzone" id="upzoneWork"><div class="ico">📷</div><p>ถ่ายรูปหรือเลือกจากแกลเลอรี่</p></div>
+      <input type="file" id="workFile" accept="image/*" style="display:none">
+      <div class="fprev" id="workPrev" style="display:none"><span>📷</span><span id="workName"></span><span id="workKB" style="margin-left:auto"></span></div>
+      <img id="workImg" class="img-preview">
+    </div>
+    <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="status-note" id="statusNote"></div>
+    <div class="mbtns">
+      <button class="btn-c" id="btnSubCancel">ยกเลิก</button>
+      <button class="btn-ok" id="btnSubConfirm">ส่งงาน ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: REJECT -->
+<div class="modal-bg" id="modalReject">
+  <div class="modal-box">
+    <h3 style="color:var(--err)">❌ ไม่อนุมัติงาน</h3>
+    <p id="rejectStuName" style="font-size:13px;color:var(--muted);margin-bottom:14px"></p>
+    <div class="fg"><label>เหตุผล (ไม่บังคับ)</label><textarea id="rejectReason" placeholder="เช่น รูปไม่ชัด, งานไม่ตรงกับที่กำหนด..."></textarea></div>
+    <div class="mbtns">
+      <button class="btn-c" id="btnRejectCancel">ยกเลิก</button>
+      <button class="btn-err" id="btnRejectConfirm">❌ ยืนยันไม่อนุมัติ</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: PROFILE -->
+<div class="modal-bg" id="modalProfile">
+  <div class="modal-box">
+    <h3>🖼️ รูปโปรไฟล์</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px">เลือกรูปสำหรับโปรไฟล์ของคุณ</p>
+    <div class="prof-prev" id="profPrev">🧑‍🎨</div>
+    <div style="text-align:center;margin-bottom:4px">
+      <label style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--orange-pale);color:var(--orange2);border:1px solid var(--orange-light);border-radius:var(--r);cursor:pointer;font-size:14px;font-weight:600">
+        📷 เลือกรูป<input type="file" id="profFile" accept="image/*" style="display:none">
+      </label>
+    </div>
+    <div class="mbtns">
+      <button class="btn-c" id="btnProfCancel">ยกเลิก</button>
+      <button class="btn-ok" id="btnProfSave">บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE VIEWER -->
+<div class="modal-bg" id="modalImg">
+  <div style="position:relative;max-width:95vw;max-height:95vh">
+    <button id="btnCloseImg" style="position:absolute;top:-14px;right:-14px;background:var(--white);border:none;border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)">✕</button>
+    <img id="imgBig" style="max-width:90vw;max-height:90vh;border-radius:var(--r);display:block">
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+const FB = initializeApp({
+  apiKey:"AIzaSyC9YFNKmFMlh3UupFauB74XGDgdw1IlluM",
+  authDomain:"art-class-m5.firebaseapp.com",
+  projectId:"art-class-m5",
+  storageBucket:"art-class-m5.firebasestorage.app",
+  messagingSenderId:"526248582319",
+  appId:"1:526248582319:web:34a2cdabb528bff0f4885a"
+});
+const db = getFirestore(FB);
+
+// ── CLOUDINARY ──
+const CLD_CLOUD  = 'dfqrxtreo';
+const CLD_PRESET = 'art_class';
+
+async function uploadCloudinary(file) {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLD_PRESET);
+  const res = await fetch('https://api.cloudinary.com/v1_1/' + CLD_CLOUD + '/image/upload', {
+    method: 'POST', body: fd
+  });
+  if (!res.ok) throw new Error('อัปโหลดรูปไม่สำเร็จ (HTTP ' + res.status + ')');
+  const data = await res.json();
+  return data.secure_url;
+}
+
+function resizeImage(file, maxW, quality) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onerror = function() { reject(new Error('อ่านไฟล์ไม่ได้')); };
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onerror = function() { reject(new Error('โหลดรูปไม่ได้')); };
+      img.onload = function() {
+        var w = img.width, h = img.height;
+        if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+        var canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        canvas.toBlob(function(blob) {
+          if (!blob) { reject(new Error('บีบอัดรูปไม่ได้')); return; }
+          resolve(new File([blob], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' }));
+        }, 'image/jpeg', quality);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── CONSTANTS ──
+const TEACHER_ID = '480614';
+const TEACHER_PW = '1100200329413';
+const STU_DB = {
+  '49772':{n:'รังสิมันตุ์ โพอุทัย',r:8,s:1,pw:'1160101962409'},
+  '50290':{n:'ชนัตกัญ คงใหม่',r:6,s:1,pw:'1103704408643'},
+  '50310':{n:'วริทธิ์นันท์ บุญแนบ',r:5,s:1,pw:'1209702547373'},
+  '50367':{n:'พุทธ แสงเงินอ่อน',r:3,s:1,pw:'1209702436938'},
+  '50574':{n:'อชิตะ ธัญญากุลวงศ์',r:12,s:1,pw:'1209702505433'},
+  '50647':{n:'ปารมี พงษ์ภุมมา',r:5,s:2,pw:'1209000413075'},
+  '51051':{n:'กฤติน เนื่องจำนงค์',r:9,s:1,pw:'1209702506502'},
+  '51052':{n:'กันตพงศ์ สุขศรี',r:5,s:3,pw:'1209000485360'},
+  '51053':{n:'Kanatip Janesaksrisakul',r:1,s:1,pw:'1100401487706'},
+  '51056':{n:'Nattakon Jaingam',r:1,s:2,pw:'1209000505409'},
+  '51058':{n:'Trinnawat Pakawatpitinut',r:2,s:1,pw:'1209000488911'},
+  '51061':{n:'Thanakorn Prasopngam',r:2,s:2,pw:'1209000489489'},
+  '51064':{n:'ธนัชวิทย์ ปัญศิริ',r:13,s:1,pw:'1209000519281'},
+  '51065':{n:'ธาวิน เมืองปัน',r:16,s:1,pw:'1103704459311'},
+  '51067':{n:'ปรวีร์ ภู่ปราง',r:4,s:1,pw:'1209702569393'},
+  '51071':{n:'พงศภัทร์ เจริญพงรุ่งโรจน์',r:3,s:2,pw:'1209000473752'},
+  '51072':{n:'Patchara Uttarapong',r:2,s:3,pw:'1209702522125'},
+  '51074':{n:'ภาวิชญ์ ภิยโยทัย',r:14,s:1,pw:'1208900002186'},
+  '51076':{n:'ภูหริพัฒน์ ทิพย์รักษ์',r:5,s:4,pw:'1209000482174'},
+  '51077':{n:'Rojanawit Pongthaisil',r:1,s:3,pw:'1101700490688'},
+  '51080':{n:'Suppakrit Khamhom',r:2,s:4,pw:'1209702568818'},
+  '51081':{n:'กฤชณัท เพิ่มพูล',r:5,s:5,pw:'1209000518535'},
+  '51082':{n:'Krit Bureetong',r:1,s:4,pw:'1100704144490'},
+  '51083':{n:'Kassakorn Onlamai',r:1,s:5,pw:'1209000498101'},
+  '51085':{n:'Chatchata Chatchaisopon',r:1,s:6,pw:'1209000505140'},
+  '51086':{n:'ชินรัตน์ ตระกูลผุดผ่อง',r:16,s:2,pw:'1102500081629'},
+  '51087':{n:'ชิษณุพงษ์ โคตรภักดี',r:14,s:2,pw:'1209000524543'},
+  '51088':{n:'Chanasit Mutikote',r:1,s:7,pw:'1209000490312'},
+  '51089':{n:'Natcharat Thintab',r:2,s:5,pw:'1409903865206'},
+  '51092':{n:'ธีรัตม์ กองสุข',r:5,s:6,pw:'1209000504682'},
+  '51093':{n:'เธียรนิธิพร ประดิษฐ์ผล',r:11,s:1,pw:'1209702574893'},
+  '51094':{n:'นวศรณ์ ลับภู',r:9,s:2,pw:'1209702567234'},
+  '51096':{n:'ปณต นาถ้ำพลอย',r:13,s:2,pw:'1209000492480'},
+  '51097':{n:'Pritsadee Poorahong',r:1,s:8,pw:'1209000510186'},
+  '51098':{n:'ปัณณทัต ทองงาม',r:12,s:2,pw:'1209000465342'},
+  '51100':{n:'ภัทรพล ทวีหนุน',r:13,s:3,pw:'1209702475704'},
+  '51101':{n:'มนันทสิษฐ์ เซ่งฮะ',r:11,s:2,pw:'1209501255731'},
+  '51102':{n:'Rachata Anurak',r:2,s:6,pw:'1149901127413'},
+  '51104':{n:'Vikrom Pornmeechai',r:1,s:9,pw:'1209000521064'},
+  '51106':{n:'Supat Kittikhun',r:1,s:10,pw:'1209000525621'},
+  '51107':{n:'Suwijak Wongmeechai',r:2,s:7,pw:'1102700845436'},
+  '51108':{n:'อธิชา ไชยเทพ',r:13,s:4,pw:'1209000501039'},
+  '51110':{n:'Akkarat Vaewsorn',r:1,s:11,pw:'1209702572882'},
+  '51111':{n:'กฤษณุพัฒณ์ อุดมทรัพย์ปรีชา',r:3,s:3,pw:'1209702567561'},
+  '51114':{n:'คุณธรรม วัฒนศิรางค์',r:3,s:4,pw:'1209401066368'},
+  '51119':{n:'ศราวิน แย้มประยูร',r:8,s:2,pw:'1209000471300'},
+  '51120':{n:'ณัฐดนัย สังข์ทอง',r:3,s:5,pw:'1209702543971'},
+  '51123':{n:'เธียรวิชญ์ เอื้อจิรกาล',r:3,s:6,pw:'1101501425924'},
+  '51124':{n:'นิติพัฒน์ อินตัน',r:3,s:7,pw:'1209702495713'},
+  '51125':{n:'บัญญวัต กายทอง',r:5,s:7,pw:'1209401066376'},
+  '51127':{n:'ปัณณธร ฆ้องโนนสูง',r:4,s:2,pw:'1209702527500'},
+  '51128':{n:'ปานปราชญ์ ประวิสารัตน์',r:3,s:8,pw:'1209000467019'},
+  '51129':{n:'พงศกรณ์ โสภารัตน์',r:3,s:9,pw:'1209702572955'},
+  '51131':{n:'พีรเดช เสนาะล้ำ',r:3,s:10,pw:'1103000230707'},
+  '51133':{n:'รติภัทร สิงห์เหลือ',r:16,s:3,pw:'1247400003221'},
+  '51134':{n:'รัชพล ชมภูแก้ว',r:4,s:3,pw:'1209000470362'},
+  '51135':{n:'วชิรวิทย์ อิ่มสวาสดิ์',r:3,s:11,pw:'1209702590457'},
+  '51136':{n:'วีรชาติ วสิกรัตน์',r:3,s:12,pw:'1209702551338'},
+  '51142':{n:'ฉัฏทวุฒิ ใจการ',r:12,s:3,pw:'1209000483006'},
+  '51143':{n:'ชวิน วัชรโพธิ์',r:3,s:13,pw:'1209702564651'},
+  '51145':{n:'ฌาน เชื้อชาวนา',r:14,s:3,pw:'1209000477685'},
+  '51146':{n:'ดลกาณ นิปัจการนันท์',r:3,s:14,pw:'1209702528514'},
+  '51147':{n:'ติณณ์ กาฬเนตร',r:13,s:5,pw:'1209702567480'},
+  '51148':{n:'ธนกฤต ช่วยงาน',r:5,s:8,pw:'1209000467477'},
+  '51150':{n:'ธนากร ศรีจุฬางกูล',r:14,s:4,pw:'1104700204599'},
+  '51151':{n:'ธรรม์ธนัช วัดศรี',r:4,s:4,pw:'1209000472870'},
+  '51152':{n:'นที ศรีเรือง',r:15,s:1,pw:'1209000473876'},
+  '51153':{n:'บวรนันท์ หนูช้างเผือก',r:5,s:9,pw:'1209702562381'},
+  '51154':{n:'บุญญชัย หะรันดา',r:15,s:2,pw:'1209000518632'},
+  '51155':{n:'ปกรณ์เกียรติ โภคประเสริฐ',r:5,s:10,pw:'1209000479521'},
+  '51156':{n:'Porama Boriboon',r:2,s:8,pw:'1209702523008'},
+  '51157':{n:'ปรวีร์ รัตนศรีสอางค์',r:4,s:5,pw:'1209000532261'},
+  '51158':{n:'ปริญญา วิบูลย์จักร์',r:14,s:5,pw:'1209000522885'},
+  '51160':{n:'ปัณณทัต รัตนสกุลชล',r:15,s:3,pw:'1209000517385'},
+  '51162':{n:'พงศ์พิเชษฐ์ เพชรเจริญ',r:4,s:6,pw:'1209702534999'},
+  '51163':{n:'พรรษชล บุญพลอย',r:16,s:4,pw:'1209702562275'},
+  '51164':{n:'พิสิษฐ์ ชมกลิ่น',r:3,s:15,pw:'1209702542959'},
+  '51166':{n:'พีระพัฒน์ โพธิ์อภัย',r:14,s:6,pw:'1209000512766'},
+  '51167':{n:'ภัทรกฤช หลงอุย',r:14,s:7,pw:'1200901577240'},
+  '51168':{n:'ภาคิน น้อยทรง',r:14,s:8,pw:'1209702520335'},
+  '51169':{n:'ภุชิสส์ ราชู',r:5,s:11,pw:'1209000482875'},
+  '51171':{n:'มัททวัฏ สวัสดี',r:3,s:16,pw:'1309903756777'},
+  '51172':{n:'เมธกฤช ปัญญาตระกูล',r:15,s:4,pw:'1209000490223'},
+  '51173':{n:'วรณธกร แก้วพิกุล',r:5,s:12,pw:'1209702554302'},
+  '51174':{n:'วัชรพล พันพรม',r:16,s:5,pw:'1209000506111'},
+  '51176':{n:'สหรัฐ ตันสกุล',r:16,s:6,pw:'1209000503589'},
+  '51178':{n:'สิรภพ รักษาพล',r:16,s:7,pw:'1209702512839'},
+  '51179':{n:'อนันตชา แสงวิมานธนโชติ',r:5,s:13,pw:'1209000504879'},
+  '51180':{n:'อัครินทร์ อัศวพงศ์พล',r:11,s:3,pw:'1209401067160'},
+  '51181':{n:'อัยย์ เดชโยธิน',r:4,s:7,pw:'1449300001064'},
+  '51182':{n:'อาชวิน กลับเจริญ',r:5,s:14,pw:'1209702558375'},
+  '51183':{n:'กมนทัต ศรีตรัย',r:14,s:9,pw:'1209000491645'},
+  '51184':{n:'กรัณย์ภคิน ขจรงาม',r:15,s:5,pw:'1209000510305'},
+  '51186':{n:'กานต์พนธ์ ปวีณวงษ์วรรณ',r:6,s:2,pw:'1102500085624'},
+  '51187':{n:'คณพศ ยิ่งยืน',r:4,s:8,pw:'1209702527232'},
+  '51188':{n:'ชนันธร พงษ์พานิช',r:16,s:8,pw:'1209000484436'},
+  '51189':{n:'เชย์ฮาน ปาทาน',r:4,s:9,pw:'1209000513835'},
+  '51190':{n:'ณภัทร กาลจักร',r:5,s:15,pw:'1209702561431'},
+  '51191':{n:'ณัฏฐกิตติ์ เนินปรางค์',r:12,s:4,pw:'1239900499065'},
+  '51192':{n:'ณัฏฐพล ฉัตรมงคล',r:4,s:10,pw:'1209702562062'},
+  '51193':{n:'ดิศรณ์ ศรีโยม',r:15,s:6,pw:'1209000480899'},
+  '51194':{n:'ตฤณ กันยะธง',r:5,s:16,pw:'1510101577447'},
+  '51195':{n:'ติณณภพ พิพิธกุล',r:13,s:6,pw:'1110301497131'},
+  '51196':{n:'ติณภพ ไชยศิริ',r:5,s:17,pw:'1100401492815'},
+  '51198':{n:'ธนพนธ์ วงษ์สว่าง',r:5,s:18,pw:'1209000452666'},
+  '51199':{n:'ธนภัทร์ อ่อนละมุน',r:5,s:19,pw:'1369900902811'},
+  '51200':{n:'ธนภัทร อภิชิตพงศ์ชัย',r:5,s:20,pw:'2369900037751'},
+  '51201':{n:'ธวัชชัย พินึกรัมย์',r:16,s:9,pw:'1209000477481'},
+  '51202':{n:'ธีรนันท์ จันทรโชติวงษ์',r:14,s:10,pw:'1209000499859'},
+  '51203':{n:'นราวิชญ์ หมีเขียว',r:16,s:10,pw:'1209702519230'},
+  '51204':{n:'นิติรัฐ วังเปียง',r:12,s:5,pw:'1209000475186'},
+  '51205':{n:'ปฏิภาณ เบ้าลี',r:16,s:11,pw:'1209301222490'},
+  '51206':{n:'ปริตถกร รักถนอม',r:5,s:21,pw:'1209401065612'},
+  '51208':{n:'ปองบุญ ฝรั่งทอง',r:3,s:17,pw:'1739902468863'},
+  '51209':{n:'ปัณณทัต จีบแก้ว',r:4,s:11,pw:'1209702578104'},
+  '51210':{n:'พชรพล พัฒโนทัย',r:15,s:7,pw:'1209702546661'},
+  '51212':{n:'พิชญศิลป์ เอื้อเฟื้อ',r:5,s:22,pw:'1209000522494'},
+  '51213':{n:'พีรวิชญ์ หาญชนะ',r:16,s:12,pw:'1209401067321'},
+  '51216':{n:'วิริทธิ์พล สิริเลิศสิน',r:5,s:23,pw:'1209702569890'},
+  '51217':{n:'ศุภกร ครุพงศ์',r:16,s:13,pw:'1209702570383'},
+  '51220':{n:'ศุภากร แก้วโภคา',r:14,s:11,pw:'1209000502493'},
+  '51222':{n:'อธิวัฒน์ นิวัฒน์ธิติพร',r:4,s:12,pw:'1409600478338'},
+  '51223':{n:'อภิวิชญ์ ธีระทิพย์',r:11,s:4,pw:'1209000435834'},
+  '51225':{n:'กนกพัชร โรจน์วัฒนธนกิจ',r:13,s:7,pw:'1209000491939'},
+  '51226':{n:'กฤตภพ กฤษฏิ์ธนากูร',r:15,s:8,pw:'1209702585062'},
+  '51227':{n:'กฤตภัทร เนวิลัย',r:5,s:24,pw:'1209702576373'},
+  '51228':{n:'กัมพล เหียงแก้ว',r:14,s:12,pw:'1209702537882'},
+  '51229':{n:'เกริกบุระ สารมานิตย์',r:15,s:9,pw:'1209000465610'},
+  '51231':{n:'คมณัท กลมเกลี้ยง',r:15,s:10,pw:'1209702577973'},
+  '51232':{n:'จิรภัทร ศรีดาน้อย',r:13,s:8,pw:'1209702542088'},
+  '51233':{n:'จิราวัฒน์ ประทุมใจอ่อน',r:12,s:6,pw:'1209000491335'},
+  '51234':{n:'ชนัญชิต อ่อนโพธา',r:11,s:5,pw:'1209702569130'},
+  '51235':{n:'ชนินทร์ แสนเจริญ',r:14,s:13,pw:'1209702569237'},
+  '51236':{n:'ชาญธาดา สุขพะนัด',r:6,s:3,pw:'1209000516338'},
+  '51237':{n:'ณัฐกฤษ ใจดี',r:10,s:1,pw:'1208900002313'},
+  '51240':{n:'ธัญพิสิษฐ์ กระจายศรี',r:11,s:6,pw:'1209000476590'},
+  '51241':{n:'ธิติวุฒิ ตาดต่าย',r:11,s:7,pw:'1209000500202'},
+  '51242':{n:'Nitithorn Sirirak',r:1,s:12,pw:'1209702509471'},
+  '51243':{n:'ปริญ คล้ายเพชร',r:6,s:4,pw:'1209000511000'},
+  '51244':{n:'ปริพัฒน์ เขียนดี',r:14,s:14,pw:'1209702521030'},
+  '51245':{n:'ปองคุณ เกตุใสย์',r:11,s:8,pw:'1209702578155'},
+  '51246':{n:'ปิติพจน์ บุญเต็ม',r:13,s:9,pw:'1209000507886'},
+  '51247':{n:'พัทธพล แวดาราแม',r:12,s:7,pw:'1429900696772'},
+  '51248':{n:'พิชญะ มณีแจ่ม',r:11,s:9,pw:'1209000517393'},
+  '51249':{n:'พุทธ นราฌาฎิกานญ์',r:10,s:2,pw:'1209000472462'},
+  '51250':{n:'ภคพล ตัณฑ์พาณิชย์',r:7,s:1,pw:'1209702515056'},
+  '51251':{n:'ภาสวิชญ์ ตันอนุชิตติกุล',r:5,s:25,pw:'1209702569946'},
+  '51252':{n:'วรธันย์ เจริญฤทธิ์ดำรง',r:7,s:2,pw:'1104700214349'},
+  '51253':{n:'วรพล ประพันธ์',r:11,s:10,pw:'1209000469259'},
+  '51254':{n:'ศิฐาพงษ์ สุวรรณเมฆ',r:14,s:15,pw:'1350101906752'},
+  '51255':{n:'ศุภกฤต อาจยิ่ง',r:6,s:5,pw:'1209000527437'},
+  '51256':{n:'ศุภโชค ชัยชมวงศ์',r:15,s:11,pw:'1209000478312'},
+  '51257':{n:'ศุภพิชญ์ ปักปิ่นอนันต์กุล',r:11,s:11,pw:'1209702517521'},
+  '51258':{n:'สมัชญ์ กองทรัพย์เจริญ',r:7,s:3,pw:'1209000466641'},
+  '51259':{n:'สรวิศ บุญมา',r:15,s:12,pw:'1209702543491'},
+  '51260':{n:'สิกขา อินทราชัย',r:10,s:3,pw:'1103704470411'},
+  '51261':{n:'สิทธิศาสตร์ อังกิติตระกูล',r:12,s:8,pw:'1209702542703'},
+  '51262':{n:'สิรภพ จรัสกุล',r:15,s:13,pw:'1209702545311'},
+  '51263':{n:'หัสดินทร์ หวังประเสริฐ',r:15,s:14,pw:'1209000517598'},
+  '51264':{n:'อภิชัย เกียรติไกรวัลศิริ',r:8,s:3,pw:'1209000480155'},
+  '51265':{n:'อภิวิชญ์ เนื่องจำนงค์',r:14,s:16,pw:'1209702567781'},
+  '51266':{n:'อาชวิน ชลพิทักษ์',r:13,s:10,pw:'1609900956098'},
+  '51267':{n:'กษิดิ์คณิน เบี้ยจั่น',r:9,s:3,pw:'1659902542363'},
+  '51268':{n:'คณาธิป สิทธิผล',r:13,s:11,pw:'1209000501373'},
+  '51270':{n:'คุณานนท์ แตงอร่าม',r:11,s:12,pw:'1209401066473'},
+  '51271':{n:'จิตติพัฒน์ แซ่ชิ่น',r:7,s:4,pw:'1209702546962'},
+  '51272':{n:'ชยุตพล หาญนัทธี',r:12,s:9,pw:'1209000499409'},
+  '51273':{n:'ชัยพัทธ์ คร้ามไพบูลย์',r:7,s:5,pw:'1209000493931'},
+  '51274':{n:'ฐปนยศ พงสะพัง',r:11,s:13,pw:'1209702533771'},
+  '51275':{n:'ฐิติวัชร์ โอฬารนรานนท์',r:12,s:10,pw:'1101402426604'},
+  '51276':{n:'ฐิติวัฒน์ โคพรม',r:12,s:11,pw:'1209000476514'},
+  '51277':{n:'ณฐภัทร วงศ์แสง',r:6,s:6,pw:'1209000520211'},
+  '51278':{n:'ณัฐพงษ์ แก้วสีเหลือง',r:10,s:4,pw:'1209000473655'},
+  '51279':{n:'ณัฐสิทธิ์ บัวศรีใส',r:6,s:7,pw:'1209000504321'},
+  '51281':{n:'ธนกฤต สุวนิชย์',r:12,s:12,pw:'1209000487508'},
+  '51282':{n:'ธนณัฏฐ์ ดีเจริญวงษ์กุล',r:16,s:14,pw:'1209000488270'},
+  '51283':{n:'ธนวิชญ์ ก้านอินทร์',r:12,s:13,pw:'1209702525345'},
+  '51284':{n:'ธีรวัฒน์ สุนทรหิรัญ',r:10,s:5,pw:'1200601456790'},
+  '51285':{n:'ธีระเดช ธีระดิษฐ์',r:13,s:12,pw:'1209000495276'},
+  '51286':{n:'นพรุจ ทองทวี',r:11,s:14,pw:'1209000493770'},
+  '51287':{n:'ปทิต ชูเกษมรัตน์',r:7,s:6,pw:'1103704503786'},
+  '51289':{n:'ปัณณวิชญ์ ศรีนุติเมธิน',r:16,s:15,pw:'1209702571959'},
+  '51290':{n:'พงษกานต์ สกุลศักดิ์ทอง',r:12,s:14,pw:'1209000434439'},
+  '51291':{n:'Pitchayuth Surapat',r:2,s:9,pw:'1209702581024'},
+  '51292':{n:'พีรดนย์ สายใย',r:7,s:7,pw:'1139900621406'},
+  '51293':{n:'ภาวัต รัตนะ',r:11,s:15,pw:'1648600006964'},
+  '51295':{n:'ภูวิศ กิริรัมย์',r:15,s:15,pw:'1209702575636'},
+  '51296':{n:'ภูสภัทร ขจรเดชาภิวาท',r:15,s:16,pw:'1209000513096'},
+  '51297':{n:'รชานนท์ นางาม',r:7,s:8,pw:'1209702528590'},
+  '51299':{n:'วชิรวิทย์ อินทร์โสภา',r:12,s:15,pw:'1209000521374'},
+  '51300':{n:'วุฒิภัทร จันทรวงษ์',r:12,s:16,pw:'1209702574133'},
+  '51301':{n:'ศุภณัฐ ลิ้มอารยะชน',r:10,s:6,pw:'1209000503937'},
+  '51302':{n:'ศุภณัฐ วิชัย',r:4,s:13,pw:'1209702566751'},
+  '51303':{n:'ศุภวิชญ์ เสงี่ยมสิน',r:15,s:17,pw:'1209000522699'},
+  '51304':{n:'สรวิชญ์ พันธ์พนมไพร',r:15,s:18,pw:'1209702556488'},
+  '51305':{n:'สรวิศสันติ จีนทั่ง',r:9,s:4,pw:'1209000493184'},
+  '51306':{n:'สิริณัฏฐ์ สุวรรณโชติ',r:13,s:13,pw:'1209702548264'},
+  '51307':{n:'อธิศ แก้วหาวงค์',r:14,s:17,pw:'1209000521200'},
+  '51308':{n:'อภิวิชญ์ ผาทอง',r:6,s:8,pw:'1567700010602'},
+  '51309':{n:'Khachathanthong Khachaphoch',r:2,s:10,pw:'1209000491742'},
+  '51310':{n:'จิตติกุล ทิพย์มณี',r:6,s:9,pw:'1209000515811'},
+  '51311':{n:'จิรกฤต วาปี',r:12,s:17,pw:'1209000480481'},
+  '51312':{n:'จิราพัชร สังข์ศิริ',r:10,s:7,pw:'1209702530691'},
+  '51313':{n:'จิรายุ จูสิงห์',r:11,s:16,pw:'1209000519744'},
+  '51314':{n:'เจตน์สฤษฎิ์ พิมพ์กิ',r:13,s:14,pw:'1209702572947'},
+  '51315':{n:'ชยางกูร พุฒสุข',r:6,s:10,pw:'1209702551419'},
+  '51316':{n:'ญาณทัสส์ วิชกูล',r:6,s:11,pw:'1209000472080'},
+  '51317':{n:'ณฐกร แย้มโอษฐ',r:15,s:19,pw:'1209000519051'},
+  '51318':{n:'ณัฐกรณ์ นวนประโคน',r:16,s:16,pw:'1209000466021'},
+  '51319':{n:'ณัฐชนนท์ วังชากร',r:16,s:17,pw:'1209000493907'},
+  '51320':{n:'ดุลยวัต มีพวงผล',r:13,s:15,pw:'1319800566312'},
+  '51321':{n:'ธนกร สังข์ศิริ',r:13,s:16,pw:'1209702529383'},
+  '51323':{n:'ธิติพงศ์ ผึ่งผาย',r:6,s:12,pw:'1339600206703'},
+  '51324':{n:'ธีทัต ถุงเงิน',r:15,s:20,pw:'1209702565355'},
+  '51325':{n:'นพรุจ แจ้งกระจ่าง',r:12,s:18,pw:'1249900935175'},
+  '51326':{n:'นันทพัทธ์ นณธนกฤต',r:7,s:9,pw:'1209702534140'},
+  '51327':{n:'นิติชัย ไกยกูล',r:9,s:5,pw:'1209000483065'},
+  '51328':{n:'เนแตนเนียล เคลบี้',r:7,s:10,pw:'1209000475364'},
+  '51329':{n:'บูรพา จันทร์ไตร',r:9,s:6,pw:'1209000505557'},
+  '51330':{n:'ปกรณ์ แสนเมือง',r:14,s:18,pw:'1959901147727'},
+  '51331':{n:'ปิยะตะวัน อาจหาญ',r:11,s:17,pw:'1209000514068'},
+  '51332':{n:'ปุณญาพัตณ์ สุวิปาลวัฒน์',r:8,s:4,pw:'1209000505492'},
+  '51333':{n:'ปุณณัตถ์ พจนบรรพต',r:5,s:26,pw:'1209000516851'},
+  '51334':{n:'ปุณยวัจน์ วิวัฒน์วานิช',r:9,s:7,pw:'1209702518632'},
+  '51335':{n:'พัสกร ศรีแสงเมฆ',r:15,s:21,pw:'1240401232014'},
+  '51337':{n:'พีรณัฐ ทนุวงษ์',r:14,s:19,pw:'1209000486633'},
+  '51338':{n:'พีรพงศ์ อัครพงศ์ไพศาล',r:13,s:17,pw:'1209702520360'},
+  '51339':{n:'มหาสมุธ เตียสกุลรุ่งโรจน์',r:10,s:8,pw:'1309903703703'},
+  '51343':{n:'ศิรวัฒน์ เพียรดี',r:6,s:13,pw:'1209702562232'},
+  '51344':{n:'สรรเสริญ เกิดศิริ',r:14,s:20,pw:'1209000528263'},
+  '51345':{n:'สิริ สินทรัพย์',r:16,s:18,pw:'1209000527101'},
+  '51346':{n:'สุวพิชญ์ ตะราษี',r:16,s:19,pw:'1459901386378'},
+  '51347':{n:'สุวพิชญ์ วรุตม์ธราพงศ์',r:13,s:18,pw:'1209702532724'},
+  '51349':{n:'อัครภูมิ รุจิพรมงคล',r:12,s:19,pw:'1209702574591'},
+  '51350':{n:'อิทธิกร ถนอมคุณ',r:16,s:20,pw:'1209000494318'},
+  '51351':{n:'กตกร แซมหิรัญ',r:14,s:21,pw:'1209000512529'},
+  '51352':{n:'กมลวัฒน์ แซ่โง้ว',r:15,s:22,pw:'1209000514831'},
+  '51353':{n:'กรวิชญ์ มาศศรี',r:11,s:18,pw:'1209702544331'},
+  '51355':{n:'จีรเมธ ใจภักดี',r:6,s:14,pw:'1209000470958'},
+  '51356':{n:'ชยพล แก้วเกตุ',r:9,s:8,pw:'1209702512545'},
+  '51357':{n:'ชยพล พรหมศิริ',r:8,s:5,pw:'1209000419561'},
+  '51358':{n:'ชลกาญจน์ สระศรีสม',r:15,s:23,pw:'1209000509340'},
+  '51360':{n:'ชิน อู จู',r:7,s:11,pw:'5209000003058'},
+  '51361':{n:'ณัฏฐชัย มั่งมี',r:7,s:12,pw:'1209000486251'},
+  '51362':{n:'ณัฐกันต์ รัตนะวงษ์',r:8,s:6,pw:'1250101744729'},
+  '51363':{n:'ต่อตระกูล เอี่ยมเงิน',r:9,s:9,pw:'1209000482395'},
+  '51364':{n:'ธรรศ ก้อนแก้ว',r:7,s:13,pw:'1209702575083'},
+  '51365':{n:'ธัญญ์วริศ พลธนะ',r:7,s:14,pw:'1209702540719'},
+  '51366':{n:'ธีรพงศ์ สมบูรณ์',r:6,s:15,pw:'1209000517016'},
+  '51367':{n:'ธีรวีร์ สุจินตัย',r:12,s:20,pw:'1102170129933'},
+  '51368':{n:'นพเมธ สุขมาก',r:12,s:21,pw:'1209702565789'},
+  '51369':{n:'นรภัทร วงศ์มณี',r:13,s:19,pw:'1209000526538'},
+  '51370':{n:'ปริญญา สุอังคะ',r:11,s:19,pw:'1209000520262'},
+  '51371':{n:'ปัณณธร แก้วนิล',r:7,s:15,pw:'1209702569466'},
+  '51372':{n:'ปิยะพล ศรีเจริญ',r:13,s:20,pw:'1209000492862'},
+  '51373':{n:'ปุญญพัฒน์ มะลิวัลย์',r:15,s:24,pw:'1839300019148'},
+  '51374':{n:'พรหมวิริยะ วันสิงสู',r:11,s:20,pw:'1209000505760'},
+  '51376':{n:'พีรพงศ์ ผ่องใส',r:6,s:16,pw:'1209000523717'},
+  '51377':{n:'พุฒิภัส โตแสง',r:5,s:27,pw:'1209000519086'},
+  '51378':{n:'พุฒิสรรค์ พิสุทธิชัยกุล',r:7,s:16,pw:'1209000525485'},
+  '51379':{n:'ภูวิศ นักรบ',r:8,s:7,pw:'1209000471636'},
+  '51380':{n:'เมธาสิทธิ์ พีระก้องเกียรติ',r:12,s:22,pw:'1260401202859'},
+  '51381':{n:'วชิรวิชญ์ เนาว์วัน',r:14,s:22,pw:'1209702523253'},
+  '51382':{n:'วัยวัฒน์ โตวา',r:10,s:9,pw:'1209000496469'},
+  '51383':{n:'เวชน์สพล สุรเกียรติ์กุล',r:11,s:21,pw:'1209702540689'},
+  '51384':{n:'ศุภกร พลีราช',r:6,s:17,pw:'1209301236598'},
+  '51385':{n:'ศุภวิชญ์ ทองจินดา',r:12,s:23,pw:'1209702575237'},
+  '51388':{n:'อดุลวิทย์ สิงห์หา',r:11,s:22,pw:'1209000518934'},
+  '51389':{n:'อภิภู นิธิชลวงศ์',r:6,s:18,pw:'1209000523407'},
+  '51390':{n:'อรรถวุฒิ เฟื่องฟู',r:8,s:8,pw:'1579901399118'},
+  '51391':{n:'อัครนันท์ อ่วมงามทรัพย์',r:8,s:9,pw:'1209000475429'},
+  '51392':{n:'เอกสุวัชร์ ประชุมพันธ์',r:6,s:19,pw:'1209000466730'},
+  '51393':{n:'กนต์ธร ศิริ',r:12,s:24,pw:'1209000483243'},
+  '51395':{n:'กฤดินิธิ ชาญชัยเลิศ',r:13,s:21,pw:'1419902658754'},
+  '51396':{n:'กฤตภาส วงษ์จุ้ย',r:10,s:10,pw:'1209702516761'},
+  '51397':{n:'จารุภัทร เจียหลิม',r:9,s:10,pw:'1209000461991'},
+  '51399':{n:'ชวภณ พัฒนเธียร',r:13,s:22,pw:'1209702522478'},
+  '51400':{n:'ชิวณัฐ ปรางค์สุวรรณ',r:15,s:25,pw:'1209601662525'},
+  '51401':{n:'ณัฏฐกิตศิ์ ตรีศักดิ์',r:13,s:23,pw:'1209000480309'},
+  '51402':{n:'ณัฐวัชร ดีเดิม',r:9,s:11,pw:'1209000428005'},
+  '51403':{n:'เตชินพัฒน์ ลอออรรถพงศ์',r:13,s:24,pw:'1209702568125'},
+  '51404':{n:'เทพทัต ทองมี',r:13,s:25,pw:'1209000501845'},
+  '51405':{n:'ธนกร ชื่นอารมย์',r:10,s:11,pw:'1259500156306'},
+  '51406':{n:'ธนณัฏฐ์ วัฒนศิริ',r:13,s:26,pw:'1209000524951'},
+  '51407':{n:'ธนภัทร แขกใจเย็น',r:7,s:17,pw:'1209000518012'},
+  '51408':{n:'ธนวิชญ์ จงเสมอสิทธิ์',r:6,s:20,pw:'1209000513703'},
+  '51410':{n:'ธีระพัฒส์ ตันจริยานนท์',r:9,s:12,pw:'1209000519892'},
+  '51411':{n:'นรภัทร พละแสน',r:6,s:21,pw:'1209702539001'},
+  '51412':{n:'นราวิชญ์ เพชรยวง',r:14,s:23,pw:'1209702525302'},
+  '51413':{n:'นันทิพัฒน์ ปุ้ยใจดี',r:8,s:10,pw:'1209401067259'},
+  '51414':{n:'ปฏิภาณ ก้อมชัยภูมิ',r:11,s:23,pw:'1209000500121'},
+  '51415':{n:'ปฏิภาณ ใยทอน',r:7,s:18,pw:'1209000466241'},
+  '51416':{n:'ปฤณ ตั้งประดับเกียรติ',r:7,s:19,pw:'1209702580796'},
+  '51417':{n:'ปวริศ จินดาวงศ์',r:7,s:20,pw:'1209000511956'},
+  '51418':{n:'ปุณณธัญญ์ ใจเที่ยง',r:8,s:11,pw:'1209000504631'},
+  '51419':{n:'ปุณณพัฒน์ โชติอนันต์สรนาถ',r:7,s:21,pw:'1209000501667'},
+  '51420':{n:'เปรมวิชช์ สังขจันทร์',r:6,s:22,pw:'1659902548833'},
+  '51421':{n:'พงศกร จิรเมธปฏิพล',r:13,s:27,pw:'1209000515081'},
+  '51423':{n:'พงศพัศ บุญเหลือ',r:10,s:12,pw:'1209000489659'},
+  '51424':{n:'พศิน พันธ์พิทักษ์',r:7,s:22,pw:'1100704178408'},
+  '51425':{n:'พัสวุฒิ อ่อนกร',r:7,s:23,pw:'1209000484053'},
+  '51426':{n:'พิจักษณ์ ตันติวุฒิ',r:7,s:24,pw:'1209000495454'},
+  '51427':{n:'ภัทรชนน รู้รักดี',r:8,s:12,pw:'1469000074201'},
+  '51428':{n:'ภาคิน กระแสร์ชล',r:11,s:24,pw:'1209000474619'},
+  '51429':{n:'ภูสิทธิ เก่งปรีดา',r:7,s:25,pw:'1110201390300'},
+  '51430':{n:'ยศกร คงคาธร',r:15,s:26,pw:'1209000507819'},
+  '51431':{n:'ศิริวุฒิ สมศิริวรางกูล',r:16,s:21,pw:'1209000524411'},
+  '51432':{n:'ศุภกฤต รสนานนท์',r:6,s:23,pw:'1219901279271'},
+  '51435':{n:'กนกพัฒน์ วณาลักษณ์',r:11,s:25,pw:'1110301508132'},
+  '51437':{n:'กรภัทร์ อ่องน้อย',r:9,s:13,pw:'1209401065957'},
+  '51439':{n:'กฤตกิตนานนท์ เล้าอรุณ',r:8,s:13,pw:'1209000480767'},
+  '51440':{n:'กฤติน ศรีเพ็ง',r:7,s:26,pw:'1209000524489'},
+  '51441':{n:'กษิดิ์เดช ดาวล้อม',r:8,s:14,pw:'1209000484045'},
+  '51442':{n:'กันตพิชญ์ ลือกิตินันท์',r:12,s:25,pw:'1209000520424'},
+  '51443':{n:'กิตติภพ มาตผาง',r:9,s:14,pw:'1209501252856'},
+  '51444':{n:'คเณศ ทองประดู่',r:14,s:24,pw:'1209000553039'},
+  '51445':{n:'จิ้นเซิน ฉั่ว',r:10,s:13,pw:'1209702518195'},
+  '51446':{n:'จิรวิทย์ ฮวดไชยอนันต์',r:10,s:14,pw:'1209702519434'},
+  '51447':{n:'เฉลิมวงค์ อังติกุล',r:7,s:27,pw:'1209000528492'},
+  '51448':{n:'ชนาธิป วงศ์ล้อมนิล',r:7,s:28,pw:'1209301228030'},
+  '51449':{n:'ชลแดน ค้อลมัย',r:9,s:15,pw:'1209000468945'},
+  '51450':{n:'ชัยกฤตย์ พรหมชื่น',r:9,s:16,pw:'1209702539869'},
+  '51451':{n:'ชัยณรงค์ พรหมอินทร์',r:9,s:17,pw:'1209000501101'},
+  '51452':{n:'ฐปกร จันทร์ทองคำ',r:6,s:24,pw:'1209000517857'},
+  '51453':{n:'ณัฐพัชร์ เรืองประโคน',r:8,s:15,pw:'1209401066481'},
+  '51454':{n:'ณัฐพันธ์ พรหมวิริยกุล',r:12,s:26,pw:'1209000512138'},
+  '51455':{n:'ณัฐวัตร สถาพรนิรันดร์',r:11,s:26,pw:'1209702556798'},
+  '51456':{n:'เตชินท์ ชินบวรพงษ์',r:10,s:15,pw:'1209702587146'},
+  '51457':{n:'ธนพัฒ ปาฐวิกานต์',r:10,s:16,pw:'1168300062821'},
+  '51458':{n:'ธนวินท์ สิทธินิสัยสุข',r:9,s:18,pw:'1209702552474'},
+  '51459':{n:'ธนาพล ฦาชา',r:13,s:28,pw:'1209000472331'},
+  '51462':{n:'ปราบดา ยิ่งสุด',r:8,s:16,pw:'1209000464192'},
+  '51463':{n:'โปรด มีสุข',r:10,s:17,pw:'1209000502388'},
+  '51464':{n:'พีรณัฐ ศิระโสภณวัฒน์',r:11,s:27,pw:'1209000536142'},
+  '51465':{n:'พีร์พิพัฒน์ ปัดทุมมา',r:9,s:19,pw:'1104500101354'},
+  '51467':{n:'ภัทรกร อุตส่าห์',r:9,s:20,pw:'1209000529791'},
+  '51468':{n:'วงศธร แย้มวงศ์',r:8,s:17,pw:'1209702568389'},
+  '51469':{n:'วรปรัชญ์ เทียมศรี',r:7,s:29,pw:'1209000472985'},
+  '51470':{n:'วรพล ไชยเชษฐ',r:9,s:21,pw:'1209702519311'},
+  '51471':{n:'วสุ ปานหยวก',r:12,s:27,pw:'1209000523962'},
+  '51472':{n:'วัศพล พิเชียรวงศ์',r:10,s:18,pw:'1209000493303'},
+  '51473':{n:'วิทวัส ชัยรัตน์',r:9,s:22,pw:'1209000502345'},
+  '51474':{n:'วีรวิชญ์ จุมพลศรี',r:8,s:18,pw:'1209000522753'},
+  '51475':{n:'สรัล สามารถ',r:5,s:28,pw:'1209702536584'},
+  '51476':{n:'สาธิต บุญปลื้ม',r:14,s:25,pw:'1209000465938'},
+  '51477':{n:'กรวาณิช วาณิชยากรกุล',r:4,s:14,pw:'1209702563972'},
+  '51478':{n:'กันตพัฒน์ อ่อนพร้อม',r:9,s:23,pw:'1209000498674'},
+  '51479':{n:'กิตติกร มัสโอดี',r:8,s:19,pw:'1208900001929'},
+  '51480':{n:'กิตติกวิน อลินภัชกุญช์',r:8,s:20,pw:'1209401065787'},
+  '51481':{n:'คณพร ชื่นอารมย์',r:8,s:21,pw:'1209702529014'},
+  '51482':{n:'จิราเจต เขียววิจิตร',r:6,s:25,pw:'1104200711572'},
+  '51483':{n:'ญาณวุฒิ แสงทอง',r:9,s:24,pw:'1439900658005'},
+  '51484':{n:'ณัฐกิตติ์ โทนเอี่ยม',r:15,s:27,pw:'1209000529243'},
+  '51485':{n:'ณัฐพล แก้วคำปอด',r:8,s:22,pw:'1209000493036'},
+  '51486':{n:'ณัฐพล ชินวงศ์วิโรจน์',r:12,s:28,pw:'1209000472624'},
+  '51487':{n:'เดชาวัต ชลวานิช',r:9,s:25,pw:'1209000506073'},
+  '51488':{n:'ต่อตระกูล ฉานสูงเนิน',r:12,s:29,pw:'1369900906824'},
+  '51489':{n:'ติณภัทร หาพลอย',r:12,s:30,pw:'1709901823571'},
+  '51490':{n:'ติรัสกร แสงพลู',r:13,s:29,pw:'1209501252171'},
+  '51491':{n:'เตชิต พรลภัสวโรดม',r:8,s:23,pw:'1209000471920'},
+  '51493':{n:'ธิติวุฒิ แสนโภชน์',r:6,s:26,pw:'1209000522427'},
+  '51494':{n:'ธีรเดช กล้าสกุลวงศ์',r:13,s:30,pw:'1209000507576'},
+  '51495':{n:'นนน พลอยเพ็ชร',r:8,s:24,pw:'1200601456706'},
+  '51496':{n:'นปกรณ์ เกตุแก้ว',r:8,s:25,pw:'1679900760100'},
+  '51497':{n:'นพปฎล เจริญศิลป์',r:10,s:19,pw:'1209000477855'},
+  '51500':{n:'นิติกร บุญแก้ว',r:8,s:26,pw:'1209000470109'},
+  '51502':{n:'ปิยวิศว์ โคตะกาว',r:12,s:31,pw:'1209000488172'},
+  '51503':{n:'ปุณณ โสภาพรรณกุล',r:12,s:32,pw:'1103900291109'},
+  '51504':{n:'พรหมพิริยะ วิชยานนท์',r:7,s:30,pw:'1209000478908'},
+  '51505':{n:'พลพัฒน์ ปาณะปุณณัง',r:9,s:26,pw:'1209000475321'},
+  '51506':{n:'ภรัณยู สุทธิเสรีพงศ์',r:9,s:27,pw:'1209702541600'},
+  '51509':{n:'มงคล พันธเวช',r:8,s:27,pw:'1103101058641'},
+  '51510':{n:'มนัสวิน เนินปลอด',r:11,s:28,pw:'1229901305248'},
+  '51512':{n:'รหัท สินทวีเดชา',r:6,s:27,pw:'1209000504178'},
+  '51513':{n:'วิริทธิ์พล วงษ์สวัสดิ์',r:9,s:28,pw:'1209702556224'},
+  '51515':{n:'ศุภณัฐ พิมพาทอง',r:15,s:28,pw:'1209000485149'},
+  '51516':{n:'สรวิชญ์ นิธิโรจน์ปัญญา',r:7,s:31,pw:'1209000514157'},
+  '51517':{n:'สุรเกียรติ กิตติธำรงเกียรติ',r:9,s:29,pw:'1209000499557'},
+  '51518':{n:'อนาวิล สุริวัลย์',r:9,s:30,pw:'1209702550021'},
+  '52378':{n:'ณชพล ธนสารสมบัติกุล',r:8,s:28,pw:'1100704150821'},
+  '52379':{n:'เตชิต ศรีสุข',r:11,s:29,pw:'1209000486421'},
+  '52380':{n:'คุณานนท์ วงศ์อยู่',r:8,s:29,pw:'1102004092171'},
+  '52381':{n:'รัชพล มีสวัสดิ์',r:8,s:30,pw:'1209000470524'},
+  '52382':{n:'วีรภัทร เทพอินทร์',r:13,s:31,pw:'1249900949567'},
+  '52383':{n:'พิชยะ สุโขรัตน์',r:9,s:31,pw:'1209000522630'},
+  '52384':{n:'ปัณณวัชร์ ธนันพิมพ์นารา',r:10,s:20,pw:'1209702538293'},
+  '52385':{n:'ธนิสร ชูศักดิ์',r:9,s:32,pw:'1209702516150'},
+  '53044':{n:'พัทธนันท์ อ่ำประเสริฐ',r:15,s:34,pw:'1209601602875'},
+  '53621':{n:'Kantaphat Sopaburt',r:1,s:13,pw:'1209702560108'},
+  '53622':{n:'Kittikun Moolkham',r:1,s:14,pw:'1820501292161'},
+  '53623':{n:'Keerati Kumnerdmor',r:1,s:15,pw:'1250101764185'},
+  '53625':{n:'Papangkorn Wongnai',r:1,s:16,pw:'1103000236381'},
+  '53626':{n:'Ratcharnon Sae-tan',r:1,s:17,pw:'1209702542452'},
+  '53627':{n:'Napassorn Mangkang',r:1,s:18,pw:'1209000476379'},
+  '53628':{n:'Natthapraphat Ruengwuttiwong',r:1,s:19,pw:'1209401066031'},
+  '53629':{n:'Darin Khaenamkaew',r:1,s:20,pw:'1209000523601'},
+  '53630':{n:'Paphawarin Wongdenwong',r:1,s:21,pw:'1209702548451'},
+  '53631':{n:'Parvati Halder',r:1,s:22,pw:'1209000480473'},
+  '53632':{n:'Pinnatcha Pramputtikoon',r:1,s:23,pw:'1209000496485'},
+  '53633':{n:'Poonyisa Topunjasub',r:1,s:24,pw:'1104200709829'},
+  '53634':{n:'Phakchira Suriya',r:1,s:25,pw:'1209702536151'},
+  '53635':{n:'Pattreeya Bhandhusilpa',r:1,s:26,pw:'1209702526147'},
+  '53636':{n:'Manatnan Chuchat',r:1,s:27,pw:'1200901554495'},
+  '53637':{n:'Supisara Ekachai',r:1,s:28,pw:'1104301276677'},
+  '53638':{n:'Achiraya Pitahort',r:1,s:29,pw:'1103704476762'},
+  '53639':{n:'Krit Jarenjit',r:2,s:11,pw:'1229901321588'},
+  '53640':{n:'Thitikorn Yuenyongnawin',r:2,s:12,pw:'1209000469453'},
+  '53641':{n:'Takdanai Keawmukda',r:2,s:13,pw:'1209000501578'},
+  '53642':{n:'Supavej Kaewdounglek',r:2,s:14,pw:'1209702553331'},
+  '53643':{n:'Kanjanut Jityen',r:2,s:15,pw:'1209000481275'},
+  '53645':{n:'Nichaphat Janchuay',r:2,s:16,pw:'1209702528549'},
+  '53646':{n:'Tanatorn Unjaipuen',r:2,s:17,pw:'1209000523423'},
+  '53647':{n:'Nannapat Sangdow',r:2,s:18,pw:'1209000514742'},
+  '53648':{n:'Nichapa Artthanakul',r:2,s:19,pw:'1209401065582'},
+  '53649':{n:'Boonvaranan Boonyopakan',r:2,s:20,pw:'1209000523946'},
+  '53650':{n:'Benyapha Ninkhiao',r:2,s:21,pw:'1209702556127'},
+  '53651':{n:'Preeyaporn Roongsawang',r:2,s:22,pw:'1209702519591'},
+  '53652':{n:'Panisara Sirinayakul',r:2,s:23,pw:'1209702520441'},
+  '53653':{n:'Punyaporn Rattanathip',r:2,s:24,pw:'1399900386961'},
+  '53654':{n:'Panita Petcharoen',r:2,s:25,pw:'1209000508912'},
+  '53655':{n:'Phattanaphan Chaiwattanapong',r:2,s:26,pw:'1209000514521'},
+  '53656':{n:'Viratree Thonusit',r:2,s:27,pw:'1209702559606'},
+  '53658':{n:'Sirintra Poolsawat',r:2,s:28,pw:'1209000470303'},
+  '53659':{n:'ศิวัช สามพันธ์',r:3,s:18,pw:'1209702544021'},
+  '53660':{n:'จิรัชญาภรณ์ โพธิสุนทร',r:3,s:19,pw:'1209702520238'},
+  '53661':{n:'ชมพูนุช พิบูลย์อนันต์',r:3,s:20,pw:'1209702518802'},
+  '53662':{n:'ชมศิรินทร์ พันธ์พลากรชัย',r:3,s:21,pw:'1119100016826'},
+  '53663':{n:'ชาช่า สุขสุแพทย์',r:3,s:22,pw:'1101700480135'},
+  '53664':{n:'ณัฏฐ์ชุดา โฆษิตดิษฐวัฒน์',r:3,s:23,pw:'1209702527712'},
+  '53665':{n:'ณัตณิชา พิเชฐจินดากุล',r:3,s:24,pw:'1209000508416'},
+  '53666':{n:'ดลพร นาคหนุน',r:3,s:25,pw:'1209000475399'},
+  '53667':{n:'นัทธมน หยาง',r:3,s:26,pw:'1209702542495'},
+  '53668':{n:'นิพาดา ขันคำ',r:3,s:27,pw:'1103704550482'},
+  '53669':{n:'เบญญาภา ตรังพาณิชย์',r:3,s:28,pw:'1209702609018'},
+  '53670':{n:'วรัญญา รุ่งอนุรักษ์',r:3,s:29,pw:'1209000488601'},
+  '53671':{n:'ศรุชา ศรีแพ่ง',r:3,s:30,pw:'1209702556461'},
+  '53672':{n:'อนัญญา แก้วภูทอง',r:3,s:31,pw:'1209702576926'},
+  '53673':{n:'นิธิศ จันทร์สม',r:4,s:15,pw:'1209702532261'},
+  '53674':{n:'พรหมพิริยะ เข็มเพชร',r:4,s:16,pw:'1209601645761'},
+  '53675':{n:'พิรชัชย์ สินสวัสดิ์',r:4,s:17,pw:'1104700200135'},
+  '53676':{n:'ภูรี ธารา',r:4,s:18,pw:'1209000470028'},
+  '53678':{n:'กุลรวิภา จันทร์บาง',r:4,s:19,pw:'1209702528867'},
+  '53679':{n:'จิณพัตร มีแสง',r:4,s:20,pw:'1209702532881'},
+  '53680':{n:'ณพิชภร อุดมมั่นถาวร',r:4,s:21,pw:'1209702624416'},
+  '53681':{n:'ณัชชา สุวรรณศิลป์',r:4,s:22,pw:'1209702551532'},
+  '53682':{n:'ณัฐกมล จักรจันทร์',r:4,s:23,pw:'1209702559975'},
+  '53683':{n:'ณัฐกฤตา โปร่งจิต',r:4,s:24,pw:'1549900804591'},
+  '53684':{n:'ธัญรดา เนตรถาวร',r:4,s:25,pw:'1319901267272'},
+  '53685':{n:'นันท์นภัส ศิวะศาสนพงศ์',r:4,s:26,pw:'1209000519515'},
+  '53686':{n:'นิศมา ทองเจือ',r:4,s:27,pw:'1209702533615'},
+  '53687':{n:'ปณัฎฎา เมลกูล',r:4,s:28,pw:'1209702551125'},
+  '53688':{n:'ปพิชญา ยงค์พะเนาว์',r:4,s:29,pw:'1209601676038'},
+  '53689':{n:'ปภาดา ลาภเจริญสิน',r:4,s:30,pw:'1209702538692'},
+  '53690':{n:'ปวรวรรณ เลิศเบญจมงคล',r:4,s:31,pw:'1209000475305'},
+  '53691':{n:'ปวริศา ศรีภิรมย์',r:4,s:32,pw:'1209702511930'},
+  '53692':{n:'ปวริศา สดทรงศิลป์',r:4,s:33,pw:'1209702541774'},
+  '53693':{n:'ปวีณ์ธิดา สกุลจร',r:4,s:34,pw:'1209501254841'},
+  '53694':{n:'พรลภัส แฉล้มไธสง',r:4,s:35,pw:'1209702525507'},
+  '53695':{n:'ภัทรวดี วรโชติภักดีกุล',r:4,s:36,pw:'1209000467680'},
+  '53696':{n:'วรนิษฐา พุทธา',r:4,s:37,pw:'1209000519795'},
+  '53697':{n:'วริสรา ชูเสน',r:4,s:38,pw:'1929901278121'},
+  '53698':{n:'สุจิตรา สีหาพล',r:4,s:39,pw:'1209000513177'},
+  '53700':{n:'ธนกร แซ่ลี้',r:5,s:29,pw:'1209702493281'},
+  '53703':{n:'รวิศวร์ เทียมกัน',r:5,s:30,pw:'1209702520971'},
+  '53705':{n:'ศตคุณ ศุจิธรรม',r:5,s:31,pw:'1209000524128'},
+  '53706':{n:'ศุภศิษฏ์ โกศล',r:5,s:32,pw:'1209000524080'},
+  '53707':{n:'กมลชนก ฟูเกษม',r:5,s:33,pw:'1209702550641'},
+  '53708':{n:'กัญญาภัค พรรัตนกำจาย',r:5,s:34,pw:'1209601657416'},
+  '53709':{n:'ชัชชญา ศิริรักษ์',r:5,s:35,pw:'1118300007684'},
+  '53710':{n:'ณัฏฐ์รดา ศิวัฒน์ธีรธนา',r:5,s:36,pw:'1639900516381'},
+  '53711':{n:'นงนภัส สังข์ทอง',r:5,s:37,pw:'1209702560892'},
+  '53712':{n:'ภัทริดา บริบูรณ์',r:5,s:38,pw:'1209401068042'},
+  '53713':{n:'คอน อู จู',r:6,s:28,pw:'5209000003066'},
+  '53714':{n:'ณธัชกร ชาญพิทยกิจ',r:6,s:29,pw:'1209702571592'},
+  '53715':{n:'พีรพล ตันเงิน',r:6,s:30,pw:'1209000479335'},
+  '53717':{n:'อภิวุฒิ เลาล้อ',r:6,s:31,pw:'1579901359965'},
+  '53718':{n:'กัญญ์จรีย์ ธาดากิตติสาร',r:6,s:34,pw:'1209702552326'},
+  '53719':{n:'ธิภาพร กิตติพะวงษ์',r:6,s:35,pw:'1209000504208'},
+  '53720':{n:'พัชรฎา พลจักรี',r:6,s:36,pw:'1209000494156'},
+  '53721':{n:'ภูชลิษา คำสัตย์',r:6,s:37,pw:'1429900721921'},
+  '53722':{n:'สุรภา งามแจ่ม',r:6,s:38,pw:'1407600044859'},
+  '53723':{n:'ธนกฤต จารุจิตร',r:7,s:32,pw:'1209501256029'},
+  '53725':{n:'นภสินธุ์ ทองนวล',r:7,s:33,pw:'1929901285381'},
+  '53726':{n:'ณัฐธยาน์ พลเสนา',r:7,s:35,pw:'1209702559142'},
+  '53727':{n:'เตชิตา วรรณี',r:7,s:36,pw:'1209000481119'},
+  '53729':{n:'อชิรญา อินแดง',r:7,s:37,pw:'1103704504316'},
+  '53730':{n:'ชิษณุพงศ์ ไชยศรีรัมย์',r:8,s:31,pw:'1209000477065'},
+  '53731':{n:'ณฐกร พรหมรัตน์',r:8,s:32,pw:'1209702533691'},
+  '53732':{n:'ปิยะวัฒน์ กุลขจรพันธ์',r:8,s:33,pw:'1209000474295'},
+  '53733':{n:'วรชิต ทองบัณฑิต',r:8,s:34,pw:'1859400033363'},
+  '53734':{n:'ฉัตรชนก คำสุริ',r:8,s:37,pw:'1209000503571'},
+  '53735':{n:'ดลกนก อิทธิอาวัชกุล',r:8,s:38,pw:'1209702558120'},
+  '53736':{n:'พัทธนันท์ สอนตระกูล',r:8,s:39,pw:'1209000515625'},
+  '53737':{n:'สลิลทิพย์ บุญทวี',r:8,s:40,pw:'1209702574168'},
+  '53739':{n:'อริยวัชญ์ ไทยงามศิลป์',r:9,s:33,pw:'1209702504844'},
+  '53740':{n:'กชพรรณ คุ้มภัยพาล',r:9,s:36,pw:'1200601465144'},
+  '53741':{n:'รักษิณา ปิ่นทอง',r:9,s:37,pw:'1209702504402'},
+  '53742':{n:'อทิตยา นิยม',r:9,s:38,pw:'1209702520068'},
+  '53743':{n:'อิสริยาพร รูปแก้ว',r:9,s:39,pw:'1209401063601'},
+  '53744':{n:'เกียรติประวุฒิ แก้วกัญญา',r:10,s:21,pw:'1209000480368'},
+  '53745':{n:'อคิรา บุณยสิทธิ์พิชัย',r:10,s:22,pw:'1101801627158'},
+  '53746':{n:'ญาณิศา สุวรรณกิจ',r:10,s:23,pw:'1209000492242'},
+  '53747':{n:'ณัฎฐธิดา วิวุฒิสุนทร',r:10,s:24,pw:'1100704185315'},
+  '53748':{n:'ธนิธารณ์ ธาราภิญญา',r:10,s:25,pw:'1209702535073'},
+  '53749':{n:'ธัญชนก เวียงแสง',r:10,s:26,pw:'1139400047816'},
+  '53750':{n:'เบญญาภา แก้วจาเครือ',r:10,s:27,pw:'1209000488725'},
+  '53751':{n:'ปวริศา สิงต๊ะนะ',r:10,s:28,pw:'1209702563964'},
+  '53752':{n:'ปวริสา เชื้อพลายเวช',r:10,s:29,pw:'1139900617778'},
+  '53753':{n:'ปาริตา ปาณปุณณัง',r:10,s:30,pw:'1449600075268'},
+  '53754':{n:'พิมพิชชา สิริวรรณเจริญ',r:10,s:31,pw:'1209702570545'},
+  '53755':{n:'เพ็ญพิชญา มุ่งสันติสุข',r:10,s:32,pw:'1209000473965'},
+  '53756':{n:'เพียงขวัญ บัวรักษา',r:10,s:33,pw:'1229901287061'},
+  '53757':{n:'ภัทราวดี ธงไชย',r:10,s:34,pw:'1209000470630'},
+  '53758':{n:'โยษิตา ลัคนาทิน',r:10,s:35,pw:'1209000480325'},
+  '53759':{n:'รัศมิ์ลภัส อิงคนินันท์',r:10,s:36,pw:'1390501116040'},
+  '53760':{n:'สุชัญญา ด้วงทอง',r:10,s:37,pw:'1209702564294'},
+  '53761':{n:'สุชาวลี วงศ์ศรีแก้ว',r:10,s:38,pw:'1209000479581'},
+  '53762':{n:'อัยริน วศินประภา',r:10,s:39,pw:'1209000495713'},
+  '53763':{n:'ภควา จิตต์อารี',r:9,s:30,pw:'1209702521145'},
+  '53764':{n:'มินธาดา ไชยวรรณ์',r:11,s:30,pw:'1209000495241'},
+  '53765':{n:'ศรัณย์กร ลายระยะพงษ์',r:11,s:31,pw:'1209000513100'},
+  '53766':{n:'กัญญาณัฐ บุญส่ง',r:11,s:32,pw:'1209000519574'},
+  '53767':{n:'พัชร์ณัฏฐ์ ศรีสังวาลย์',r:11,s:33,pw:'1104301269123'},
+  '53768':{n:'พัชร์ธรนันท์ รุ่งสันเทียะ',r:11,s:34,pw:'1209702540158'},
+  '53769':{n:'มนัสนันท์ ศุภกิจกาญจนา',r:11,s:35,pw:'1247400002291'},
+  '53770':{n:'มนัสนันท์ นามบุญ',r:11,s:36,pw:'1209000504992'},
+  '53771':{n:'ณัฐณิชา สุกใส',r:7,s:38,pw:'1209702562925'},
+  '53772':{n:'สุวภัทร รุ่งอุทัย',r:11,s:37,pw:'1209702551788'},
+  '53773':{n:'กัญญ์ณัชชา แก้วเข้ม',r:12,s:34,pw:'1209000514343'},
+  '53774':{n:'ธัญญาลักษณ์ เพชรแทน',r:12,s:35,pw:'1209601654336'},
+  '53775':{n:'ธันยธร เจียวใช่เฮ็ง',r:12,s:36,pw:'1209702532368'},
+  '53776':{n:'ปัณฑิกา รวมลำภา',r:16,s:31,pw:'1409600468839'},
+  '53777':{n:'มาทานา บุญประเสริฐ',r:12,s:37,pw:'1209702505085'},
+  '53778':{n:'รวีภัสส์ พิศุทธิ์จินดากุล',r:12,s:38,pw:'1209702514441'},
+  '53779':{n:'อรปรียา จิตรำพรรณ์',r:12,s:39,pw:'1209000499336'},
+  '53780':{n:'ภัทรกร หิรัณย์สิริกุล',r:13,s:32,pw:'1209000507584'},
+  '53781':{n:'นนทกร เจริญสุข',r:13,s:33,pw:'1209000491416'},
+  '53782':{n:'กุลปริยา นอกพลกรัง',r:13,s:34,pw:'1309903739708'},
+  '53783':{n:'ณฐพร เกิดช่าง',r:13,s:35,pw:'1168300069591'},
+  '53784':{n:'ธนัญญา บัวเข้ม',r:16,s:32,pw:'1209000523318'},
+  '53785':{n:'ณัฏฐ์สุมณ ศิรินิชากรสกุล',r:13,s:36,pw:'1209702535430'},
+  '53786':{n:'สุชัญญา สุวรรณจิระ',r:16,s:33,pw:'1209000522117'},
+  '53787':{n:'สุฑัศยา งามวงค์',r:13,s:37,pw:'1209702481453'},
+  '53788':{n:'อนัญญา ศรีชู',r:13,s:38,pw:'1931001090128'},
+  '53789':{n:'จิรพัฒน์ ชมจินดา',r:14,s:26,pw:'1209000475267'},
+  '53790':{n:'ถิรวัฒน์ มีแสง',r:14,s:27,pw:'1104700210327'},
+  '53791':{n:'นิติเผ่า วิจิตนิติ',r:14,s:28,pw:'1209000475691'},
+  '53792':{n:'ปเมธินทร์ เกิดโมลี',r:14,s:29,pw:'1209702522788'},
+  '53793':{n:'ระวีกานต์ พูลสวัสดิ์',r:14,s:30,pw:'1639900513722'},
+  '53794':{n:'เศรษฐธร พิทักษ์',r:14,s:31,pw:'1209301235699'},
+  '53795':{n:'สุธิวัส พัฒนเลิศมงคล',r:14,s:32,pw:'1209000523849'},
+  '53796':{n:'กัลยกร หงษ์ศรีทอง',r:14,s:33,pw:'1409903814164'},
+  '53797':{n:'ญานิศา คำมูลอามาตย์',r:14,s:34,pw:'1247400003000'},
+  '53798':{n:'ณัฐพัชร์ จิรมงคลภัทร์',r:14,s:35,pw:'1208900001996'},
+  '53799':{n:'รวิณา ราชสาร',r:14,s:36,pw:'1209000510381'},
+  '53800':{n:'วชิรญาณ์ เบือดขุนทด',r:14,s:37,pw:'1210101168141'},
+  '53801':{n:'วราภรณ์ เหลืองอ่อน',r:14,s:38,pw:'1209501265621'},
+  '53802':{n:'สุกฤตา ภู่เจริญ',r:14,s:39,pw:'1209702557794'},
+  '53803':{n:'นวพล อินทโชติ',r:15,s:29,pw:'1209000502272'},
+  '53804':{n:'ปภังกร วันยนาพร',r:15,s:30,pw:'1209702571045'},
+  '53805':{n:'พรภัทร ไชยคำยวง',r:15,s:31,pw:'1209702569261'},
+  '53806':{n:'วงศธร บุญทูล',r:15,s:32,pw:'1240401228564'},
+  '53807':{n:'กชณิภา แช่มช้อยจิรกุล',r:15,s:35,pw:'1209000502574'},
+  '53808':{n:'ณัฏฐณิชา สีเมฆ',r:15,s:36,pw:'1209702522494'},
+  '53809':{n:'ปณาลี วชิรปราณน์',r:15,s:37,pw:'1209702543670'},
+  '53810':{n:'มนต์ณัฐ เจียมอนุกูลกิจ',r:15,s:38,pw:'1209702563085'},
+  '53811':{n:'รตนพร มาบจะบก',r:15,s:39,pw:'1209000525841'},
+  '53812':{n:'ศรันย์ภัส ฤาชา',r:15,s:40,pw:'1209601671761'},
+  '53813':{n:'กิตติกวิน พัชราภรณ์',r:16,s:22,pw:'1209702565371'},
+  '53814':{n:'ชุติเดช น้อยศรี',r:16,s:23,pw:'1209000508815'},
+  '53815':{n:'ณัฐพล คงชื่น',r:16,s:24,pw:'1259500162900'},
+  '53816':{n:'เตชินท์ ไชยบุบผา',r:16,s:25,pw:'1209702512677'},
+  '53817':{n:'ทินกฤต ศกุนตนาคลาภ',r:16,s:26,pw:'1209702534972'},
+  '53818':{n:'ธีราทัต ดลภาวันวนิช',r:16,s:27,pw:'1209702569881'},
+  '53819':{n:'พรภวิษย์ บุญปถม',r:16,s:28,pw:'1247400002909'},
+  '53820':{n:'พฤกษ เฉลิมลาภ',r:16,s:29,pw:'1209000512073'},
+  '53821':{n:'ศุภวิชญ์ แตงแก้ว',r:16,s:30,pw:'1209702508742'},
+  '53823':{n:'ธัญชนก ไกรพล',r:16,s:34,pw:'1209000510062'},
+  '53824':{n:'พัณณ์ชิตา สกุลอำพรสิทธิ์',r:4,s:40,pw:'1103704522268'},
+  '53825':{n:'พิชญาภา สอนคง',r:16,s:35,pw:'1209000485131'},
+  '53826':{n:'พลอยไพลิน สิริโยธิน',r:7,s:39,pw:'1209401066163'},
+  '53827':{n:'รมิดา วงค์ถนอม',r:16,s:36,pw:'1103704505339'},
+  '53828':{n:'รวิสรา เต็มวิรุฬห์พงศ์',r:16,s:37,pw:'1579901391150'},
+  '53829':{n:'อารีรัฐ วงษ์ทองเหลือ',r:16,s:38,pw:'1209702562437'},
+  '53830':{n:'บุษบากร กรคุณานนท์',r:9,s:40,pw:'1103704548348'},
+  '53837':{n:'กัมปนาท จริตพจน์',r:9,s:34,pw:'1102004138065'},
+  '53838':{n:'วณิชพงศ์ อำไพฤทธิ์',r:6,s:32,pw:'1209702555236'},
+  '53839':{n:'พิมพ์มาดา สาระเดช',r:7,s:40,pw:'1209000498640'},
+  '53840':{n:'ศุภเศรษฐ์ ศุภษร',r:8,s:35,pw:'1209000481364'},
+  '53841':{n:'ภูธนิก กษมานนท์',r:9,s:35,pw:'1209000500865'},
+  '53842':{n:'เศรษฐวุฒิ ศรีบุญยัง',r:7,s:34,pw:'1209000464681'},
+  '53843':{n:'นภัสพรชนันท์ ปานแดง',r:8,s:41,pw:'1209401068352'},
+  '53844':{n:'ธรรมศาสตร์ ศุภกฤตยา',r:8,s:36,pw:'1209000502698'},
+  '53845':{n:'พัชรคุณ เอี่ยมรัศมี',r:6,s:33,pw:'1209702578449'},
+  '53846':{n:'กันยาเรศ วิชชุประภาส',r:6,s:39,pw:'1209702537327'},
+  '53847':{n:'ชลธิดา เนาวเพ็ญ',r:6,s:40,pw:'1209000510755'},
+  '53848':{n:'ปภาวรินท์ ไชยโน',r:6,s:41,pw:'1209702557743'},
+  '53936':{n:'Nitthida Thongdara',r:1,s:30,pw:'1209000487567'},
+  '54404':{n:'ณิชากร ตั๊นเจริญ',r:7,s:41,pw:'1209000525167'},
+  '54562':{n:'ศุภเศรษฐ สืบฤกษ์',r:12,s:33,pw:'1209702523229'},
+  '54563':{n:'วรพล บุญสัว',r:15,s:33,pw:'1103704519194'}
+};
+const TEACHER = TEACHER_ID; // legacy compat
+const ROOMS = ['5/2','5/4','5/6','5/8','5/10','5/12','5/14','5/16'];
+const STUDENTS = {"5/2":[{"number":1,"id":"51058","name":"นายตฤณวรรธน์ ภควัฒน์ปิติณัฐ"},{"number":2,"id":"51061","name":"นายธนกร ประสพงาม"},{"number":3,"id":"51072","name":"นายพชร อุตรพงศ์"},{"number":4,"id":"51078","name":"นายวงษ์รัชพล เดชาเสวตวงษ์"},{"number":5,"id":"51080","name":"นายศุภกฤต คำหอม"},{"number":6,"id":"51089","name":"นายณฐรัช ถิ่นทับ"},{"number":7,"id":"51102","name":"นายรชต อนุรักษ์"},{"number":8,"id":"51107","name":"นายสุวิจักขณ์ วงศ์มีชัย"},{"number":9,"id":"51156","name":"นายปรมะ บริบูรณ์"},{"number":10,"id":"51291","name":"นายพิชญุตม์ สุรพัฒน์"},{"number":11,"id":"51309","name":"นายคชาธารทอง คชาโภชน์"},{"number":12,"id":"53639","name":"นายกฤษณ์ เจริญจิตต์"},{"number":13,"id":"53640","name":"นายฐิติกร ยืนยงนาวิน"},{"number":14,"id":"53641","name":"นายทักษ์ดนัย แก้วมุกดา"},{"number":15,"id":"53642","name":"นายสุภเวช แก้วดวงเล็ก"},{"number":16,"id":"53643","name":"น.ส.กัญจน์ณัฏฐ์ จิตเย็น"},{"number":17,"id":"53645","name":"น.ส.ณิชาภัทร จันทร์ช่วย"},{"number":18,"id":"53646","name":"น.ส.ธนธรณ์ อุ่นใจเพื่อน"},{"number":19,"id":"53647","name":"น.ส.นันท์นภัส แสงดาว"},{"number":20,"id":"53648","name":"น.ส.นิชาภา อาจธนกุล"},{"number":21,"id":"53649","name":"น.ส.บุญวรานันท์ บุญโยปการ"},{"number":22,"id":"53650","name":"น.ส.เบญญาภา นิลเขียว"},{"number":23,"id":"53651","name":"น.ส.ปรียาภรณ์ รุ่งสว่าง"},{"number":24,"id":"53652","name":"น.ส.ปาณิสรา ศิริณายกุล"},{"number":25,"id":"53653","name":"น.ส.ปุณยาพร รัตนทิพย์"},{"number":26,"id":"53654","name":"น.ส.พนิตา เพ็ชร์เจริญ"},{"number":27,"id":"53655","name":"น.ส.พัฒนพรรณ์ ชัยวัฒนพงศ์"},{"number":28,"id":"53656","name":"น.ส.วิรตี โทนุสิทธิ์"},{"number":29,"id":"53658","name":"น.ส.สิรินทรา พูลสวัสดิ์"}],"5/4":[{"number":1,"id":"51067","name":"นายปรวีร์ ภู่ปราง"},{"number":2,"id":"51127","name":"นายปัณณธร ฆ้องโนนสูง"},{"number":3,"id":"51134","name":"นายรัชพล ชมภูแก้ว"},{"number":4,"id":"51151","name":"นายธรรม์ธนัช วัดศรี"},{"number":5,"id":"51157","name":"นายปรวีร์ รัตนศรีสอางค์"},{"number":6,"id":"51162","name":"นายพงศ์พิเชษฐ์ เพชรเจริญ"},{"number":7,"id":"51181","name":"นายอัยย์ เดชโยธิน"},{"number":8,"id":"51187","name":"นายคณพศ ยิ่งยืน"},{"number":9,"id":"51189","name":"นายเชย์ฮาน ปาทาน"},{"number":10,"id":"51192","name":"นายณัฏฐพล ฉัตรมงคล"},{"number":11,"id":"51209","name":"นายปัณณทัต จีบแก้ว"},{"number":12,"id":"51222","name":"นายอธิวัฒน์ นิวัฒน์ธิติพร"},{"number":13,"id":"51302","name":"นายศุภณัฐ วิชัย"},{"number":14,"id":"51477","name":"นายกรวาณิช วาณิชยากรกุล"},{"number":15,"id":"53673","name":"นายนิธิศ จันทร์สม"},{"number":16,"id":"53674","name":"นายพรหมพิริยะ เข็มเพชร"},{"number":17,"id":"53675","name":"นายพิรชัชย์ สินสวัสดิ์"},{"number":18,"id":"53676","name":"นายภูรี ธารา"},{"number":19,"id":"53678","name":"น.ส.กุลรวิภา จันทร์บาง"},{"number":20,"id":"53679","name":"น.ส.จิณพัตร มีแสง"},{"number":21,"id":"53680","name":"น.ส.ณพิชภร อุดมมั่นถาวร"},{"number":22,"id":"53681","name":"น.ส.ณัชชา สุวรรณศิลป์"},{"number":23,"id":"53682","name":"น.ส.ณัฐกมล จักรจันทร์"},{"number":24,"id":"53683","name":"น.ส.ณัฐกฤตา โปร่งจิต"},{"number":25,"id":"53684","name":"น.ส.ธัญรดา เนตรถาวร"},{"number":26,"id":"53685","name":"น.ส.นันท์นภัส ศิวะศาสนพงศ์"},{"number":27,"id":"53686","name":"น.ส.นิศมา ทองเจือ"},{"number":28,"id":"53687","name":"น.ส.ปณัฎฎา เมลกูล"},{"number":29,"id":"53688","name":"น.ส.ปพิชญา ยงค์พะเนาว์"},{"number":30,"id":"53689","name":"น.ส.ปภาดา ลาภเจริญสิน"},{"number":31,"id":"53690","name":"น.ส.ปวรวรรณ เลิศเบญจมงคล"},{"number":32,"id":"53691","name":"น.ส.ปวริศา ศรีภิรมย์"},{"number":33,"id":"53692","name":"น.ส.ปวริศา สดทรงศิลป์"},{"number":34,"id":"53693","name":"น.ส.ปวีณ์ธิดา สกุลจร"},{"number":35,"id":"53694","name":"น.ส.พรลภัส แฉล้มไธสง"},{"number":36,"id":"53695","name":"น.ส.ภัทรวดี วรโชติภักดีกุล"},{"number":37,"id":"53696","name":"น.ส.วรนิษฐา พุทธา"},{"number":38,"id":"53697","name":"น.ส.วริสรา ชูเสน"},{"number":39,"id":"53698","name":"น.ส.สุจิตรา สีหาพล"},{"number":40,"id":"53824","name":"น.ส.พัณณ์ชิตา สกุลอำพรสิทธิ์"}],"5/6":[{"number":1,"id":"50290","name":"นายชนัตกัญ คงใหม่"},{"number":2,"id":"51186","name":"นายกานต์พนธ์ ปวีณวงษ์วรรณ"},{"number":3,"id":"51236","name":"นายชาญธาดา สุขพะนัด"},{"number":4,"id":"51243","name":"นายปริญ คล้ายเพชร"},{"number":5,"id":"51255","name":"นายศุภกฤต อาจยิ่ง"},{"number":6,"id":"51277","name":"นายณฐภัทร วงศ์แสง"},{"number":7,"id":"51279","name":"นายณัฐสิทธิ์ บัวศรีใส"},{"number":8,"id":"51308","name":"นายอภิวิชญ์ ผาทอง"},{"number":9,"id":"51310","name":"นายจิตติกุล ทิพย์มณี"},{"number":10,"id":"51315","name":"นายชยางกูร พุฒสุข"},{"number":11,"id":"51316","name":"นายญาณทัสส์ วิชกูล"},{"number":12,"id":"51323","name":"นายธิติพงศ์ ผึ่งผาย"},{"number":13,"id":"51343","name":"นายศิรวัฒน์ เพียรดี"},{"number":14,"id":"51355","name":"นายจีรเมธ ใจภักดี"},{"number":15,"id":"51366","name":"นายธีรพงศ์ สมบูรณ์"},{"number":16,"id":"51376","name":"นายพีรพงศ์ ผ่องใส"},{"number":17,"id":"51384","name":"นายศุภกร พลีราช"},{"number":18,"id":"51389","name":"นายอภิภู นิธิชลวงศ์"},{"number":19,"id":"51392","name":"นายเอกสุวัชร์ ประชุมพันธ์"},{"number":20,"id":"51408","name":"นายธนวิชญ์ จงเสมอสิทธิ์"},{"number":21,"id":"51411","name":"นายนรภัทร พละแสน"},{"number":22,"id":"51420","name":"นายเปรมวิชช์ สังขจันทร์"},{"number":23,"id":"51432","name":"นายศุภกฤต รสนานนท์"},{"number":24,"id":"51452","name":"นายฐปกร จันทร์ทองคำ"},{"number":25,"id":"51482","name":"นายจิราเจต เขียววิจิตร"},{"number":26,"id":"51493","name":"นายธิติวุฒิ แสนโภชน์"},{"number":27,"id":"51512","name":"นายรหัท สินทวีเดชา"},{"number":28,"id":"53713","name":"นายคอนอู จู"},{"number":29,"id":"53714","name":"นายณธัชกร ชาญพิทยกิจ"},{"number":30,"id":"53715","name":"นายพีรพล ตันเงิน"},{"number":31,"id":"53717","name":"นายอภิวุฒิ เลาล้อ"},{"number":32,"id":"53838","name":"นายวณิชพงศ์ อำไพฤทธิ์"},{"number":33,"id":"53845","name":"นายพัชรคุณ เอี่ยมรัศมี"},{"number":34,"id":"53718","name":"น.ส.กัญญ์จรีย์ ธาดากิตติสาร"},{"number":35,"id":"53719","name":"น.ส.ธิภาพร กิตติพะวงษ์"},{"number":36,"id":"53720","name":"น.ส.พัชรฎา พลจักรี"},{"number":37,"id":"53721","name":"น.ส.ภูชลิษา คำสัตย์"},{"number":38,"id":"53722","name":"น.ส.สุรภา งามแจ่ม"},{"number":39,"id":"53846","name":"น.ส.กันยาเรศ วิชชุประภาส"},{"number":40,"id":"53847","name":"น.ส.ชลธิดา เนาวเพ็ญ"},{"number":41,"id":"53848","name":"น.ส.ปภาวรินท์ ไชยโน"}],"5/8":[{"number":1,"id":"49772","name":"นายรังสิมันตุ์ โพอุทัย"},{"number":2,"id":"51264","name":"นายอภิชัย เกียรติไกรวัลศิริ"},{"number":3,"id":"51332","name":"นายปุณญาพัตณ์ สุวิปาลวัฒน์"},{"number":4,"id":"51357","name":"นายชยพล พรหมศิริ"},{"number":5,"id":"51362","name":"นายณัฐกันต์ รัตนะวงษ์"},{"number":6,"id":"51379","name":"นายภูวิศ นักรบ"},{"number":7,"id":"51390","name":"นายอรรถวุฒิ เฟื่องฟู"},{"number":8,"id":"51391","name":"นายอัครนันท์ อ่วมงามทรัพย์"},{"number":9,"id":"51413","name":"นายนันทิพัฒน์ ปุ้ยใจดี"},{"number":10,"id":"51418","name":"นายปุณณธัญญ์ ใจเที่ยง"},{"number":11,"id":"51427","name":"นายภัทรชนน รู้รักดี"},{"number":12,"id":"51439","name":"นายกฤตกิตนานนท์ เล้าอรุณ"},{"number":13,"id":"51441","name":"นายกษิดิ์เดช ดาวล้อม"},{"number":14,"id":"51453","name":"นายณัฐพัชร์ เรืองประโคน"},{"number":15,"id":"51462","name":"นายปราบดา ยิ่งสุด"},{"number":16,"id":"51468","name":"นายวงศธร แย้มวงศ์"},{"number":17,"id":"51474","name":"นายวีรวิชญ์ จุมพลศรี"},{"number":18,"id":"51479","name":"นายกิตติกร มัสโอดี"},{"number":19,"id":"51480","name":"นายกิตติกวิน อลินภัชกุญช์"},{"number":20,"id":"51481","name":"นายคณพร ชื่นอารมย์"},{"number":21,"id":"51485","name":"นายณัฐพล แก้วคำปอด"},{"number":22,"id":"51491","name":"นายเตชิต พรลภัสวโรดม"},{"number":23,"id":"51495","name":"นายนนน พลอยเพ็ชร"},{"number":24,"id":"51496","name":"นายนปกรณ์ เกตุแก้ว"},{"number":25,"id":"51500","name":"นายนิติกร บุญแก้ว"},{"number":26,"id":"51509","name":"นายมงคล พันธเวช"},{"number":27,"id":"52378","name":"นายณชพล ธนสารสมบัติกุล"},{"number":28,"id":"52380","name":"นายคุณานนท์ วงศ์อยู่"},{"number":29,"id":"52381","name":"นายรัชพล มีสวัสดิ์"},{"number":30,"id":"53730","name":"นายชิษณุพงศ์ ไชยศรีรัมย์"},{"number":31,"id":"53731","name":"นายณฐกร พรหมรัตน์"},{"number":32,"id":"53732","name":"นายปิยะวัฒน์ กุลขจรพันธ์"},{"number":33,"id":"53733","name":"นายวรชิต ทองบัณฑิต"},{"number":34,"id":"53840","name":"นายศุภเศรษฐ์ ศุภษร"},{"number":35,"id":"53844","name":"นายธรรมศาสตร์ ศุภกฤตยา"},{"number":36,"id":"53734","name":"น.ส.ฉัตรชนก คำสุริ"},{"number":37,"id":"53735","name":"น.ส.ดลกนก อิทธิอาวัชกุล"},{"number":38,"id":"53736","name":"น.ส.พัทธนันท์ สอนตระกูล"},{"number":39,"id":"53737","name":"น.ส.สลิลทิพย์ บุญทวี"},{"number":40,"id":"53843","name":"น.ส.นภัสพรชนันท์ ปานแดง"}],"5/10":[{"number":1,"id":"51119","name":"นายศราวิน แย้มประยูร"},{"number":2,"id":"51237","name":"นายณัฐกฤษ ใจดี"},{"number":3,"id":"51249","name":"นายพุทธ นราฌาฎิกานญ์"},{"number":4,"id":"51260","name":"นายสิกขา อินทราชัย"},{"number":5,"id":"51278","name":"นายณัฐพงษ์ แก้วสีเหลือง"},{"number":6,"id":"51284","name":"นายธีรวัฒน์ สุนทรหิรัญ"},{"number":7,"id":"51301","name":"นายศุภณัฐ ลิ้มอารยะชน"},{"number":8,"id":"51312","name":"นายจิราพัชร สังข์ศิริ"},{"number":9,"id":"51339","name":"นายมหาสมุธ เตียสกุลรุ่งโรจน์"},{"number":10,"id":"51382","name":"นายวัยวัฒน์ โตวา"},{"number":11,"id":"51396","name":"นายกฤตภาส วงษ์จุ้ย"},{"number":12,"id":"51405","name":"นายธนกร ชื่นอารมย์"},{"number":13,"id":"51423","name":"นายพงศพัศ บุญเหลือ"},{"number":14,"id":"51445","name":"นายจิ้นเซิน ฉั่ว"},{"number":15,"id":"51446","name":"นายจิรวิทย์ ฮวดไชยอนันต์"},{"number":16,"id":"51456","name":"นายเตชินท์ ชินบวรพงษ์"},{"number":17,"id":"51457","name":"นายธนพัฒ ปาฐวิกานต์"},{"number":18,"id":"51463","name":"นายโปรด มีสุข"},{"number":19,"id":"51472","name":"นายวัศพล พิเชียรวงศ์"},{"number":20,"id":"51497","name":"นายนพปฎล เจริญศิลป์"},{"number":21,"id":"52384","name":"นายปัณณวัชร์ ธนันพิมพ์นารา"},{"number":22,"id":"53744","name":"นายเกียรติประวุฒิ แก้วกัญญา"},{"number":23,"id":"53745","name":"นายอคิรา บุณยสิทธิ์พิชัย"},{"number":24,"id":"53746","name":"น.ส.ญาณิศา สุวรรณกิจ"},{"number":25,"id":"53747","name":"น.ส.ณัฏฐธิดา วิวุฒิสุนทร"},{"number":26,"id":"53748","name":"น.ส.ธนิธารณ์ ธาราภิญญา"},{"number":27,"id":"53749","name":"น.ส.ธัญชนก เวียงแสง"},{"number":28,"id":"53750","name":"น.ส.เบญญาภา แก้วจาเครือ"},{"number":29,"id":"53751","name":"น.ส.ปวริศา สิงต๊ะนะ"},{"number":30,"id":"53752","name":"น.ส.ปวริสา เชื้อพลายเวช"},{"number":31,"id":"53753","name":"น.ส.ปาริตา ปาณปุณณัง"},{"number":32,"id":"53754","name":"น.ส.พิมพิชชา สิริวรรณเจริญ"},{"number":33,"id":"53755","name":"น.ส.เพ็ญพิชญา มุ่งสันติสุข"},{"number":34,"id":"53756","name":"น.ส.เพียงขวัญ บัวรักษา"},{"number":35,"id":"53757","name":"น.ส.ภัทราวดี ธงไชย"},{"number":36,"id":"53758","name":"น.ส.โยษิตา ลัคนาทิน"},{"number":37,"id":"53759","name":"น.ส.รัศมิ์ลภัส อิงคนินันท์"},{"number":38,"id":"53760","name":"น.ส.สุชัญญา ด้วงทอง"},{"number":39,"id":"53761","name":"น.ส.สุชาวลี วงศ์ศรีเเก้ว"},{"number":40,"id":"53762","name":"น.ส.อัยริน วศินประภา"}],"5/12":[{"number":1,"id":"50574","name":"นายอชิตะ ธัญญากุลวงศ์"},{"number":2,"id":"51098","name":"นายปัณณทัต ทองงาม"},{"number":3,"id":"51142","name":"นายฉัฏทวุฒิ ใจการ"},{"number":4,"id":"51191","name":"นายณัฏฐกิตติ์ เนินปรางค์"},{"number":5,"id":"51204","name":"นายนิติรัฐ วังเปียง"},{"number":6,"id":"51233","name":"นายจิราวัฒน์ ประทุมใจอ่อน"},{"number":7,"id":"51247","name":"นายพัทธพล แวดาราแม"},{"number":8,"id":"51261","name":"นายสิทธิศาสตร์ อังกิติตระกูล"},{"number":9,"id":"51272","name":"นายชยุตพล หาญนัทธี"},{"number":10,"id":"51275","name":"นายฐิติวัชร์ โอฬารนรานนท์"},{"number":11,"id":"51276","name":"นายฐิติวัฒน์ โคพรม"},{"number":12,"id":"51281","name":"นายธนกฤต สุวนิชย์"},{"number":13,"id":"51283","name":"นายธนวิชญ์ ก้านอินทร์"},{"number":14,"id":"51290","name":"นายพงษกานต์ สกุลศักดิ์ทอง"},{"number":15,"id":"51299","name":"นายวชิรวิทย์ อินทร์โสภา"},{"number":16,"id":"51300","name":"นายวุฒิภัทร จันทรวงษ์"},{"number":17,"id":"51311","name":"นายจิรกฤต วาปี"},{"number":18,"id":"51325","name":"นายนพรุจ แจ้งกระจ่าง"},{"number":19,"id":"51349","name":"นายอัครภูมิ รุจิพรมงคล"},{"number":20,"id":"51367","name":"นายธีรวีร์ สุจินตัย"},{"number":21,"id":"51368","name":"นายนพเมธ สุขมาก"},{"number":22,"id":"51380","name":"นายเมธาสิทธิ์ พีระก้องเกียรติ"},{"number":23,"id":"51385","name":"นายศุภวิชญ์ ทองจินดา"},{"number":24,"id":"51393","name":"นายกนต์ธร ศิริ"},{"number":25,"id":"51442","name":"นายกันตพิชญ์ ลือกิตินันท์"},{"number":26,"id":"51454","name":"นายณัฐพันธ์ พรหมวิริยกุล"},{"number":27,"id":"51471","name":"นายวสุ ปานหยวก"},{"number":28,"id":"51486","name":"นายณัฐพล ชินวงศ์วิโรจน์"},{"number":29,"id":"51488","name":"นายต่อตระกูล ฉานสูงเนิน"},{"number":30,"id":"51489","name":"นายติณภัทร หาพลอย"},{"number":31,"id":"51502","name":"นายปิยวิศว์ โคตะกาว"},{"number":32,"id":"51503","name":"นายปุณณ โสภาพรรณกุล"},{"number":33,"id":"54562","name":"นายศุภเศรษฐ สืบฤกษ์"},{"number":34,"id":"53773","name":"น.ส.กัญญ์ณัชชา แก้วเข้ม"},{"number":35,"id":"53774","name":"น.ส.ธัญญลักษณ์ เพชรแทน"},{"number":36,"id":"53775","name":"น.ส.ธันยธร เจียวใช่เฮ็ง"},{"number":37,"id":"53777","name":"น.ส.มาทานา บุญประเสริฐ"},{"number":38,"id":"53778","name":"น.ส.รวีภัสส์ พิศุทธิ์จินดากุล"},{"number":39,"id":"53779","name":"น.ส.อรปรียา จิตรำพรรณ์"}],"5/14":[{"number":1,"id":"51074","name":"นายภาวิชญ์ ภิยโยทัย"},{"number":2,"id":"51087","name":"นายชิษณุพงษ์ โคตรภักดี"},{"number":3,"id":"51145","name":"นายฌาน เชื้อชาวนา"},{"number":4,"id":"51150","name":"นายธนากร ศรีจุฬางกูล"},{"number":5,"id":"51158","name":"นายปริญญา วิบูลย์จักร์"},{"number":6,"id":"51166","name":"นายพีระพัฒน์ โพธิ์อภัย"},{"number":7,"id":"51167","name":"นายภัทรกฤช หลงอุย"},{"number":8,"id":"51168","name":"นายภาคิน น้อยทรง"},{"number":9,"id":"51183","name":"นายกมนทัต ศรีตรัย"},{"number":10,"id":"51202","name":"นายธีรนันท์ จันทรโชติวงษ์"},{"number":11,"id":"51220","name":"นายศุภากร แก้วโภคา"},{"number":12,"id":"51228","name":"นายกัมพล เหียงแก้ว"},{"number":13,"id":"51235","name":"นายชนินทร์ แสนเจริญ"},{"number":14,"id":"51244","name":"นายปริพัฒน์ เขียนดี"},{"number":15,"id":"51254","name":"นายศิฐาพงษ์ สุวรรณเมฆ"},{"number":16,"id":"51265","name":"นายอภิวิชญ์ เนื่องจำนงค์"},{"number":17,"id":"51307","name":"นายอธิศ แก้วหาวงค์"},{"number":18,"id":"51330","name":"นายปกรณ์ แสนเมือง"},{"number":19,"id":"51337","name":"นายพีรณัฐ ทนุวงษ์"},{"number":20,"id":"51344","name":"นายสรรเสริญ เกิดศิริ"},{"number":21,"id":"51351","name":"นายกตกร แซมหิรัญ"},{"number":22,"id":"51381","name":"นายวชิรวิชญ์ เนาว์วัน"},{"number":23,"id":"51412","name":"นายนราวิชญ์ เพชรยวง"},{"number":24,"id":"51444","name":"นายคเณศ ทองประดู่"},{"number":25,"id":"51476","name":"นายสาธิต บุญปลื้ม"},{"number":26,"id":"53789","name":"นายจิรพัฒน์ ชมจินดา"},{"number":27,"id":"53790","name":"นายถิรวัฒน์ มีแสง"},{"number":28,"id":"53791","name":"นายนิติเผ่า วิจิตนิติ"},{"number":29,"id":"53792","name":"นายปเมธินทร์ เกิดโมลี"},{"number":30,"id":"53793","name":"นายระวีกานต์ พูลสวัสดิ์"},{"number":31,"id":"53794","name":"นายเศรษฐธร พิทักษ์"},{"number":32,"id":"53795","name":"นายสุธิวัส พัฒนเลิศมงคล"},{"number":33,"id":"53796","name":"น.ส.กัลยกร หงษ์ศรีทอง"},{"number":34,"id":"53797","name":"น.ส.ญานิศา คำมูลอามาตย์"},{"number":35,"id":"53798","name":"น.ส.ณัฐพัชร์ จิรมงคลภัทร์"},{"number":36,"id":"53799","name":"น.ส.รวิณา ราชสาร"},{"number":37,"id":"53800","name":"น.ส.วชิรญาณ์ เบือดขุนทด"},{"number":38,"id":"53801","name":"น.ส.วราภรณ์ เหลืองอ่อน"},{"number":39,"id":"53802","name":"น.ส.สุกฤตา ภู่เจริญ"}],"5/16":[{"number":1,"id":"51065","name":"นายธาวิน เมืองปัน"},{"number":2,"id":"51086","name":"นายชินรัตน์ ตระกูลผุดผ่อง"},{"number":3,"id":"51133","name":"นายรติภัทร สิงห์เหลือ"},{"number":4,"id":"51163","name":"นายพรรษชล บุญพลอย"},{"number":5,"id":"51174","name":"นายวัชรพล พันพรม"},{"number":6,"id":"51176","name":"นายสหรัฐ ตันสกุล"},{"number":7,"id":"51178","name":"นายสิรภพ รักษาพล"},{"number":8,"id":"51188","name":"นายชนันธร พงษ์พานิช"},{"number":9,"id":"51201","name":"นายธวัชชัย พินึกรัมย์"},{"number":10,"id":"51203","name":"นายนราวิชญ์ หมีเขียว"},{"number":11,"id":"51205","name":"นายปฏิภาณ เบ้าลี"},{"number":12,"id":"51213","name":"นายพีรวิชญ์ หาญชนะ"},{"number":13,"id":"51217","name":"นายศุภกร ครุพงศ์"},{"number":14,"id":"51282","name":"นายธนณัฏฐ์ ดีเจริญวงษ์กุล"},{"number":15,"id":"51289","name":"นายปัณณวิชญ์ ศรีนุติเมธิน"},{"number":16,"id":"51318","name":"นายณัฐกรณ์ นวนประโคน"},{"number":17,"id":"51319","name":"นายณัฐชนนท์ วังชากร"},{"number":18,"id":"51345","name":"นายสิริ สินทรัพย์"},{"number":19,"id":"51346","name":"นายสุวพิชญ์ ตะราษี"},{"number":20,"id":"51350","name":"นายอิทธิกร ถนอมคุณ"},{"number":21,"id":"51431","name":"นายศิริวุฒิ สมศิริวรางกูล"},{"number":22,"id":"53813","name":"นายกิตติกวิน พัชราภรณ์"},{"number":23,"id":"53814","name":"นายชุติเดช น้อยศรี"},{"number":24,"id":"53815","name":"นายณัฐพล คงชื่น"},{"number":25,"id":"53816","name":"นายเตชินท์ ไชยบุบผา"},{"number":26,"id":"53817","name":"นายทินกฤต ศกุนตนาคลาภ"},{"number":27,"id":"53818","name":"นายธีราทัต ดลภาวันวนิช"},{"number":28,"id":"53819","name":"นายพรภวิษย์ บุญปถม"},{"number":29,"id":"53820","name":"นายพฤกษ เฉลิมลาภ"},{"number":30,"id":"53821","name":"นายศุภวิชญ์ แตงแก้ว"},{"number":31,"id":"53822","name":"นายศุภวิชญ์ กล้าหาญ"},{"number":32,"id":"53776","name":"น.ส.ปัณฑิกา รวมลำภา"},{"number":33,"id":"53784","name":"น.ส.ธนัญญา บัวเข้ม"},{"number":34,"id":"53786","name":"น.ส.สุชัญญา สุวรรณจิระ"},{"number":35,"id":"53823","name":"น.ส.ธัญชนก ไกรพล"},{"number":36,"id":"53825","name":"น.ส.พิชญาภา สอนคง"},{"number":37,"id":"53827","name":"น.ส.รมิดา วงค์ถนอม"},{"number":38,"id":"53828","name":"น.ส.รวิสรา เต็มวิรุฬห์พงศ์"},{"number":39,"id":"53829","name":"น.ส.อารีรัฐ วงษ์ทองเหลือ"}]};
+
+const stuLookup = {};
+for (var room in STUDENTS) {
+  STUDENTS[room].forEach(function(s) { stuLookup[s.id] = Object.assign({}, s, { room: room }); });
+}
+
+// ── STATE ──
+var me = null, role = null;
+var assignments = [], submissions = [];
+var clRoom = ROOMS[0], subRoom = 'all';
+var selIds = new Set(), selFRooms = new Set(ROOMS);
+var clAsgnId = '';
+var rejectSubId = null;
+var submitAsgnId = '';
+var selfieFile = null, workFile = null;
+var unsub1 = null, unsub2 = null;
+
+// ── UTILS ──
+function $(id) { return document.getElementById(id); }
+function fmtDate(d) {
+  if (!d) return '-';
+  var dt = d.toDate ? d.toDate() : new Date(d);
+  return dt.toLocaleString('th-TH', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+function toast(msg) {
+  var t = $('toast'); t.textContent = msg; t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
+function sync(v) { $('syncBar').style.display = v ? 'flex' : 'none'; }
+function getSub(sid, aid) { return submissions.find(function(s) { return s.studentId === sid && s.asgnId === aid; }); }
+function getAsgn(id) { return assignments.find(function(a) { return a.id === id; }); }
+function showProgress(pct, msg) {
+  $('progressBar').style.display = 'block';
+  $('progressFill').style.width = pct + '%';
+  $('statusNote').style.display = 'block';
+  $('statusNote').textContent = msg;
+}
+function hideProgress() {
+  $('progressBar').style.display = 'none';
+  $('statusNote').style.display = 'none';
+}
+
+// ── LISTENERS ──
+function startListeners() {
+  if (unsub1) unsub1();
+  unsub1 = onSnapshot(collection(db, 'assignments'), function(snap) {
+    assignments = snap.docs.map(function(d) { return Object.assign({ id: d.id }, d.data()); })
+      .sort(function(a, b) { return (b.createdAt ? b.createdAt.toMillis() : 0) - (a.createdAt ? a.createdAt.toMillis() : 0); });
+    if (role === 'student') renderStuAsgns();
+    if (role === 'teacher') { renderOverview(); refreshSelects(); renderChecklist(); }
+  });
+  if (unsub2) unsub2();
+  unsub2 = onSnapshot(collection(db, 'submissions'), function(snap) {
+    submissions = snap.docs.map(function(d) { return Object.assign({ id: d.id }, d.data()); });
+    if (role === 'student') renderStuAsgns();
+    if (role === 'teacher') { renderOverview(); renderChecklist(); renderSubs(); renderScoreTable(); }
+  });
+}
+function stopListeners() { if (unsub1) unsub1(); if (unsub2) unsub2(); unsub1 = unsub2 = null; }
+
+// ── AUTH ──
+function doLogin() {
+  var sid = $('loginInput').value.trim();
+  var pw  = $('loginPw').value.trim();
+  $('loginErr').style.display = 'none';
+
+  // Teacher login
+  if (sid === TEACHER_ID && pw === TEACHER_PW) {
+    role = 'teacher'; me = { name: 'ครูผู้สอน' };
+    showScreen('tchScreen'); initTeacher(); startListeners(); return;
+  }
+
+  // Student login: check STU_DB for id+password match
+  var stuData = STU_DB[sid];
+  if (stuData && stuData.pw === pw) {
+    // Also check stuLookup for room/number info (from original STUDENTS)
+    var stuInfo = stuLookup[sid];
+    if (stuInfo) {
+      role = 'student';
+      me = stuInfo;
+    } else {
+      // Fallback from STU_DB
+      role = 'student';
+      me = { id: sid, name: stuData.n, room: '5/' + stuData.r, number: stuData.s };
+    }
+    showScreen('stuScreen'); initStudent(); startListeners(); return;
+  }
+
+  $('loginErr').style.display = 'block';
+}
+function doLogout() {
+  stopListeners(); me = null; role = null;
+  $('loginInput').value = '';
+  showScreen('ls');
+}
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('on'); });
+  $(id).classList.add('on');
+}
+
+// ── PROFILE ──
+function loadProf() {
+  if (!me) return;
+  var saved = localStorage.getItem('prof_' + me.id);
+  applyProf(saved);
+}
+function applyProf(url) {
+  var top = $('stuAvTop'), pic = $('stuProfPic');
+  if (url) {
+    top.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover">';
+    pic.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover">';
+  } else {
+    top.textContent = me ? me.name.charAt(0) : 'น';
+    pic.textContent = '🧑‍🎨';
+  }
+}
+
+// ── STUDENT ──
+function initStudent() {
+  $('stuNameTop').textContent = me.name;
+  $('stuFullName').textContent = me.name;
+  $('stuDetail').textContent = 'ชั้น ม.' + me.room + ' | เลขที่ ' + me.number + ' | รหัส ' + me.id;
+  loadProf();
+}
+
+function renderStuAsgns() {
+  var myA = assignments.filter(function(a) { return a.rooms && a.rooms.indexOf(me.room) >= 0; });
+  var done = myA.filter(function(a) { return getSub(me.id, a.id); }).length;
+  $('stTotal').textContent = myA.length;
+  $('stPending').textContent = myA.length - done;
+  $('stDone').textContent = done;
+  var el = $('stuAsgnList');
+  if (!myA.length) {
+    el.innerHTML = '<div style="text-align:center;padding:36px;color:var(--muted)"><div style="font-size:40px">🎨</div><p style="margin-top:8px">ยังไม่มีงานที่ได้รับมอบหมาย</p></div>';
+    return;
+  }
+  el.innerHTML = '';
+  myA.forEach(function(a) {
+    var sub = getSub(me.id, a.id);
+    var due = a.due && a.due.toDate ? a.due.toDate() : new Date(a.due);
+    var overdue = !sub && new Date() > due;
+    var cls = 'acard ps', bdg = 'badge ps', lbl = '📝 ยังไม่ส่ง';
+    if (sub && sub.approved) { cls='acard ap'; bdg='badge ap'; lbl='✅ ส่งงานสำเร็จ'; }
+    else if (sub && sub.rejected) { cls='acard rj'; bdg='badge rj'; lbl='❌ ไม่อนุมัติ'; }
+    else if (sub) { cls='acard sb'; bdg='badge wt'; lbl='⏳ รออนุมัติ'; }
+    else if (overdue) { cls='acard ov'; bdg='badge ov'; lbl='❌ เกินกำหนด'; }
+    var d = document.createElement('div');
+    d.className = cls;
+    var inner = '<div class="ah"><div style="flex:1"><div class="at">' + a.title + '</div>';
+    if (a.desc) inner += '<div class="ad">' + a.desc + '</div>';
+    inner += '<div class="am"><span>📅 กำหนดส่ง ' + fmtDate(a.due) + '</span>';
+    if (a.maxScore) inner += '<span class="score-chip">⭐ คะแนนเต็ม ' + a.maxScore + '</span>';
+    if (sub) inner += '<span>📤 ส่งเมื่อ ' + fmtDate(sub.submittedAt) + '</span>';
+    inner += '</div>';
+    if (sub && sub.rejected && sub.rejectComment) inner += '<div class="reject-note">💬 ครูแจ้ง: ' + sub.rejectComment + '</div>';
+    if (a.worksheetLink) inner += '<a class="dl-btn" href="' + a.worksheetLink + '" target="_blank" rel="noopener">📎 ' + (a.worksheetName || 'ดาวน์โหลดแบบฝึกหัด') + '</a>';
+    inner += '</div><span class="' + bdg + '">' + lbl + '</span></div>';
+    d.innerHTML = inner;
+    if (!sub || sub.rejected) {
+      var btn = document.createElement('button');
+      btn.className = 'btn-sub'; btn.textContent = '📷 ถ่ายรูปและส่งงาน';
+      btn.style.marginTop = '10px';
+      (function(aid, atitle) {
+        btn.onclick = function() { openSubmitModal(aid, atitle); };
+      })(a.id, a.title);
+      d.appendChild(btn);
+    }
+    el.appendChild(d);
+  });
+}
+
+// ── SUBMIT MODAL ──
+function openSubmitModal(aid, title) {
+  submitAsgnId = aid; selfieFile = null; workFile = null;
+  $('modalSubTitle').textContent = title || '';
+  $('selfiePrev').style.display = 'none';
+  $('selfieImg').style.display = 'none';
+  $('selfieImg').src = '';
+  $('workPrev').style.display = 'none';
+  $('workImg').style.display = 'none';
+  $('workImg').src = '';
+  $('selfieFile').value = '';
+  $('workFile').value = '';
+  $('btnSubConfirm').disabled = false;
+  $('btnSubConfirm').textContent = 'ส่งงาน ✓';
+  hideProgress();
+  $('modalSubmit').classList.add('on');
+}
+
+$('upzoneSelfie').onclick = function() { $('selfieFile').click(); };
+$('selfieFile').onchange = function() {
+  if (!this.files || !this.files[0]) return;
+  selfieFile = this.files[0];
+  $('selfieName').textContent = selfieFile.name;
+  $('selfiePrev').style.display = 'flex';
+  var url = URL.createObjectURL(selfieFile);
+  $('selfieImg').src = url; $('selfieImg').style.display = 'block';
+};
+
+$('upzoneWork').onclick = function() { $('workFile').click(); };
+$('workFile').onchange = function() {
+  if (!this.files || !this.files[0]) return;
+  workFile = this.files[0];
+  var kb = Math.round(workFile.size / 1024);
+  $('workName').textContent = workFile.name;
+  $('workKB').textContent = '(' + kb + ' KB)';
+  $('workPrev').style.display = 'flex';
+  var url = URL.createObjectURL(workFile);
+  $('workImg').src = url; $('workImg').style.display = 'block';
+};
+
+$('btnSubCancel').onclick = function() {
+  $('modalSubmit').classList.remove('on');
+  selfieFile = null; workFile = null;
+};
+
+$('btnSubConfirm').onclick = async function() {
+  if (!selfieFile) { toast('⚠️ กรุณาเลือกรูปหน้าตัวเอง (ขั้นที่ 1)'); return; }
+  if (!workFile)   { toast('⚠️ กรุณาเลือกรูปผลงาน (ขั้นที่ 2)'); return; }
+  this.disabled = true; this.textContent = 'กำลังส่ง...';
+  try {
+    showProgress(10, '⚙️ กำลังบีบอัดรูปภาพ...');
+    var selfieResized = await resizeImage(selfieFile, 600, 0.78);
+    var workResized   = await resizeImage(workFile,   1000, 0.78);
+    showProgress(40, '⬆️ กำลังอัปโหลดรูปหน้า...');
+    var selfieUrl = await uploadCloudinary(selfieResized);
+    showProgress(70, '⬆️ กำลังอัปโหลดรูปผลงาน...');
+    var workUrl = await uploadCloudinary(workResized);
+    showProgress(90, '💾 กำลังบันทึกข้อมูล...');
+    await addDoc(collection(db, 'submissions'), {
+      asgnId: submitAsgnId,
+      studentId: me.id, studentName: me.name,
+      room: me.room, number: me.number,
+      submittedAt: serverTimestamp(),
+      selfieUrl: selfieUrl,
+      photoUrl: workUrl,
+      photoName: workFile.name,
+      approved: false, rejected: false, rejectComment: '', score: null
+    });
+    showProgress(100, '✅ ส่งงานสำเร็จ!');
+    setTimeout(function() {
+      hideProgress();
+      $('modalSubmit').classList.remove('on');
+      selfieFile = null; workFile = null;
+      toast('⏳ ส่งงานแล้ว รอครูอนุมัติ...');
+    }, 800);
+  } catch(e) {
+    hideProgress();
+    toast('❌ ' + e.message);
+    this.disabled = false; this.textContent = 'ส่งงาน ✓';
+  }
+};
+
+// ── PROFILE MODAL ──
+$('stuChip').onclick = function() { openProfModal(); };
+$('stuProfPic').onclick = function() { openProfModal(); };
+function openProfModal() {
+  var saved = localStorage.getItem('prof_' + me.id);
+  var prev = $('profPrev');
+  if (saved) prev.innerHTML = '<img src="' + saved + '" style="width:100%;height:100%;object-fit:cover">';
+  else prev.textContent = '🧑‍🎨';
+  $('profFile').value = '';
+  $('modalProfile').classList.add('on');
+}
+$('profFile').onchange = function() {
+  if (!this.files || !this.files[0]) return;
+  var rd = new FileReader();
+  rd.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var c = document.createElement('canvas'); c.width = 200; c.height = 200;
+      var side = Math.min(img.width, img.height);
+      var sx = (img.width-side)/2, sy = (img.height-side)/2;
+      c.getContext('2d').drawImage(img, sx, sy, side, side, 0, 0, 200, 200);
+      var dataUrl = c.toDataURL('image/jpeg', 0.85);
+      $('profPrev').innerHTML = '<img src="' + dataUrl + '" style="width:100%;height:100%;object-fit:cover">';
+      $('profPrev').dataset.url = dataUrl;
+    };
+    img.src = e.target.result;
+  };
+  rd.readAsDataURL(this.files[0]);
+};
+$('btnProfCancel').onclick = function() { $('modalProfile').classList.remove('on'); };
+$('btnProfSave').onclick = function() {
+  var url = $('profPrev').dataset.url;
+  if (!url) { toast('⚠️ กรุณาเลือกรูปก่อน'); return; }
+  localStorage.setItem('prof_' + me.id, url);
+  applyProf(url);
+  $('modalProfile').classList.remove('on');
+  toast('✅ บันทึกรูปโปรไฟล์แล้ว');
+};
+
+// ── TEACHER ──
+function initTeacher() {
+  // room chips
+  $('roomChips').innerHTML = ROOMS.map(function(r) {
+    return '<div class="rchip on" data-r="' + r + '">ม.' + r + '</div>';
+  }).join('');
+  $('roomChips').querySelectorAll('.rchip').forEach(function(el) {
+    el.onclick = function() {
+      var r = el.dataset.r;
+      if (selFRooms.has(r)) selFRooms.delete(r); else selFRooms.add(r);
+      el.classList.toggle('on', selFRooms.has(r));
+    };
+  });
+  // cl rooms
+  $('clRooms').innerHTML = ROOMS.map(function(r, i) {
+    return '<button class="rbtn' + (i===0?' on':'') + '" data-r="' + r + '">ม.' + r + '</button>';
+  }).join('');
+  $('clRooms').querySelectorAll('.rbtn').forEach(function(btn) {
+    btn.onclick = function() {
+      clRoom = btn.dataset.r; selIds = new Set();
+      $('clRooms').querySelectorAll('.rbtn').forEach(function(b) { b.classList.remove('on'); });
+      btn.classList.add('on'); renderChecklist();
+    };
+  });
+  // sub rooms
+  $('subRoomBtns').innerHTML = '<button class="rbtn on" data-r="all">ทุกห้อง</button>' +
+    ROOMS.map(function(r) { return '<button class="rbtn" data-r="' + r + '">ม.' + r + '</button>'; }).join('');
+  $('subRoomBtns').querySelectorAll('.rbtn').forEach(function(btn) {
+    btn.onclick = function() {
+      subRoom = btn.dataset.r;
+      $('subRoomBtns').querySelectorAll('.rbtn').forEach(function(b) { b.classList.remove('on'); });
+      btn.classList.add('on'); renderSubs();
+    };
+  });
+  // score room
+  $('scoreRoom').innerHTML = '<option value="all">ทุกห้อง</option>' +
+    ROOMS.map(function(r) { return '<option value="' + r + '">ม.' + r + '</option>'; }).join('');
+  $('scoreRoom').onchange = renderScoreTable;
+  // nav tabs
+  document.querySelectorAll('.ntab').forEach(function(btn) {
+    btn.onclick = function() {
+      document.querySelectorAll('.ntab').forEach(function(b) { b.classList.remove('on'); });
+      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('on'); });
+      btn.classList.add('on'); $('tab-' + btn.dataset.tab).classList.add('on');
+      if (btn.dataset.tab === 'check') renderChecklist();
+      if (btn.dataset.tab === 'subs') renderSubs();
+      if (btn.dataset.tab === 'scores') renderScoreTable();
+    };
+  });
+  // default due
+  var d = new Date(); d.setDate(d.getDate() + 7);
+  $('fDue').value = d.toISOString().slice(0, 16);
+  $('btnAddAsgn').onclick = addAssignment;
+  $('chkAll').onchange = function() {
+    var stus = STUDENTS[clRoom] || [];
+    selIds = this.checked ? new Set(stus.map(function(s) { return s.id; })) : new Set();
+    renderChecklist();
+  };
+  $('btnBulkApprove').onclick = bulkApprove;
+  $('btnBulkPending').onclick  = bulkPending;
+  $('btnExcel').onclick = exportExcel;
+  $('btnRejectCancel').onclick  = function() { $('modalReject').classList.remove('on'); };
+  $('btnRejectConfirm').onclick = confirmReject;
+  $('btnCloseImg').onclick = function() { $('modalImg').classList.remove('on'); };
+  $('modalImg').onclick = function(e) { if (e.target === $('modalImg')) $('modalImg').classList.remove('on'); };
+  $('clAsgn').onchange  = renderChecklist;
+  $('subAsgn').onchange = renderSubs;
+}
+
+function renderOverview() {
+  var total = Object.values(STUDENTS).reduce(function(s, r) { return s + r.length; }, 0);
+  $('ovStats').innerHTML =
+    '<div class="oc"><div class="on2">' + total + '</div><div class="ol">นักเรียนทั้งหมด</div></div>' +
+    '<div class="oc"><div class="on2">' + assignments.length + '</div><div class="ol">งานที่มอบหมาย</div></div>' +
+    '<div class="oc"><div class="on2">' + submissions.length + '</div><div class="ol">ส่งงานแล้ว</div></div>' +
+    '<div class="oc"><div class="on2" style="color:var(--ok)">' + submissions.filter(function(s){return s.approved;}).length + '</div><div class="ol">อนุมัติแล้ว</div></div>';
+  var el = $('tchAsgnList');
+  if (!assignments.length) { el.innerHTML='<div style="text-align:center;padding:36px;color:var(--muted)">ยังไม่มีงาน</div>'; return; }
+  el.innerHTML = '';
+  assignments.forEach(function(a) {
+    var sc = submissions.filter(function(s){return s.asgnId===a.id;}).length;
+    var ac = submissions.filter(function(s){return s.asgnId===a.id&&s.approved;}).length;
+    var d = document.createElement('div'); d.className = 'acard';
+    d.innerHTML = '<div class="ah"><div style="flex:1"><div class="at">' + a.title + '</div>' +
+      (a.desc?'<div class="ad">'+a.desc+'</div>':'') +
+      '<div class="am"><span>📅 '+fmtDate(a.due)+'</span>' +
+      '<span>🏫 '+(a.rooms||[]).map(function(r){return'ม.'+r;}).join(', ')+'</span>' +
+      (a.maxScore?'<span class="score-chip">⭐ เต็ม '+a.maxScore+'</span>':'') +
+      '<span>📤 ส่ง '+sc+' | ✅ '+ac+'</span>' +
+      (a.worksheetLink?'<a href="'+a.worksheetLink+'" target="_blank" style="color:var(--navy2)">📎 '+(a.worksheetName||'แบบฝึกหัด')+'</a>':'') +
+      '</div></div>' +
+      '<button style="background:var(--errl);color:var(--err);border:none;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:12px" data-id="'+a.id+'">ลบ</button></div>';
+    d.querySelector('button').onclick = function() { deleteAsgn(a.id); };
+    el.appendChild(d);
+  });
+}
+
+function refreshSelects() {
+  var opts = assignments.map(function(a) {
+    return '<option value="'+a.id+'">'+a.title+(a.maxScore?' (เต็ม '+a.maxScore+')':'')+'</option>';
+  }).join('');
+  $('clAsgn').innerHTML = '<option value="">-- เลือกงาน --</option>' + opts;
+  $('subAsgn').innerHTML = '<option value="">ทุกงาน</option>' + assignments.map(function(a) {
+    return '<option value="'+a.id+'">'+a.title+'</option>';
+  }).join('');
+}
+
+async function addAssignment() {
+  var title = $('fTitle').value.trim();
+  var desc  = $('fDesc').value.trim();
+  var due   = $('fDue').value;
+  var maxScore = parseInt($('fMax').value) || null;
+  var wsLink = $('fWsLink').value.trim();
+  var wsName = $('fWsName').value.trim();
+  if (!title) { toast('⚠️ กรุณาใส่ชื่องาน'); return; }
+  if (!due)   { toast('⚠️ กรุณาระบุวันส่ง'); return; }
+  if (!selFRooms.size) { toast('⚠️ กรุณาเลือกห้อง'); return; }
+  sync(true); $('btnAddAsgn').disabled = true;
+  try {
+    await addDoc(collection(db,'assignments'), {
+      title, desc, due: new Date(due), rooms: [...selFRooms],
+      maxScore, worksheetLink: wsLink||null, worksheetName: wsName||null,
+      createdAt: serverTimestamp()
+    });
+    $('fTitle').value=''; $('fDesc').value=''; $('fWsLink').value=''; $('fWsName').value=''; $('fMax').value='';
+    document.querySelector('.ntab[data-tab="overview"]').click();
+    toast('✅ เพิ่มงานสำเร็จ!');
+  } catch(e) { toast('❌ ' + e.message); }
+  sync(false); $('btnAddAsgn').disabled = false;
+}
+
+async function deleteAsgn(id) {
+  if (!confirm('ต้องการลบงานนี้?')) return;
+  sync(true);
+  await deleteDoc(doc(db,'assignments',id));
+  var subsToDelete = submissions.filter(function(s){return s.asgnId===id;});
+  for (var i=0;i<subsToDelete.length;i++) await deleteDoc(doc(db,'submissions',subsToDelete[i].id));
+  sync(false); toast('🗑️ ลบงานแล้ว');
+}
+
+// ── CHECKLIST ──
+function renderChecklist() {
+  clAsgnId = $('clAsgn').value;
+  var stus = STUDENTS[clRoom] || [];
+  var asgn = getAsgn(clAsgnId);
+  var body = $('clBody');
+  if (!clAsgnId) { body.innerHTML='<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted)">กรุณาเลือกงานก่อน</td></tr>'; return; }
+  body.innerHTML = '';
+  stus.forEach(function(s) {
+    var sub = getSub(s.id, clAsgnId);
+    var tr = document.createElement('tr');
+    // checkbox
+    var tdCb = document.createElement('td');
+    var cb = document.createElement('input'); cb.type='checkbox'; cb.checked=selIds.has(s.id);
+    cb.onchange = (function(sid) { return function() { if(this.checked)selIds.add(sid);else selIds.delete(sid); $('selCount').textContent=selIds.size?'เลือก '+selIds.size+' คน':''; }; })(s.id);
+    tdCb.appendChild(cb); tr.appendChild(tdCb);
+    // num
+    var tdN=document.createElement('td'); tdN.textContent=s.number; tr.appendChild(tdN);
+    // name
+    var tdNm=document.createElement('td'); tdNm.style.whiteSpace='nowrap'; tdNm.textContent=s.name; tr.appendChild(tdNm);
+    // status
+    var tdSt=document.createElement('td');
+    if(sub&&sub.approved) tdSt.innerHTML='<span class="si ap">✅ อนุมัติ</span>';
+    else if(sub&&sub.rejected) tdSt.innerHTML='<span class="si rj">❌ ไม่อนุมัติ</span>'+(sub.rejectComment?'<br><span style="font-size:10px;color:var(--err)">'+sub.rejectComment+'</span>':'');
+    else if(sub) tdSt.innerHTML='<span class="si wt">⏳ รออนุมัติ</span>';
+    else tdSt.innerHTML='<span class="si no">— ยังไม่ส่ง</span>';
+    tr.appendChild(tdSt);
+    // time
+    var tdT=document.createElement('td'); tdT.style.fontSize='11px'; tdT.style.color='var(--muted)'; tdT.style.whiteSpace='nowrap';
+    tdT.textContent=sub?fmtDate(sub.submittedAt):'-'; tr.appendChild(tdT);
+    // score
+    var tdSc=document.createElement('td');
+    if(asgn&&asgn.maxScore&&sub){
+      var inp=document.createElement('input'); inp.type='number'; inp.className='score-inp';
+      inp.min=0; inp.max=asgn.maxScore; inp.value=sub.score!=null?sub.score:''; inp.placeholder='0-'+asgn.maxScore;
+      var sbtn=document.createElement('button'); sbtn.className='savebtn'; sbtn.textContent='บันทึก';
+      sbtn.onclick=(function(subId,sinp,mx){return async function(){
+        var v=parseFloat(sinp.value);
+        if(isNaN(v)||v<0||v>mx){toast('⚠️ คะแนนไม่ถูกต้อง (0-'+mx+')');return;}
+        sync(true);
+        await updateDoc(doc(db,'submissions',subId),{score:v});
+        var idx=submissions.findIndex(function(x){return x.id===subId;}); if(idx>-1)submissions[idx].score=v;
+        sync(false); renderScoreTable(); toast('✅ บันทึกคะแนน '+v+'/'+mx);
+      };})(sub.id,inp,asgn.maxScore);
+      tdSc.appendChild(inp); tdSc.appendChild(document.createTextNode(' ')); tdSc.appendChild(sbtn);
+    } else { tdSc.textContent='-'; }
+    tr.appendChild(tdSc);
+    // actions
+    var tdAc=document.createElement('td'); tdAc.style.whiteSpace='nowrap';
+    if(sub&&sub.approved){
+      var b=document.createElement('button'); b.className='unapbtn'; b.textContent='ยกเลิก';
+      b.onclick=(function(sid){return async function(){sync(true);await updateDoc(doc(db,'submissions',sid),{approved:false});sync(false);toast('↩️ ยกเลิกแล้ว');};})(sub.id);
+      tdAc.appendChild(b);
+    } else if(sub) {
+      var b1=document.createElement('button'); b1.className='apbtn'; b1.textContent='✅ อนุมัติ';
+      b1.onclick=(function(sid){return async function(){sync(true);await updateDoc(doc(db,'submissions',sid),{approved:true,rejected:false});sync(false);toast('✅ อนุมัติแล้ว');};})(sub.id);
+      var b2=document.createElement('button'); b2.className='rejbtn'; b2.textContent='❌'; b2.style.marginLeft='4px';
+      b2.onclick=(function(sid,sname){return function(){openReject(sid,sname);};})(sub.id,s.name);
+      tdAc.appendChild(b1); tdAc.appendChild(b2);
+    } else {
+      var b=document.createElement('button'); b.className='mrbtn'; b.textContent='📝 บันทึกว่าส่ง';
+      b.onclick=(function(sid,aid){return async function(){
+        sync(true); var stu=stuLookup[sid];
+        await addDoc(collection(db,'submissions'),{asgnId:aid,studentId:sid,studentName:stu?stu.name:'',room:stu?stu.room:'',number:stu?stu.number:0,submittedAt:serverTimestamp(),selfieUrl:null,photoUrl:null,photoName:'',approved:true,rejected:false,rejectComment:'',score:null});
+        sync(false); toast('📝 บันทึกแล้ว');
+      };})(s.id,clAsgnId);
+      tdAc.appendChild(b);
+    }
+    tr.appendChild(tdAc);
+    body.appendChild(tr);
+  });
+}
+
+async function bulkApprove() {
+  if(!selIds.size){toast('⚠️ กรุณาเลือกนักเรียนก่อน');return;}
+  var aid=$('clAsgn').value; if(!aid)return;
+  sync(true);
+  for(var sid of selIds){
+    var sub=getSub(sid,aid);
+    if(sub){await updateDoc(doc(db,'submissions',sub.id),{approved:true,rejected:false});}
+    else{var stu=stuLookup[sid];await addDoc(collection(db,'submissions'),{asgnId:aid,studentId:sid,studentName:stu?stu.name:'',room:stu?stu.room:'',number:stu?stu.number:0,submittedAt:serverTimestamp(),selfieUrl:null,photoUrl:null,photoName:'',approved:true,rejected:false,rejectComment:'',score:null});}
+  }
+  var n=selIds.size; selIds=new Set(); sync(false); toast('✅ อนุมัติ '+n+' คนแล้ว');
+}
+
+async function bulkPending() {
+  if(!selIds.size){toast('⚠️ กรุณาเลือกนักเรียนก่อน');return;}
+  var aid=$('clAsgn').value; if(!aid)return;
+  sync(true);
+  for(var sid of selIds){
+    var sub=getSub(sid,aid);
+    if(sub){await updateDoc(doc(db,'submissions',sub.id),{approved:false,rejected:false});}
+    else{var stu=stuLookup[sid];await addDoc(collection(db,'submissions'),{asgnId:aid,studentId:sid,studentName:stu?stu.name:'',room:stu?stu.room:'',number:stu?stu.number:0,submittedAt:serverTimestamp(),selfieUrl:null,photoUrl:null,photoName:'',approved:false,rejected:false,rejectComment:'',score:null});}
+  }
+  var n=selIds.size; selIds=new Set(); sync(false); toast('⏳ บันทึกรออนุมัติ '+n+' คน');
+}
+
+// ── REJECT ──
+function openReject(subId, stuName) {
+  rejectSubId=subId; $('rejectStuName').textContent='นักเรียน: '+stuName; $('rejectReason').value=''; $('modalReject').classList.add('on');
+}
+async function confirmReject() {
+  if(!rejectSubId)return;
+  var comment=$('rejectReason').value.trim();
+  sync(true);
+  try{
+    await updateDoc(doc(db,'submissions',rejectSubId),{approved:false,rejected:true,rejectComment:comment});
+    var idx=submissions.findIndex(function(s){return s.id===rejectSubId;});
+    if(idx>-1){submissions[idx].approved=false;submissions[idx].rejected=true;submissions[idx].rejectComment=comment;}
+    $('modalReject').classList.remove('on'); toast('❌ ไม่อนุมัติงานแล้ว');
+  }catch(e){toast('❌ '+e.message);}
+  sync(false);
+}
+
+// ── SUBMISSIONS VIEW ──
+function renderSubs() {
+  var aid=$('subAsgn').value;
+  var list=submissions
+    .filter(function(s){return subRoom==='all'||s.room===subRoom;})
+    .filter(function(s){return !aid||s.asgnId===aid;})
+    .sort(function(a,b){return(b.submittedAt&&b.submittedAt.toMillis?b.submittedAt.toMillis():0)-(a.submittedAt&&a.submittedAt.toMillis?a.submittedAt.toMillis():0);});
+  var el=$('subsList');
+  if(!list.length){el.innerHTML='<div style="text-align:center;padding:36px;color:var(--muted)"><div style="font-size:36px">📭</div><p style="margin-top:8px">ยังไม่มีงานที่ส่ง</p></div>';return;}
+  el.innerHTML='';
+  list.forEach(function(s){
+    var a=getAsgn(s.asgnId);
+    var maxScore=a&&a.maxScore?a.maxScore:null;
+    var selfieUrl=s.selfieUrl||s.selfieData||null;
+    var workUrl=s.photoUrl||s.photoData||null;
+    var wrap=document.createElement('div');
+    wrap.style.cssText='background:var(--card);border-radius:var(--r);margin-bottom:14px;box-shadow:var(--sh);overflow:hidden;border:1px solid var(--border)';
+    // header
+    var statusBadge=s.approved?'<span class="badge ap">✅ อนุมัติแล้ว</span>':s.rejected?'<span class="badge rj">❌ ไม่อนุมัติ</span>':'<span class="badge wt">⏳ รออนุมัติ</span>';
+    var scoreLabel=maxScore?(s.score!=null?'<span class="score-chip">🏆 '+s.score+'/'+maxScore+'</span>':'<span style="font-size:11px;color:var(--muted)">ยังไม่ให้คะแนน</span>'):'';
+    var hdr=document.createElement('div');
+    hdr.style.cssText='padding:14px 18px;border-bottom:1px solid var(--border);background:var(--navy-pale)';
+    hdr.innerHTML='<div style="font-size:14px;font-weight:700;color:var(--navy)">'+( s.studentName||s.studentId)+'<span style="font-size:11px;color:var(--muted);margin-left:6px;font-weight:400">ม.'+s.room+' เลขที่ '+s.number+'</span></div>'
+      +'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+(a?a.title:'?')+' | ส่ง '+fmtDate(s.submittedAt)+'</div>'
+      +'<div style="margin-top:6px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'+statusBadge+' '+scoreLabel+'</div>'
+      +(s.rejected&&s.rejectComment?'<div class="reject-note" style="margin-top:6px">💬 '+s.rejectComment+'</div>':'');
+    wrap.appendChild(hdr);
+    // photos
+    var photoDiv=document.createElement('div');
+    photoDiv.style.cssText='background:var(--bg);padding:14px';
+    if(selfieUrl||workUrl){
+      var row=document.createElement('div'); row.style.cssText='display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap';
+      if(selfieUrl){
+        var sw=document.createElement('div'); sw.style.cssText='flex:0 0 auto;text-align:center;cursor:pointer';
+        sw.innerHTML='<img src="'+selfieUrl+'" style="width:110px;height:110px;border-radius:12px;object-fit:cover;border:2px solid var(--orange-light);box-shadow:0 2px 8px rgba(0,0,0,.1)"><div style="font-size:10px;color:var(--muted);margin-top:4px">🤳 หน้านักเรียน</div>';
+        sw.onclick=(function(u){return function(){$('imgBig').src=u;$('modalImg').classList.add('on');};})(selfieUrl);
+        row.appendChild(sw);
+      }
+      if(workUrl){
+        var ww=document.createElement('div'); ww.style.cssText='flex:1;min-width:180px;text-align:center;cursor:pointer';
+        ww.innerHTML='<img src="'+workUrl+'" style="max-width:100%;max-height:300px;border-radius:10px;object-fit:contain;box-shadow:0 2px 8px rgba(0,0,0,.1)"><div style="font-size:10px;color:var(--muted);margin-top:4px">📷 ผลงาน</div>';
+        ww.onclick=(function(u){return function(){$('imgBig').src=u;$('modalImg').classList.add('on');};})(workUrl);
+        row.appendChild(ww);
+      }
+      photoDiv.appendChild(row);
+    } else {
+      photoDiv.style.padding='20px'; photoDiv.style.textAlign='center'; photoDiv.style.color='var(--muted)'; photoDiv.style.fontSize='13px';
+      photoDiv.textContent='ไม่มีรูปผลงาน';
+    }
+    wrap.appendChild(photoDiv);
+    // actions
+    var acts=document.createElement('div');
+    acts.style.cssText='padding:12px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--white);border-top:1px solid var(--border)';
+    // approve/reject
+    var btnWrap=document.createElement('div'); btnWrap.style.cssText='display:flex;gap:6px;align-items:center';
+    if(s.approved){
+      var ub=document.createElement('button'); ub.className='unapbtn'; ub.textContent='↩️ ยกเลิกอนุมัติ';
+      ub.onclick=(function(sid){return async function(){sync(true);await updateDoc(doc(db,'submissions',sid),{approved:false});var i=submissions.findIndex(function(x){return x.id===sid;});if(i>-1)submissions[i].approved=false;renderSubs();renderChecklist();sync(false);toast('↩️ ยกเลิกแล้ว');};})(s.id);
+      btnWrap.appendChild(ub);
+    } else {
+      var ab=document.createElement('button'); ab.className='apbtn'; ab.style.cssText='padding:7px 16px;font-size:13px'; ab.textContent='✅ อนุมัติ';
+      ab.onclick=(function(sid){return async function(){sync(true);await updateDoc(doc(db,'submissions',sid),{approved:true,rejected:false});var i=submissions.findIndex(function(x){return x.id===sid;});if(i>-1){submissions[i].approved=true;submissions[i].rejected=false;}renderSubs();renderChecklist();sync(false);toast('✅ อนุมัติแล้ว');};})(s.id);
+      var rb=document.createElement('button'); rb.style.cssText='padding:7px 14px;font-size:13px;background:var(--err);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:Sarabun,sans-serif'; rb.textContent='❌ ไม่อนุมัติ';
+      rb.onclick=(function(sid,sname){return function(){openReject(sid,sname);};})(s.id,s.studentName||s.studentId);
+      btnWrap.appendChild(ab); btnWrap.appendChild(rb);
+    }
+    acts.appendChild(btnWrap);
+    // score
+    var sw2=document.createElement('div'); sw2.style.cssText='display:flex;align-items:center;gap:6px;margin-left:auto;flex-wrap:wrap';
+    var lbl2=document.createElement('span'); lbl2.style.cssText='font-size:12px;color:var(--muted);font-weight:500'; lbl2.textContent='🏆 คะแนน:';
+    var sinp=document.createElement('input'); sinp.type='number'; sinp.min=0; if(maxScore)sinp.max=maxScore;
+    sinp.value=s.score!=null?s.score:''; sinp.placeholder=maxScore?('0-'+maxScore):'-';
+    sinp.style.cssText='width:70px;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;text-align:center;font-family:Sarabun,sans-serif;outline:none';
+    sinp.onfocus=function(){this.style.borderColor='var(--navy2)';};
+    sinp.onblur=function(){this.style.borderColor='var(--border)';};
+    var ssb=document.createElement('button'); ssb.style.cssText='padding:6px 14px;background:var(--orange);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:Sarabun,sans-serif;font-weight:500'; ssb.textContent='บันทึก';
+    ssb.onclick=(function(sid,inp2,mx2){return async function(){
+      var v=parseFloat(inp2.value);
+      if(isNaN(v)||v<0){toast('⚠️ กรุณาใส่ตัวเลขคะแนน');return;}
+      if(mx2&&v>mx2){toast('⚠️ คะแนนเกินคะแนนเต็ม ('+mx2+')');return;}
+      sync(true);
+      try{await updateDoc(doc(db,'submissions',sid),{score:v});var i=submissions.findIndex(function(x){return x.id===sid;});if(i>-1)submissions[i].score=v;inp2.style.borderColor='var(--ok)';setTimeout(function(){inp2.style.borderColor='var(--border)';},2000);renderChecklist();renderScoreTable();toast('✅ บันทึกคะแนน '+v+(mx2?'/'+mx2:'')+' แล้ว');}
+      catch(e){toast('❌ '+e.message);}
+      sync(false);
+    };})(s.id,sinp,maxScore);
+    if(maxScore){var mx2lbl=document.createElement('span');mx2lbl.style.cssText='font-size:12px;color:var(--muted)';mx2lbl.textContent='/ '+maxScore;sw2.appendChild(lbl2);sw2.appendChild(sinp);sw2.appendChild(mx2lbl);sw2.appendChild(ssb);}
+    else{sw2.appendChild(lbl2);sw2.appendChild(sinp);sw2.appendChild(ssb);}
+    acts.appendChild(sw2);
+    wrap.appendChild(acts);
+    el.appendChild(wrap);
+  });
+}
+
+// ── SCORE TABLE ──
+function renderScoreTable(){
+  var rf=$('scoreRoom').value; var rooms=rf==='all'?ROOMS:[rf];
+  var sa=assignments.filter(function(a){return a.maxScore;});
+  var wrap=$('scoreTableWrap');
+  if(!sa.length){wrap.innerHTML='<div style="text-align:center;padding:36px;color:var(--muted)">ยังไม่มีงานที่กำหนดคะแนนเต็ม</div>';return;}
+  wrap.innerHTML='';
+  rooms.forEach(function(room){
+    var stus=STUDENTS[room]||[];
+    var div=document.createElement('div'); div.style.marginBottom='24px';
+    div.innerHTML='<div style="font-size:13px;font-weight:700;padding:8px 14px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:var(--orange-light);border-radius:var(--r);margin-bottom:10px">🏫 ห้อง ม.'+room+'</div>';
+    var tbl=document.createElement('table'); tbl.className='tbl';
+    tbl.innerHTML='<thead><tr><th>เลขที่</th><th>ชื่อ-สกุล</th>'+sa.map(function(a){return'<th style="white-space:nowrap">'+a.title+'<br><span style="font-weight:400;color:var(--muted)">(เต็ม '+a.maxScore+')</span></th>';}).join('')+'<th>รวม</th><th>เต็ม</th></tr></thead>';
+    var tbody=document.createElement('tbody');
+    stus.forEach(function(s){
+      var tot=0,maxTot=0;
+      var cells=sa.map(function(a){var sub=getSub(s.id,a.id);maxTot+=a.maxScore||0;if(sub&&sub.score!=null){tot+=sub.score;return'<td style="text-align:center;font-weight:600;color:var(--navy)">'+sub.score+'</td>';}return'<td style="text-align:center;color:var(--muted)">-</td>';}).join('');
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td>'+s.number+'</td><td style="white-space:nowrap">'+s.name+'</td>'+cells+'<td style="text-align:center;font-weight:700;color:var(--navy)">'+tot+'</td><td style="text-align:center;color:var(--muted)">'+maxTot+'</td>';
+      tbody.appendChild(tr);
+    });
+    tbl.appendChild(tbody); div.appendChild(tbl); wrap.appendChild(div);
+  });
+}
+
+// ── EXCEL ──
+function exportExcel(){
+  var rf=$('scoreRoom').value; var rooms=rf==='all'?ROOMS:[rf];
+  var sa=assignments.filter(function(a){return a.maxScore;});
+  if(!sa.length){toast('⚠️ ยังไม่มีงานที่กำหนดคะแนนเต็ม');return;}
+  var wb=XLSX.utils.book_new();
+  rooms.forEach(function(room){
+    var stus=STUDENTS[room]||[];
+    var hdr=['เลขที่','รหัส','ชื่อ-สกุล'].concat(sa.map(function(a){return a.title+' (/'+a.maxScore+')';})).concat(['รวม','คะแนนเต็ม']);
+    var rows=stus.map(function(s){
+      var tot=0;
+      var sc=sa.map(function(a){var sub=getSub(s.id,a.id);if(sub&&sub.score!=null){tot+=sub.score;return sub.score;}return '';});
+      return [s.number,s.id,s.name].concat(sc).concat([tot,sa.reduce(function(x,a){return x+(a.maxScore||0);},0)]);
+    });
+    var ws=XLSX.utils.aoa_to_sheet([hdr].concat(rows));
+    ws['!cols']=[{wch:6},{wch:8},{wch:30}].concat(sa.map(function(){return{wch:16};})).concat([{wch:8},{wch:8}]);
+    XLSX.utils.book_append_sheet(wb,ws,'ม.'+room);
+  });
+  XLSX.writeFile(wb,'คะแนน_ศิลปะ_ม5_'+new Date().toLocaleDateString('th-TH').replace(/\//g,'-')+'.xlsx');
+  toast('📥 ดาวน์โหลด Excel สำเร็จ!');
+}
+
+// ── INIT ──
+$('btnLogin').onclick = doLogin;
+$('loginInput').addEventListener('keydown', function(e){ if(e.key==='Enter') $('loginPw').focus(); });
+$('loginPw').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+$('loginInput').onkeydown = function(e){ if(e.key==='Enter') doLogin(); };
+$('btnStuLogout').onclick = doLogout;
+$('btnTchLogout').onclick = doLogout;
+
+</script>
+</body>
+</html>
